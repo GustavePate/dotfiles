@@ -1,4 +1,22 @@
+#up and down arrow search in the hostory begin by what has already been typed
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+
 set show-all-if-ambiguous on
+
+# vim-like input
+set editing-mode vi
+set keymap vi
+#
+# #set mark-directories on
+# #set mark-symlinked-directories on
+#
+# # ====================
+# # Autocomplete Options
+# # ====================
+#
+# # f<tab> finds `Foo` and `foo`.
 set completion-ignore-case on
+#
+# # Underscore and hypen treated equivalently
+set completion-map-case on
