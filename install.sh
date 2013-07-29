@@ -1,11 +1,10 @@
 #!/bin/bash
 
 echo 'Dotfiles -  http://gustavepate.github.io/'
-echo 'Inspired by Dotfiles - "Cowboy" Ben Alman - http://benalman.com/'
 
 HOME_DIR=~  #For testing purpose
 SYNC_ROOT=./dotfiles 
-SYNC_FILES=$ROOT/*
+SYNC_FILES=$SYNC_ROOT/*
 
 SCRIPT_FULL_PATH=$(readlink -f $0)
 REPO_PATH=$(dirname $SCRIPT_FULL_PATH)
@@ -67,9 +66,13 @@ do
         elif [ -e $H_FILE ]; then
             echo $H_FILE" backuped...........ok"
             mv $H_FILE $H_FILE_BACKUP
+        # weird
+        else
+            echo "WARNING: I don't know what to do with this file"
         fi
 
     #create a new link
     ln -s $REPO_PATH'/'$f $H_FILE
+    echo $H_FILE' symlinked to '$REPO_PATH'/'$f
 
 done
