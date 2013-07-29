@@ -1,9 +1,9 @@
-cd ~
+# Simple Github dotfiles synchro
 
-ln -s  git/dotfiles/.bashrc .bashrc
+Go to your local copy of the repo
 
-ln -s  git/dotfiles/.vim .vim
 
-ln -s  git/dotfiles/.vimrc .vimrc
+`./install.sh`
 
-ln -s  git/dotfiles/.inputrc .inputrc
+
+Done !

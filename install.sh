@@ -3,9 +3,9 @@
 echo 'Dotfiles -  http://gustavepate.github.io/'
 echo 'Inspired by Dotfiles - "Cowboy" Ben Alman - http://benalman.com/'
 
-HOME_DIR=~
-ROOT=./dotfiles
-FILES=$ROOT/*
+HOME_DIR=~  #For testing purpose
+SYNC_ROOT=./dotfiles 
+SYNC_FILES=$ROOT/*
 
 SCRIPT_FULL_PATH=$(readlink -f $0)
 REPO_PATH=$(dirname $SCRIPT_FULL_PATH)
@@ -20,11 +20,8 @@ else
 fi
 
 
-echo $ROOT
-echo $FILES
-
 #Command must be run from the repo root
-if [ ! -e $ROOT'/.bashrc' ] 
+if [ ! -e $SYNC_ROOT'/.bashrc' ] 
 then
     echo "install must be execute from the repo root"
     exit 1
@@ -38,19 +35,22 @@ git pull
 
 #Symlink all files and directory in the dotfiles directory to the home folder
 
-#allow to find .dotfiles
+#allowi bash  to find .dotfiles
 shopt -s dotglob
+
 #for all files and directory in the dotfiles directory
-for f in $FILES
+for f in $SYNC_FILES
 do
     # take action on each file. $f store current file name
     echo "Processing $f file..."
 
     #strip the left part
-    FI=`basename $f`
+    FILE=`basename $f`
 
-    #create /home equiv
-    H_FILE=$HOME_DIR'/'$FI
+    #create /home equiv for repo file
+    H_FILE=$HOME_DIR'/'$FILE
+
+    #create backup path 
     TIMESTAMP=`date +%d%m%Y-%H%M%S`
     H_FILE_BACKUP=$HOME_DIR'/'$FI'.'$TIMESTAMP'.bck'
 
