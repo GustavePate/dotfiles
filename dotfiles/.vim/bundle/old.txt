@@ -1,0 +1,3 @@
+flake8-vim
+autoclose
+jedi-vim
