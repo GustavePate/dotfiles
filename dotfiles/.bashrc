@@ -9,6 +9,8 @@
 export HISTCONTROL=ignoredups
 export TERM=xterm-256color
 
+bind -f ~/.inputrc
+
 #dev env
 export VENV=/home/guillaume/eclipsevirtualenv/env/bin/activate
 if [ -f $VENV ]; then
@@ -23,6 +25,9 @@ source /home/guillaume/.rvm/scripts/rvm
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+# .. act as cd ..
+shopt -s autocd
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"

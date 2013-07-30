@@ -1,7 +1,7 @@
-#up and down arrow search in the hostory begin by what has already been typed
 "\e[A": history-search-backward
 "\e[B": history-search-forward
 
+#up and down arrow search in the hostory begin by what has already been typed
 set show-all-if-ambiguous on
 
 # vim-like input
