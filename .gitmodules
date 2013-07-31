@@ -5,3 +5,19 @@
 [submodule "dotfiles/.vim/bundle/flake8-vim"]
 	path = dotfiles/.vim/bundle/flake8-vim
 	url = https://github.com/andviro/flake8-vim 
+
+    dotfiles/.vim/bundle/Colour-Sampler-Pack
+
+
+    dotfiles/.vim/bundle/CSApprox
+ jedi-vim
+https://github.com/davidhalter/jedi-vim
+    vim-markdown
+    nerdtree
+    ScrollColors.vim
+     TaskList.vim
+    vim-autoclose
+    vim-markdown
+    vim-protobuf
+    vim-python-pep8-indent
+     vim-sensible
