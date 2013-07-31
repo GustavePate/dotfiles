@@ -1,3 +1,7 @@
 [submodule "dotfiles/.vim/bundle/vim-fugitive"]
 	path = dotfiles/.vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
+
+[submodule "dotfiles/.vim/bundle/flake8-vim"]
+	path = dotfiles/.vim/bundle/flake8-vim
+	url = https://github.com/andviro/flake8-vim 
