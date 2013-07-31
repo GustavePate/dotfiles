@@ -28,6 +28,10 @@ else
 fi
 
 git pull
+if [ $? -ne 0 ]; then
+    echo "Pull error !!!!"
+    exit 1
+fi
 
 #Pull latest change
 git add .
