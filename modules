@@ -7,8 +7,7 @@
  dotfiles/.vim/bundle/CSApprox
 
 
-
-  
+git submodule add https://github.com/msanders/snipmate.vim dotfiles/.vim/bundle/snipmate
 git submodule add https://github.com/davidhalter/jedi-vim dotfiles/.vim/bundle/jedi-vim
 git submodule add https://github.com/scrooloose/nerdtree dotfiles/.vim/bundle/nerdtree
 git submodule add https://github.com/vim-scripts/ScrollColors dotfiles/.vim/bundle/ScrollColors.vim
