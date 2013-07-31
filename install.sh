@@ -34,7 +34,7 @@ git add .
 
 #interactivelly add the commit command in order to reviex your changes
 git commit -a
-[ $? -ne 0 ]; then
+if [ $? -ne 0 ]; then
     echo "User aborted"
     exit 1
 fi
