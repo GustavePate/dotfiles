@@ -18,7 +18,6 @@ else
     echo "git installed.....ok"
 fi
 
-
 #Command must be run from the repo root
 if [ ! -e $SYNC_ROOT'/.bashrc' ] 
 then
@@ -28,13 +27,28 @@ else
     echo "command run from secure path.....ok"
 fi
 
-#Pull latest change
-
 git pull
+
+#Pull latest change
+git add .
+
+#interactivelly add the commit command in order to reviex your changes
+git commit -a
+[ $? -ne 0 ]; then
+    echo "User aborted"
+    exit 1
+fi
+
+git push
+
+# get latest submodules
+git submodule init
+git submodule update
+
 
 #Symlink all files and directory in the dotfiles directory to the home folder
 
-#allowi bash  to find .dotfiles
+#allow bash  to find .dotfiles
 shopt -s dotglob
 
 #for all files and directory in the dotfiles directory
