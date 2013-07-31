@@ -1,0 +1,3 @@
+[submodule "dotfiles/.vim/vim-fugitivea"]
+	path = dotfiles/.vim/vim-fugitivea
+	url = https://github.com/tpope/vim-fugitive
