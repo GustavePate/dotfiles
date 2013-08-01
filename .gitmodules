@@ -41,3 +41,6 @@
 [submodule "dotfiles/.vim/bundle/snipmate"]
 	path = dotfiles/.vim/bundle/snipmate
 	url = https://github.com/msanders/snipmate.vim
+[submodule "dotfiles/.vim/bundle/CSApprox"]
+	path = dotfiles/.vim/bundle/CSApprox
+	url = https://github.com/vim-scripts/CSApprox
