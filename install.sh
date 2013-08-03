@@ -58,11 +58,15 @@ git add .
 git commit -a 
 if [ $? -ne 0 ]; then
     echo "User aborted"
+    # it stops if there is nothing to commit
+    # or if commit comment is empty
+    # avoid to commit no neededd change
     exit 1
+else
+    # Push to remote repository 
+    git push origin master
 fi
 
- # Push to remote repository 
-git push origin master
 
 #get submodules latest version
 submodules_latest
