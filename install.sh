@@ -13,9 +13,40 @@ function submodules_latest {
     git add .
 
     # Commit the submodule changes 
-    git commit -m "Update submodules to the latest version"
+    git commit -a -m "Update submodules to the latest version"
 
     git push origin master
+
+}
+
+function push_changes_if_any {
+
+    has_changed=`git status | grep "nothing to commit" | wc -l`
+
+    echo "has_changed:" $has_changed
+    if [[ $has_changed -ne 0 ]];then
+
+        echo "change detected"
+        #Pull latest change
+        git add .
+
+        #interactivelly add the commit command in order to reviex your changes
+        git commit -a 
+        if [ $? -ne 0 ]; then
+            echo "User aborted"
+            # it stops if there is nothing to commit (which don't pass the above test)
+            # or if commit comment is empty
+            # avoid to commit no neededd change
+            exit 1
+
+        else
+            # Push to remote repository 
+            git push origin master
+        fi
+
+    else
+        echo "no change detected"
+    fi
 
 }
 
@@ -51,21 +82,10 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-#Pull latest change
-git add .
 
-#interactivelly add the commit command in order to reviex your changes
-git commit -a 
-if [ $? -ne 0 ]; then
-    echo "User aborted"
-    # it stops if there is nothing to commit
-    # or if commit comment is empty
-    # avoid to commit no neededd change
-    exit 1
-else
-    # Push to remote repository 
-    git push origin master
-fi
+
+#push changes
+push_changes_if_any
 
 
 #get submodules latest version
