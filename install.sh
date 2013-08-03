@@ -10,8 +10,12 @@ function submodules_latest {
 
     git submodule foreach git pull origin master
 
+    git add .
+
     # Commit the submodule changes 
     git commit -m "Update submodules to the latest version"
+
+    git push origin master
 
 }
 
@@ -62,7 +66,6 @@ git push origin master
 
 #get submodules latest version
 submodules_latest
-git push origin master
 
 
 #Symlink all files and directory in the dotfiles directory to the home folder
