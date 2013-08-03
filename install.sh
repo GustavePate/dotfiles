@@ -19,6 +19,8 @@ function submodules_latest {
 
 }
 
+
+#detect change in the local directory and push if any
 function push_changes_if_any {
 
     has_changed=`git status | grep "nothing to commit" | wc -l`
@@ -81,8 +83,6 @@ if [ $? -ne 0 ]; then
     echo "Pull error !!!!"
     exit 1
 fi
-
-
 
 #push changes
 push_changes_if_any
