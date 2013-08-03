@@ -24,7 +24,7 @@ function push_changes_if_any {
     has_changed=`git status | grep "nothing to commit" | wc -l`
 
     echo "has_changed:" $has_changed
-    if [[ $has_changed -ne 0 ]];then
+    if [[ $has_changed -ne 1 ]];then
 
         echo "change detected"
         #Pull latest change
