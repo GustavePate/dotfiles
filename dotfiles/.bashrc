@@ -1,15 +1,48 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+
+# Load local non commited .bashrc
+
+if [ -f ~/.bashrc.local ]; then
+    source ~/.bashrc.local
+fi
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
+#Force 256 colors
 export TERM=xterm-256color
 
+#reload .inputrc
 bind -f ~/.inputrc
+
+#automatic colors with grep
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='1;32'
+
+export EDITOR=vim
+
+###### HISTORY #######
+
+# append to the history file, don't overwrite it 
+shopt -s histappend
+
+# don't put duplicate lines in the history and ignore same sucessive entries. 
+export HISTCONTROL=ignoreboth
+
+# resize history size
+export HISTSIZE=5000
+
+export AUTOFEATURE=true autotest
+
+# your top commands
+function rh {
+  history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
+ }
+
+# Make new shells get the history lines from all previous
+# shells instead of the default "last window closed" history
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+###### PYTHON ######
 
 #dev env
 export VENV=/home/guillaume/eclipsevirtualenv/env/bin/activate
@@ -19,8 +52,11 @@ fi
 export PYTHONPATH=/home/guillaume/git/distark/src/
 export PATH=$PATH:/usr/share/zookeeper/bin
 
-#ruby
+###### RUBY ######
+
 source /home/guillaume/.rvm/scripts/rvm
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -31,6 +67,66 @@ shopt -s autocd
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+#if [ -f ~/.bash_aliases ]; then
+#    . ~/.bash_aliases
+#fi
+
+# LS
+#h - human readble
+#S - Sort by size
+#F - add trailing / for fir * for exec ...
+#A - Almost all show dot files but not . and ..
+#C - List by columns
+#1 only one column
+alias ll='ls -lhSF --color=auto'
+alias la='ls -lAF --color=auto'
+alias ls='ls -CF --color=auto'
+alias l="ls -AF1S"
+alias ack='ack-grep'
+alias paste='xclip -o -selection clipboard'
+
+#clear screen
+alias c='clear'
+
+#exit
+alias q='exit'
+
+#serve repository
+alias serve='python -m SimpleHTTPServer 8080'
+
+#apt-get install
+alias install='sudo apt-get install'
+alias reboot='sudo shutdown -r now'
+alias halt='sudo shutdown  now'
+
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+
+###### GARBAGE ??? #######
+
+
+# enable color support of ls and also add handy aliases
+if [ "$TERM" != "dumb" ]; then
+    eval "`dircolors -b`"
+    alias ls='ls --color=auto'
+    #alias dir='ls --color=auto --format=vertical'
+    #alias vdir='ls --color=auto --format=long'
+fi
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
@@ -58,55 +154,3 @@ xterm*|rxvt*)
 *)
     ;;
 esac
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-#if [ -f ~/.bash_aliases ]; then
-#    . ~/.bash_aliases
-#fi
-
-# enable color support of ls and also add handy aliases
-if [ "$TERM" != "dumb" ]; then
-    eval "`dircolors -b`"
-    alias ls='ls --color=auto'
-    #alias dir='ls --color=auto --format=vertical'
-    #alias vdir='ls --color=auto --format=long'
-fi
-
-# some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
-#alias l='ls -CF'
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
-
-#ORACLE_HOME=/usr/lib/oracle/xe/app/oracle/product/10.2.0/server
-#export ORACLE_HOME
-#ORACLE_SID=XE
-#export ORACLE_SID
-#NLS_LANG=`$ORACLE_HOME/bin/nls_lang.sh`
-#export NLS_LANG
-#PATH=$ORACLE_HOME/bin:$PATH
-#export PATH
-
-#PATH=/usr/lib/jvm/java-1.5.0-sun-1.5.0.15/bin:$PATH
-#export PATH
-
-#tomcat
-export CATALINA_HOME=/usr/myapps/opt/apache-tomcat-6.0.18/
-alias ll='ls -l --color=auto'
-alias la='ls -a --color=auto'
-alias l='ls -la --color=auto'
-alias c='clear'
-
-
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

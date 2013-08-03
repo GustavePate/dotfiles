@@ -2,6 +2,20 @@
 
 echo 'Dotfiles -  http://gustavepate.github.io/'
 
+
+function submodules_latest {
+    # get latest submodules
+    git submodule init
+    git submodule update
+
+    git submodule foreach git pull origin master
+
+    # Commit the submodule changes 
+    git commit -m "Update submodules to the latest version"
+
+}
+
+
 HOME_DIR=~  #For testing purpose
 SYNC_ROOT=./dotfiles 
 SYNC_FILES=$SYNC_ROOT/*
@@ -37,17 +51,18 @@ fi
 git add .
 
 #interactivelly add the commit command in order to reviex your changes
-git commit -a
+git commit -a 
 if [ $? -ne 0 ]; then
     echo "User aborted"
     exit 1
 fi
 
-git push
+ # Push to remote repository 
+git push origin master
 
-# get latest submodules
-git submodule init
-git submodule update
+#get submodules latest version
+submodules_latest
+git push origin master
 
 
 #Symlink all files and directory in the dotfiles directory to the home folder

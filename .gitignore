@@ -1,2 +1,4 @@
 *un~
 dotfiles/.vim/undo/
+dotfiles/.vim/backups/
+dotfiles/.vim/swaps/

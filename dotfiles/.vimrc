@@ -40,7 +40,9 @@ let g:jedi#related_names_command = "<leader>n"
 
 "
 ""vim-ensible centralize multi-session undo files
-set undodir^=~/.vim/undo
+set undodir=~/.vim/undo
+set backupdir=~/.vim/backups
+set directory=~/.vim/swaps
 
 set wildmenu
 set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
