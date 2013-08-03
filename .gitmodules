@@ -38,3 +38,9 @@
 	path = dotfiles/.vim/bundle/vim-sensible
 	url = https://github.com/tpope/vim-sensible
     ignore = dirty
+[submodule "dotfiles/.vim/bundle/csapprox"]
+	path = dotfiles/.vim/bundle/csapprox
+	url = https://github.com/vim-scripts/CSApprox
+[submodule "dotfiles/.vim/bundle/snipMate"]
+	path = dotfiles/.vim/bundle/snipMate
+	url = https://github.com/vim-scripts/snipMate
