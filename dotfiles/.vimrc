@@ -6,17 +6,15 @@ set nocompatible
 call pathogen#infect()
 call pathogen#helptags()
 
-"TODO: move this to /tmp
-
 "centralize multi-session undo files
 set undodir=~/.vim/undo
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
+set backupdir=~/.vim/backup
+set directory=~/.vim/swap
 
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup
-set noswapfile
-set nowritebackup
+set backup
+set swapfile
+set writebackup
 
 if has("autocmd")
     " Load files for specific filetypes
@@ -38,19 +36,23 @@ if has("syntax")
 endif
 
 if has("cmdline_info")
-    set ruler " Show the cursor line and column number
+    " replaced by vim-airline
+    "set ruler " Show the cursor line and column number
     set showcmd " Show partial commands in status line
     set showmode " Show whether in insert or replace mode
 endif
 
 if has('statusline')
-    set laststatus=2 " Always show status line
+
+    " obsoleted by vim-airline
+    "
+    "set laststatus=2 " Always show status line
     " Broken down into easily includeable segments
     "Filename
-    set statusline=%<%f\
-    set statusline+=%w%h%m%r " Options
-    set statusline+=\ [%{getcwd()}] " Current dir
-    set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav info
+    "set statusline=%<%f\
+    "set statusline+=%w%h%m%r " Options
+    "set statusline+=\ [%{getcwd()}] " Current dir
+    "set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav info
 endif
 
 
@@ -77,8 +79,8 @@ endif
 set hidden " allow to have multiple buffer open on edited but not saved files
 set ttyfast " Optimize for fast terminal connections
 set encoding=utf-8 " Use UTF-8
-"TODO: don't work ?
-set matchtime=2 " show matching bracket for 0.2 seconds
+set showmatch "show matching ( { [ if on a ) } ]
+set matchtime=2 " usless: quickly move to open brace when typing the closing one
 set number " show line numbers
 set mouse=a " use the mouse to copy but don't take the linenulbers
 set scrolloff=4 " Start scrolling four lines before the horizontal window border
@@ -102,7 +104,6 @@ colorscheme dask " Set colorscheme
 
 match Todo /\s\+$/ "highlight trailingwhitespaces
 
-
 function! <SID>StripTrailingWhitespaces()
     " Preparation: save last search, and cursor position.
     let _s=@/
@@ -122,7 +123,6 @@ if has("autocmd")
 endif
 
 " ############ keymapping  #############
-
 " Change mapleader
 let mapleader = ","
 " Strip trailing whitespace (,$)
