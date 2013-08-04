@@ -65,6 +65,7 @@ delfunction s:GetValue
 hi Normal	guifg=#c0c0c0	guibg=#000000	gui=NONE
 hi Cursor	guifg=bg	guibg=#80f080	gui=NONE
 hi CursorIM	guifg=bg	guibg=#80f0f0	gui=NONE
+"TODO: change it
 hi MatchParen	guifg=bg	guibg=#f0f080	gui=NONE
 
 " search
@@ -104,6 +105,15 @@ if 0 < s:mimic_colorize_gui
     hi Tooltip	guifg=#801313	guibg=#c0c080
   endif
 endif
+
+" MiniBufExpl Colors
+hi MBENormal               guifg=#808080 guibg=fg
+hi MBEChanged              guifg=#CD5907 guibg=fg
+hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
+hi MBEVisibleChanged       guifg=#F1266F guibg=fg
+hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
+hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
+
 
 " vim >= 7.0 only
 if version >= 700
