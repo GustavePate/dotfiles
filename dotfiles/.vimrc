@@ -120,7 +120,7 @@ endfunction
 if has("autocmd")
     " Automatically strip trailing whitespace on file save
     autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-    autocmd BufWritePre *.css,*.html,*.js,*.json,*.md,*.php,*.py,*.rb,*.scss,*.sh,*.txt :call StripTrailingWhitespaces()
+    autocmd BufWritePre *.css,*.html,*.js,*.json,*.md,*.php,*.py,*.rb,*.scss,*.sh,*.txt :call <SID>StripTrailingWhitespaces()
 endif
 
 " ############ keymapping  #############
@@ -163,10 +163,10 @@ endif
 "#######################################
 
 "############# minibufexpl #################
-let g:miniBufExplMaxSize = 1 "max minbuf window size equal X lines"
+let g:miniBufExplMaxSize = 1 "max minbuf window size equal X lines
 "Replace bd with :MBEbd to fix the miniBufExpl vs bd mess
 map :bd :MBEbd
-
+let g:miniBufExplModSelTarget = 1 "don't open buffer in readonly buffer (like nerdtree's
 "############# Nerdtree #################
 autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
