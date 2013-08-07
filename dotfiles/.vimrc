@@ -77,7 +77,7 @@ if has("extra_search")
 endif
 
 set hidden " allow to have multiple buffer open on edited but not saved files
-set ttyfast " Optimize for fast terminal connections
+"set ttyfast " Optimize for fast terminal connections
 set encoding=utf-8 " Use UTF-8
 set showmatch "show matching ( { [ if on a ) } ]
 set matchtime=2 " usless: quickly move to open brace when typing the closing one
@@ -178,19 +178,27 @@ let g:vim_markdown_folding_disabled=1
 "TODO: line wwrap automatticaly create new bullets while in a list
 
 " ############# jedi vim  ################
-let g:jedi#use_tabs_not_buffers = 0
+"automatically init jedi vim"
+let g:jedi#auto_initialization = 1 
+
 let g:jedi#goto_command = "<leader>g"
 let g:jedi#get_definition_command = "<leader>d"
+"show PyDoc
 let g:jedi#pydoc = "K"
+"automatically popup on dot
+let g:jedi#popup_on_dot = 1
+let g:jedi#use_tabs_not_buffers = 0
 ""There's some support for refactoring:
 let g:jedi#rename_command = "<leader>r"
+"list all names that are related (have the same origin):
+let g:jedi#related_names_command = "<leader>o"
 ""And you can list all names that are related (have the same origin):
 let g:jedi#related_names_command = "<leader>l"
+let g:jedi#autocompletion_command = "<C-Space>"
+"By default you get a window that displays the function definition you're currently in. If you don't want that:
+"let g:jedi#show_function_definition = 
 
-""If you want to change the default autocompletion command:
-""let g:jedi#autocompletion_command =
-""By default you get a window that displays the function definition
-""let g:jedi#show_function_definition =
+
 
 
 " ############# PyFlake  ################

@@ -1,49 +1,15 @@
-[submodule "dotfiles/.vim/bundle/vim-fugitive"]
-	path = dotfiles/.vim/bundle/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive
-    ignore = dirty
 [submodule "dotfiles/.vim/bundle/jedi-vim"]
 	path = dotfiles/.vim/bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim
-    ignore = dirty
 [submodule "dotfiles/.vim/bundle/nerdtree"]
 	path = dotfiles/.vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree
-    ignore = dirty
-[submodule "dotfiles/.vim/bundle/ScrollColors.vim"]
-	path = dotfiles/.vim/bundle/ScrollColors.vim
-	url = https://github.com/vim-scripts/ScrollColors
-    ignore = dirty
-[submodule "dotfiles/.vim/bundle/TaskList.vim"]
-	path = dotfiles/.vim/bundle/TaskList.vim
-	url = https://github.com/superjudge/tasklist-pathogen
-    ignore = dirty
 [submodule "dotfiles/.vim/bundle/vim-autoclose"]
 	path = dotfiles/.vim/bundle/vim-autoclose
 	url = https://github.com/Townk/vim-autoclose
-    ignore = dirty
-[submodule "dotfiles/.vim/bundle/vim-markdown"]
-	path = dotfiles/.vim/bundle/vim-markdown
-	url = https://github.com/plasticboy/vim-markdown
-    ignore = dirty
-[submodule "dotfiles/.vim/bundle/vim-protobuf"]
-	path = dotfiles/.vim/bundle/vim-protobuf
-	url = https://github.com/willnorris/vim-protobuf
-    ignore = dirty
-[submodule "dotfiles/.vim/bundle/vim-python-pep8-indent"]
-	path = dotfiles/.vim/bundle/vim-python-pep8-indent
-	url = https://github.com/hynek/vim-python-pep8-indent
-    ignore = dirty
-[submodule "dotfiles/.vim/bundle/vim-sensible"]
-	path = dotfiles/.vim/bundle/vim-sensible
-	url = https://github.com/tpope/vim-sensible
-    ignore = dirty
 [submodule "dotfiles/.vim/bundle/csapprox"]
 	path = dotfiles/.vim/bundle/csapprox
 	url = https://github.com/vim-scripts/CSApprox
-[submodule "dotfiles/.vim/bundle/snipMate"]
-	path = dotfiles/.vim/bundle/snipMate
-	url = https://github.com/vim-scripts/snipMate
 [submodule "dotfiles/.vim/bundle/vim-airline"]
 	path = dotfiles/.vim/bundle/vim-airline
 	url = https://github.com/bling/vim-airline
