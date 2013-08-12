@@ -89,7 +89,7 @@ push_changes_if_any
 
 
 #get submodules latest version
-submodules_latest
+#submodules_latest
 
 
 #Symlink all files and directory in the dotfiles directory to the home folder
