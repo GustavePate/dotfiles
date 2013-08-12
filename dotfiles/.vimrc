@@ -219,7 +219,9 @@ let g:PyFlakeMaxLineLength = 100
 ""Visual-mode key command for PyFlakeAuto
 let g:PyFlakeRangeCommand = 'Q'
 
-
+" ################# supertab ################
+"  tab scroll from top to bottom completion list
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 """ flask8 tuning"
 """remap

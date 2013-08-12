@@ -120,7 +120,6 @@ if version >= 700
   set cursorline
   ""set cursorcolumn
   hi CursorLine		guibg=grey24	gui=NONE
-  
   hi CursorColumn	guibg=grey24	gui=NONE
 
   " tab pages
@@ -129,9 +128,13 @@ if version >= 700
   hi TabLineSel	guifg=fg	guibg=bg	gui=NONE
 
   " popup completion menu
+  " Normal item
   hi Pmenu	guifg=bg	guibg=fg	gui=NONE
+  " Selected item
   hi PmenuSel	guifg=bg	guibg=#a0c0d0	gui=underline
+  "Scrollbar
   hi PmenuSbar	guifg=#333383	guibg=#333383	gui=NONE
+  "Thumb of scrollbar
   hi PmenuThumb	guifg=#a0c0d0	guibg=#a0c0d0	gui=NONE
 
   " spell checking
