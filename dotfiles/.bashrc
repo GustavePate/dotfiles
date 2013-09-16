@@ -13,7 +13,7 @@ export TERM=xterm-256color
 
 #reload .inputrc
 bind -f ~/.inputrc
-
+echo "YEAH!!!!"
 #automatic colors with grep
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
