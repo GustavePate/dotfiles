@@ -16,6 +16,17 @@ set backup
 set swapfile
 set writebackup
 
+"make backspace work properly
+set backspace=indent,eol,start
+
+"toggle paste / nopaste mode to not mess indent during paste of indented text
+set pastetoggle=<F8>
+
+" * (midelclick) system clipboard by default
+set clipboard=unnamed
+" + (ctrl+c) system clipboard by default
+"set clipboard=unnamedplus
+
 if has("autocmd")
     " Load files for specific filetypes
     filetype on
@@ -93,8 +104,9 @@ set autoindent " align the new line indent with the previous line"
 set cursorline " Highlight current line
 set nostartofline " Don’t reset cursor to start of line when moving around.
 set textwidth=90 " lines longer than X columns will be broken, type gq$ to apply
+set formatoptions-=t " don't automatically wrap text when typing
+"set formatoptions+=t " automatically wrap text when typing
 "set nowrap " don't automatically wrap on load
-"set fo-=t " don't automatically wrap text when typing
 set colorcolumn=90 " add a colored column on column number X"
 " TODO: not working
 "set list "show non-visible characters (space,tab,eol)
