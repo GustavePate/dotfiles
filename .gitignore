@@ -2,3 +2,4 @@
 dotfiles/.vim/undo/
 dotfiles/.vim/backup/
 dotfiles/.vim/swap/
+dotfiles/.vim/.netrwhist*
