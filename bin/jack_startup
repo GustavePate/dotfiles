@@ -1,0 +1,8 @@
+#load pulseaudio jack modules
+#!/bin/bash
+
+pactl load-module module-jack-sink 
+pactl load-module module-jack-source
+
+echo "set-default-sink jack_out" | pacmd
+echo "set-default-source jack_in" | pacmd
