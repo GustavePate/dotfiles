@@ -92,6 +92,7 @@ set hidden " allow to have multiple buffer open on edited but not saved files
 set encoding=utf-8 " Use UTF-8
 set showmatch "show matching ( { [ if on a ) } ]
 set matchtime=2 " usless: quickly move to open brace when typing the closing one
+set relativenumber
 set number " show line numbers
 set mouse=a " use the mouse to copy but don't take the linenulbers
 set scrolloff=4 " Start scrolling four lines before the horizontal window border
