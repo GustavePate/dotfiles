@@ -54,8 +54,8 @@ export PATH=$PATH:/usr/share/zookeeper/bin
 
 ###### RUBY ######
 
-source /home/guillaume/.rvm/scripts/rvm
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#source /home/guillaume/.rvm/scripts/rvm
+#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 
 # check the window size after each command and, if necessary,
