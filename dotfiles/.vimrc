@@ -177,21 +177,22 @@ endif
 
 "############# vim-airline #################
 
-
-let g:airline_theme = 'powerlineish'
+set laststatus=2 " Always show status line
+set ttimeoutlen=50 "no pause when leaving insert mode
+"let g:airline_theme = 'powerlineish'
 " Mess up jedi-vim autocompletion
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_exclude_preview = 1
 let g:airline_powerline_fonts = 1
-
+let g:airline#extensions#tabline#buffer_min_count = 2
 "############# minibufexpl #################
 "let g:miniBufExplMaxSize = 1 "max minbuf window size equal X lines
 "Replace bd with :MBEbd to fix the miniBufExpl vs bd mess
 "map :bd :MBEbd
 "let g:miniBufExplModSelTarget = 1 "don't open buffer in readonly buffer (like nerdtree's
 "############# Nerdtree #################
-autocmd vimenter * if !argc() | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"autocmd vimenter * if !argc() | NERDTree | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let NERDTreeIgnore = ['\.pyc$'] "ignore pyc files
 let NERDTreeShowHidden=1 "show dotfiles
 
@@ -266,7 +267,14 @@ if 'VIRTUAL_ENV' in os.environ:
 EOF
 
 "open nerdtree and put the cursor on the right window
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
+"autocmd VimEnter * NERDTree
+"autocmd VimEnter * wincmd p
 
-
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DiffSaved call s:DiffWithSaved()
