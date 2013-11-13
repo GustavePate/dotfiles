@@ -2,7 +2,6 @@
 set nocompatible
 
 " Pathogen load
-
 call pathogen#infect()
 call pathogen#helptags()
 
@@ -175,11 +174,21 @@ endif
 "############# Plugins #################
 "#######################################
 
+
+"############# vim-airline #################
+
+
+let g:airline_theme = 'powerlineish'
+" Mess up jedi-vim autocompletion
+let g:airline#extensions#tabline#enabled = 1
+"let g:airline_exclude_preview = 1
+let g:airline_powerline_fonts = 1
+
 "############# minibufexpl #################
-let g:miniBufExplMaxSize = 1 "max minbuf window size equal X lines
+"let g:miniBufExplMaxSize = 1 "max minbuf window size equal X lines
 "Replace bd with :MBEbd to fix the miniBufExpl vs bd mess
-map :bd :MBEbd
-let g:miniBufExplModSelTarget = 1 "don't open buffer in readonly buffer (like nerdtree's
+"map :bd :MBEbd
+"let g:miniBufExplModSelTarget = 1 "don't open buffer in readonly buffer (like nerdtree's
 "############# Nerdtree #################
 autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -255,3 +264,9 @@ if 'VIRTUAL_ENV' in os.environ:
 	activate_this= os.path.join(project_base_dir, 'bin/activate_this.py')
 	execfile(activate_this, dict(__file__=activate_this))
 EOF
+
+"open nerdtree and put the cursor on the right window
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+
+
