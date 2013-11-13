@@ -45,7 +45,7 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 ###### PYTHON ######
 
 #dev env
-export VENV=/home/guillaume/eclipsevirtualenv/env/bin/activate
+export VENV=/home/guillaume/venv/dev/bin/activate
 if [ -f $VENV ]; then
 	. $VENV
 fi
