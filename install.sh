@@ -12,7 +12,7 @@ function submodules_latest {
 
     git add .
 
-    # Commit the submodule changes 
+    # Commit the submodule changes
     git commit -a -m "Update submodules to the latest version"
 
     git push origin master
@@ -33,7 +33,7 @@ function push_changes_if_any {
         git add .
 
         #interactivelly add the commit command in order to reviex your changes
-        git commit -a 
+        git commit -a
         if [ $? -ne 0 ]; then
             echo "User aborted"
             # it stops if there is nothing to commit (which don't pass the above test)
@@ -42,7 +42,7 @@ function push_changes_if_any {
             exit 1
 
         else
-            # Push to remote repository 
+            # Push to remote repository
             git push origin master
         fi
 
@@ -54,7 +54,7 @@ function push_changes_if_any {
 
 
 HOME_DIR=~  #For testing purpose
-SYNC_ROOT=./dotfiles 
+SYNC_ROOT=./dotfiles
 SYNC_FILES=$SYNC_ROOT/*
 
 SCRIPT_FULL_PATH=$(readlink -f $0)
@@ -70,7 +70,7 @@ else
 fi
 
 #Command must be run from the repo root
-if [ ! -e $SYNC_ROOT'/.bashrc' ] 
+if [ ! -e $SYNC_ROOT'/.bashrc' ]
 then
     echo "install must be execute from the repo root"
     exit 1
@@ -109,7 +109,7 @@ do
     #create /home equiv for repo file
     H_FILE=$HOME_DIR'/'$FILE
 
-    #create backup path 
+    #create backup path
     TIMESTAMP=`date +%d%m%Y-%H%M%S`
     H_FILE_BACKUP=$HOME_DIR'/'$FI'.'$TIMESTAMP'.bck'
 
@@ -119,7 +119,7 @@ do
 
         #if a link, delete it
         if [ -L $H_FILE ];then
-            rm $H_FILE   
+            rm $H_FILE
             echo $H_FILE" rmed...........ok"
 
         #if a dir or a file => mv
@@ -136,3 +136,6 @@ do
     echo $H_FILE' symlinked to '$REPO_PATH'/'$f
 
 done
+
+#update fonts
+fc-cache -f -v
