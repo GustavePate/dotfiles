@@ -168,7 +168,8 @@ map <C-n> :NERDTreeToggle<CR>
 map <leader>td <Plug>TaskList
 " ,v opens .vimrc
 nmap <leader>v :e $MYVIMRC<CR>
-
+" C-t open tagbar
+nmap <C-t> :TagbarToggle<CR>
 
 "TODO: Move a line of text or a bloc using control + arrows
 
