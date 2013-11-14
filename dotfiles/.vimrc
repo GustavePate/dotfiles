@@ -1,9 +1,27 @@
 " Disable Vi compatibility
 set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-" Pathogen load
-call pathogen#infect()
-call pathogen#helptags()
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+"
+" My bundles here:
+"
+" original repos on GitHub
+Bundle 'tpope/vim-fugitive'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'tpope/vim-markdown'
+Bundle 'uarun/vim-protobuf'
+Bundle 'vim-scripts/CSApprox'
+Bundle 'scrooloose/nerdtree'
+Bundle 'vim-scripts/ScrollColors'
+Bundle 'scrooloose/syntastic'
+Bundle 'bling/vim-airline'
+Bundle 'nvie/vim-flake8'
+Bundle 'majutsushi/tagbar'
 
 "centralize multi-session undo files
 set undodir=~/.vim/undo
@@ -28,7 +46,6 @@ set clipboard=unnamed
 
 if has("autocmd")
     " Load files for specific filetypes
-    filetype on
     filetype indent on
     filetype plugin on
     " Languages with specific tabs/space requirements
