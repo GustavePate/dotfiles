@@ -42,15 +42,7 @@ function rh {
 # shells instead of the default "last window closed" history
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-###### PYTHON ######
 
-#dev env
-export VENV=/home/guillaume/venv/dev/bin/activate
-if [ -f $VENV ]; then
-	. $VENV
-fi
-export PYTHONPATH=/home/guillaume/git/distark/src/
-export PATH=$PATH:/usr/share/zookeeper/bin
 
 ###### RUBY ######
 
@@ -109,6 +101,7 @@ alias reboot='sudo shutdown -r now'
 alias halt='sudo shutdown  now'
 
 
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -154,3 +147,31 @@ xterm*|rxvt*)
 *)
     ;;
 esac
+
+###### PYTHON ######
+
+#dev env
+export VENV=~/venv/dev/bin/activate
+if [ -f $VENV ]; then
+	. $VENV
+fi
+
+export DISTARKPATH=/home/project/git/distark/src/
+
+
+export PYTHONPATH=/home/guillaume/git/distark/src/
+export PYTHONPATH=$PYTHONPATH:$DISTARKPATH
+export PYTHONPATH="$PYTHONPATH:$DISTARKPATH""distark/commons/protos/"
+export PATH=$PATH:/usr/share/zookeeper/bin
+export PATH=$PATH:/home/opt/zookeeper-3.4.5/bin
+
+#venv
+export VENVFRONT=/home/project/git/front/env/bin/activate
+if [ -f $VENVFRONT ]; then
+    alias devfront="source $VENVFRONT; cd /home/project/git/front/env/pyramidfront"
+fi
+
+export VENVDIST=/home/project/venv/distark/bin/activate
+if [ -f $VENVDIST ]; then
+    alias devback="source $VENVDIST; cd /home/project/git/distark"
+fi
