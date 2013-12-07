@@ -214,7 +214,8 @@ let g:airline#extensions#tabline#buffer_min_count = 2
 "let g:miniBufExplModSelTarget = 1 "don't open buffer in readonly buffer (like nerdtree's
 "############# Nerdtree #################
 "autocmd vimenter * if !argc() | NERDTree | endif
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"close vim if nerdtree is the last open buffer
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let NERDTreeIgnore = ['\.pyc$'] "ignore pyc files
 let NERDTreeShowHidden=1 "show dotfiles
 
@@ -288,6 +289,9 @@ if 'VIRTUAL_ENV' in os.environ:
 	execfile(activate_this, dict(__file__=activate_this))
 EOF
 
+" ################# bd don't close the window but just the buffer  ################
+" ################# smother intergation wityh nerd tree            ################
+
 "open nerdtree and put the cursor on the right window
 "autocmd VimEnter * NERDTree
 "autocmd VimEnter * wincmd p
@@ -318,6 +322,7 @@ function! s:Warn(msg)
     echomsg a:msg
     echohl NONE
 endfunction
+
 
 " Command ':Bclose' executes ':bd' to delete buffer in current window.
 " The window will show the alternate buffer (Ctrl-^) if it exists,
