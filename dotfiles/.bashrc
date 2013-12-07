@@ -175,3 +175,5 @@ export VENVDIST=/home/project/venv/distark/bin/activate
 if [ -f $VENVDIST ]; then
     alias devback="source $VENVDIST; cd /home/project/git/distark"
 fi
+export JAVA_HOME=/usr/lib/jvm/java-6-oracle
+export JAVA_HOME=/usr/lib/jvm/java-6-oracle
