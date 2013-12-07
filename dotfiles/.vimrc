@@ -121,11 +121,12 @@ set shiftround " round indent to multiple of 'shiftwidth'
 set autoindent " align the new line indent with the previous line"
 set cursorline " Highlight current line
 set nostartofline " Don’t reset cursor to start of line when moving around.
-set textwidth=90 " lines longer than X columns will be broken, type gq$ to apply
+set textwidth=110 " lines longer than X columns will be broken, type gq$ to apply
 set formatoptions-=t " don't automatically wrap text when typing
+set wrapmargin=0
 "set formatoptions+=t " automatically wrap text when typing
 "set nowrap " don't automatically wrap on load
-set colorcolumn=90 " add a colored column on column number X"
+set colorcolumn=110 " add a colored column on column number X"
 " TODO: not working
 "set list "show non-visible characters (space,tab,eol)
 set nofoldenable "disable folding
@@ -151,6 +152,8 @@ if has("autocmd")
     " Automatically strip trailing whitespace on file save
     autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
     autocmd BufWritePre *.css,*.html,*.js,*.json,*.md,*.php,*.py,*.rb,*.scss,*.sh,*.txt :call <SID>StripTrailingWhitespaces()
+    autocmd BufRead *.md set textwidth=150
+    autocmd BufRead *.md set colorcolumn=150
 endif
 
 " ############ keymapping  #############
