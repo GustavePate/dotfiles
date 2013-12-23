@@ -151,10 +151,10 @@ esac
 ###### PYTHON ######
 
 #dev env
-export VENV=~/venv/dev/bin/activate
-if [ -f $VENV ]; then
-	. $VENV
-fi
+#export VENV=~/venv/dev/bin/activate
+#if [ -f $VENV ]; then
+#	. $VENV
+#fi
 
 export DISTARKPATH=/home/project/git/distark/src/
 
@@ -174,6 +174,7 @@ fi
 export VENVDIST=/home/project/venv/distark/bin/activate
 if [ -f $VENVDIST ]; then
     alias devback="source $VENVDIST; cd /home/project/git/distark"
+    alias devcli="source $VENVDIST; cd /home/project/git/distarkcli"
 fi
 export JAVA_HOME=/usr/lib/jvm/java-6-oracle
 export JAVA_HOME=/usr/lib/jvm/java-6-oracle
