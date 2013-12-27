@@ -159,7 +159,7 @@ esac
 export DISTARKPATH=/home/project/git/distark/src/
 
 
-export PYTHONPATH=/home/guillaume/git/distark/src/
+export PYTHONPATH=/home/project/git/distark/src/
 export PYTHONPATH=$PYTHONPATH:$DISTARKPATH
 export PYTHONPATH="$PYTHONPATH:$DISTARKPATH""distark/commons/protos/"
 export PATH=$PATH:/usr/share/zookeeper/bin
@@ -174,7 +174,6 @@ fi
 export VENVDIST=/home/project/venv/distark/bin/activate
 if [ -f $VENVDIST ]; then
     alias devback="source $VENVDIST; cd /home/project/git/distark"
-    alias devcli="source $VENVDIST; cd /home/project/git/distarkcli"
+    alias devcli="source $VENVDIST; cd /home/project/git/distarkcli;export PYTHONPATH=/home/project/git/distarkcli/"
 fi
-export JAVA_HOME=/usr/lib/jvm/java-6-oracle
 export JAVA_HOME=/usr/lib/jvm/java-6-oracle
