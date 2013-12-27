@@ -8,6 +8,11 @@ fi
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+
+#swap esc and capslock key
+setxkbmap -option caps:swapescape:W
+
+
 #Force 256 colors
 export TERM=xterm-256color
 
