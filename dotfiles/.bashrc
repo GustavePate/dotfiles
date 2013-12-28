@@ -9,9 +9,11 @@ fi
 [ -z "$PS1" ] && return
 
 
-#swap esc and capslock key
+#swap esc and capslock key (method1)
 setxkbmap -option caps:swapescape:W
 
+#swap esc and capslock key (methode2)
+xmodmap ~/xmodmap_swap_caps_esc
 
 #Force 256 colors
 export TERM=xterm-256color
