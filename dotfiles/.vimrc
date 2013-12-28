@@ -173,7 +173,8 @@ map <leader>td <Plug>TaskList
 nmap <leader>v :e $MYVIMRC<CR>
 " C-t open tagbar
 nmap <C-t> :TagbarToggle<CR>
-
+" ,c close all buffers
+nmap <leader>c :bufdo bd<CR>
 "TODO: Move a line of text or a bloc using control + arrows
 
 
