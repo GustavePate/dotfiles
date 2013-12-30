@@ -23,6 +23,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'bling/vim-airline'
 Bundle 'nvie/vim-flake8'
 Bundle 'majutsushi/tagbar'
+Bundle 'tpope/vim-abolish'
 
 "centralize multi-session undo files
 set undodir=~/.vim/undo
