@@ -12,7 +12,8 @@ Bundle 'gmarik/vundle'
 "
 " original repos on GitHub
 Bundle 'tpope/vim-fugitive'
-Bundle 'davidhalter/jedi-vim'
+"Bundle 'davidhalter/jedi-vim'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'uarun/vim-protobuf'
@@ -176,6 +177,9 @@ nmap <leader>v :e $MYVIMRC<CR>
 nmap <C-t> :TagbarToggle<CR>
 " ,c close all buffers
 nmap <leader>c :bufdo bd<CR>
+
+" YouCompleteMe goto
+nmap <leader>gd :YcmCompleter GoToDefinition<CR>
 "TODO: Move a line of text or a bloc using control + arrows
 
 
