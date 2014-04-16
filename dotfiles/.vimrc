@@ -25,6 +25,8 @@ Bundle 'bling/vim-airline'
 Bundle 'nvie/vim-flake8'
 Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-abolish'
+Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
 
 "centralize multi-session undo files
 set undodir=~/.vim/undo
@@ -178,8 +180,6 @@ nmap <C-t> :TagbarToggle<CR>
 " ,c close all buffers
 nmap <leader>c :bufdo bd<CR>
 
-" YouCompleteMe goto
-nmap <leader>gd :YcmCompleter GoToDefinition<CR>
 "TODO: Move a line of text or a bloc using control + arrows
 
 
@@ -202,6 +202,17 @@ endif
 "############# Plugins #################
 "#######################################
 
+"############# YouCompleteMe #################
+nmap <leader>d :YcmCompleter GoToDefinition<CR>
+nmap <leader>g :YcmCompleter GoTo<CR>
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<leader>s"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"
+" " If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 "############# vim-airline #################
 
@@ -213,11 +224,6 @@ let g:airline#extensions#tabline#enabled = 1
 "let g:airline_exclude_preview = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_min_count = 2
-"############# minibufexpl #################
-"let g:miniBufExplMaxSize = 1 "max minbuf window size equal X lines
-"Replace bd with :MBEbd to fix the miniBufExpl vs bd mess
-"map :bd :MBEbd
-"let g:miniBufExplModSelTarget = 1 "don't open buffer in readonly buffer (like nerdtree's
 "############# Nerdtree #################
 "autocmd vimenter * if !argc() | NERDTree | endif
 "close vim if nerdtree is the last open buffer
@@ -228,28 +234,6 @@ let NERDTreeShowHidden=1 "show dotfiles
 " ############# vim markdown ################
 let g:vim_markdown_folding_disabled=1
 "TODO: line wwrap automatticaly create new bullets while in a list
-
-" ############# jedi vim  ################
-"automatically init jedi vim"
-let g:jedi#auto_initialization = 1
-
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-"show PyDoc
-let g:jedi#documentation_command = "K"
-"automatically popup on dot
-let g:jedi#popup_on_dot = 1
-let g:jedi#use_tabs_not_buffers = 0
-""There's some support for refactoring:
-let g:jedi#rename_command = "<leader>r"
-"list all names that are related (have the same origin):
-""And you can list all names that are related (have the same origin):
-let g:jedi#usages_command = "<leader>l"
-let g:jedi#completions_command = "<C-Space>"
-"By default you get a window that displays the function definition you're currently in. If you don't want that:
-"let g:jedi#show_function_definition = 0
-
-
 
 
 " ############# PyFlake  ################
