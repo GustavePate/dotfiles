@@ -238,21 +238,21 @@ let g:vim_markdown_folding_disabled=1
 
 " ############# PyFlake  ################
 ""Auto-check file for errors on write:
-let g:PyFlakeOnWrite = 1
+"let g:PyFlakeOnWrite = 1
 ""List of checkers used
-let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
+"let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
 ""Default maximum complexity for mccabe:
-let g:PyFlakeDefaultComplexity=10
+"let g:PyFlakeDefaultComplexity=10
 ""List of disabled pep8 warnings and errors:
-let g:PyFlakeDisabledMessages = 'E225'
+"let g:PyFlakeDisabledMessages = 'E225'
 ""Default height of quickfix window:
-let g:PyFlakeCWindow = 15
+"let g:PyFlakeCWindow = 15
 ""Whether to place signs or not:
-let g:PyFlakeSigns = 1
+"let g:PyFlakeSigns = 1
 ""Maximum line length for PyFlakeAuto command
-let g:PyFlakeMaxLineLength = 100
+"let g:PyFlakeMaxLineLength = 100
 ""Visual-mode key command for PyFlakeAuto
-let g:PyFlakeRangeCommand = 'Q'
+"let g:PyFlakeRangeCommand = 'Q'
 
 " ################# supertab ################
 "  tab scroll from top to bottom completion list
