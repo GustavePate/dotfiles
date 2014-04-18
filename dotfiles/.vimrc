@@ -20,13 +20,17 @@ Bundle 'uarun/vim-protobuf'
 Bundle 'vim-scripts/CSApprox'
 Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/ScrollColors'
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 Bundle 'bling/vim-airline'
 "Bundle 'nvie/vim-flake8'
 Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-abolish'
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
+" Must have
+"pip install --upgrade autopep8
+Bundle 'tell-k/vim-autopep8'
+Bundle 'andviro/flake8-vim'
 
 "centralize multi-session undo files
 set undodir=~/.vim/undo
@@ -167,8 +171,10 @@ let mapleader = ","
 noremap <leader>$ :call <SID>StripTrailingWhitespaces()<CR>
 "tab goto next buffer
 nmap <tab> :bnext <CR>
-" ff fix Flake8 rules
-map ff :PyFlakeAuto <CR>
+" gg fix Flake8 rules
+map gg :PyFlakeAuto <CR>:PyFlake<CR>
+" ff fix pep8 rules
+autocmd FileType python map <buffer> ap :call Autopep8()<CR>:PyFlake<CR>
 " C-n toggle nerdtree on / off
 map <C-n> :NERDTreeToggle<CR>
 " ,td open the todo list in a new windows
@@ -206,6 +212,7 @@ endif
 nmap <leader>d :YcmCompleter GoToDefinition<CR>
 nmap <leader>g :YcmCompleter GoTo<CR>
 
+"############# UltiSnips#################
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<leader>s"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -214,6 +221,42 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+"############# vim-autopep8 #################
+"Do not fix these errors/warnings (default: E226,E24,W6)
+let g:autopep8_ignore=""
+"Fix only these errors/warnings (e.g. E4,W)
+"let g:autopep8_select="E501,W293"
+"Maximum number of additional pep8 passes (default: 100)
+"let g:autopep8_pep8_passes=100
+
+"Set maximum allowed line length (default: 79)
+let g:autopep8_max_line_length=110
+
+"Enable possibly unsafe changes (E711, E712) (default: non defined)
+let g:autopep8_aggressive=1
+"
+"Disable show diff window
+let g:autopep8_disable_show_diff=1
+
+" ############# flake8-vim  ################
+"Auto-check file for errors on write:
+let g:PyFlakeOnWrite = 1
+"List of checkers used:
+let g:PyFlakeCheckers = 'pep8,mccabe,frosted'
+"Default maximum complexity for mccabe:
+let g:PyFlakeDefaultComplexity=15
+"List of disabled pep8 warnings and errors:
+let g:PyFlakeDisabledMessages = 'E501'
+"Default aggressiveness for autopep8:
+let g:PyFlakeAggressive = 1
+"Default height of quickfix window:
+let g:PyFlakeCWindow = 6
+"Whether to place signs or not:
+let g:PyFlakeSigns = 1
+"Maximum line length for PyFlakeAuto command
+let g:PyFlakeMaxLineLength = 110
+"Visual-mode key command for PyFlakeAuto
+let g:PyFlakeRangeCommand = 'Q'
 "############# vim-airline #################
 
 set laststatus=2 " Always show status line
@@ -235,24 +278,15 @@ let NERDTreeShowHidden=1 "show dotfiles
 let g:vim_markdown_folding_disabled=1
 "TODO: line wwrap automatticaly create new bullets while in a list
 
+" ############# vim tcomment ################
+" Normal
+" gc3<down>: toggle comment 4 lines under
+" gcc toggle comment one line
+" gC3<up> comment 4 upper line
+" visual:
+" gc Toggle Comment
+" gC comment selected Text
 
-" ############# PyFlake  ################
-""Auto-check file for errors on write:
-"let g:PyFlakeOnWrite = 1
-""List of checkers used
-"let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
-""Default maximum complexity for mccabe:
-"let g:PyFlakeDefaultComplexity=10
-""List of disabled pep8 warnings and errors:
-"let g:PyFlakeDisabledMessages = 'E225'
-""Default height of quickfix window:
-"let g:PyFlakeCWindow = 15
-""Whether to place signs or not:
-"let g:PyFlakeSigns = 1
-""Maximum line length for PyFlakeAuto command
-"let g:PyFlakeMaxLineLength = 100
-""Visual-mode key command for PyFlakeAuto
-"let g:PyFlakeRangeCommand = 'Q'
 
 " ################# supertab ################
 "  tab scroll from top to bottom completion list
