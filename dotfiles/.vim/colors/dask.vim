@@ -64,7 +64,7 @@ delfunction s:GetValue
 
 "Define colors
 "
-let s:black=0
+let colblack=0
 let s:white=255
 let s:col_grey_blue=67
 let s:col_light_purple=146
@@ -78,6 +78,7 @@ hi Normal	ctermfg=252   ctermbg=0
 " Default Syntax Highlight {{{1
 "~~~~~~~~~~~~~~~~~~~~~~~~~~
 hi Comment	ctermfg=30    ctermbg=0   gui=NONE
+
 hi link SpecialComment  Comment
 
 hi Constant	ctermfg=74    ctermbg=0   gui=NONE
@@ -87,8 +88,8 @@ hi Number	ctermfg=131   ctermbg=0   gui=NONE
 hi link Boolean	Constant
 hi link Float	Number
 
-hi Identifier	ctermfg=39    ctermbg=0   gui=NONE
-hi Function           ctermfg=39    ctermbg=0   gui=NONE
+hi Identifier	ctermfg=24    ctermbg=0   cterm=NONE
+hi Function           ctermfg=24    ctermbg=0   cterm=NONE
 
 hi Statement	ctermfg=146   ctermbg=0   gui=NONE
 hi link Conditional	Statement
@@ -109,16 +110,31 @@ hi Define	ctermfg=57   ctermbg=0   gui=NONE
 hi link Macro	PreProc
 hi link PreCondit	PreProc
 
-hi Special	ctermfg=193   ctermbg=0   gui=NONE
+hi Special	ctermfg=117   ctermbg=0   gui=NONE
 hi link SpecialChar	Special
-hi link Delimiter	Special
+hi Delimiter	ctermfg=31     ctermbg=0      gui=NONE
 hi link Tag	Special
 hi link Debug	Special
 
+" other texts
+hi Question	guifg=bg	guibg=#cccc99	gui=NONE
+hi WarningMsg	guifg=#f08080	guibg=bg	gui=NONE
+hi ErrorMsg	guifg=#d0d080	guibg=#990000	gui=NONE
+hi Title	ctermfg=31     ctermbg=0      gui=NONE
+hi Directory	guifg=#80c0e0	guibg=bg	gui=NONE
+hi MoreMsg	guifg=#66cc66	guibg=bg	gui=NONE
+hi ModeMsg	guifg=fg	guibg=#003000	gui=NONE
+hi SpecialKey	guifg=#00cc66	guibg=bg	gui=NONE
+
 hi Todo	ctermfg=0   ctermbg=110   gui=NONE
-hi Underlined	guifg=#80b0d0	guibg=bg	gui=underline
+hi Underlined	ctermfg=252   ctermbg=0   cterm=underline
 hi Ignore	guifg=#535353	guibg=bg	gui=NONE
 hi Error	ctermfg=255   ctermbg=88   gui=underline
+
+hi markdownUrl        ctermfg=33   ctermbg=0   cterm=underline
+hi markdownBold       ctermfg=252   ctermbg=0   cterm=bold
+hi markdownItalic     ctermfg=252   ctermbg=0   cterm=underline
+
 
 " Default Highlight {{{1
 hi Cursor	ctermfg=249    ctermbg=0
@@ -174,13 +190,13 @@ hi TabLineSel	guifg=fg	guibg=bg	gui=NONE
 
 " popup completion menu
 " Normal item
-hi Pmenu	guifg=bg	guibg=fg	gui=NONE
+hi Pmenu	ctermfg=0     ctermbg=75      gui=NONE
 " Selected item
 hi PmenuSel	guifg=bg	guibg=#a0c0d0	gui=underline
 "Scrollbar
-hi PmenuSbar	guifg=#333383	guibg=#333383	gui=NONE
+hi PmenuSbar	ctermfg=0     ctermbg=246      gui=NONE
 "Thumb of scrollbar
-hi PmenuThumb	guifg=#a0c0d0	guibg=#a0c0d0	gui=NONE
+hi PmenuThumb	ctermfg=0     ctermbg=240      gui=NONE
 
 " spell checking
 hi SpellBad	guisp=#ff9999		gui=undercurl
@@ -188,15 +204,6 @@ hi SpellCap	guisp=#9999ff		gui=undercurl
 hi SpellLocal	guisp=#99ffff		gui=undercurl
 hi SpellRare	guisp=#ff99ff		gui=undercurl
 
-" other texts
-hi Question	guifg=bg	guibg=#cccc99	gui=NONE
-hi WarningMsg	guifg=#f08080	guibg=bg	gui=NONE
-hi ErrorMsg	guifg=#d0d080	guibg=#990000	gui=NONE
-hi Title	guifg=#e0c080	guibg=bg	gui=NONE
-hi Directory	guifg=#80c0e0	guibg=bg	gui=NONE
-hi MoreMsg	guifg=#66cc66	guibg=bg	gui=NONE
-hi ModeMsg	guifg=fg	guibg=#003000	gui=NONE
-hi SpecialKey	guifg=#00cc66	guibg=bg	gui=NONE
 
 " diff
 hi DiffAdd	guifg=#d0d0d0	guibg=#008000	gui=NONE
