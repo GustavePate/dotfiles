@@ -61,20 +61,74 @@ let s:mimic_colorize_gui = s:GetValue("mimic_colorize_gui")
 " cleanup
 delfunction s:GetValue
 
+
+"Define colors
+"
+let s:black=0
+let s:white=255
+let s:col_grey_blue=67
+let s:col_light_purple=146
+let s:col_light_green=158
+let s:col_light_pink=219
+let s:col_grey=238
+let s:col_light_grey=252
+
+hi Normal	ctermfg=252   ctermbg=0
+
+" Default Syntax Highlight {{{1
+"~~~~~~~~~~~~~~~~~~~~~~~~~~
+hi Comment	ctermfg=30    ctermbg=0   gui=NONE
+hi link SpecialComment  Comment
+
+hi Constant	ctermfg=74    ctermbg=0   gui=NONE
+hi link String	Constant
+hi link Character	Constant
+hi Number	ctermfg=131   ctermbg=0   gui=NONE
+hi link Boolean	Constant
+hi link Float	Number
+
+hi Identifier	ctermfg=39    ctermbg=0   gui=NONE
+hi Function           ctermfg=39    ctermbg=0   gui=NONE
+
+hi Statement	ctermfg=146   ctermbg=0   gui=NONE
+hi link Conditional	Statement
+hi link Repeat	Statement
+hi link Label	Statement
+hi link Operator	Statement
+hi link Keyword	Statement
+hi link Exception	Statement
+
+hi Type	ctermfg=252   ctermbg=0   gui=NONE
+hi link StorageClass	Type
+hi link Structure	Type
+hi link Typedef	Type
+
+hi PreProc	ctermfg=146   ctermbg=0   gui=NONE
+hi link Include	PreProc
+hi Define	ctermfg=57   ctermbg=0   gui=NONE
+hi link Macro	PreProc
+hi link PreCondit	PreProc
+
+hi Special	ctermfg=193   ctermbg=0   gui=NONE
+hi link SpecialChar	Special
+hi link Delimiter	Special
+hi link Tag	Special
+hi link Debug	Special
+
+hi Todo	ctermfg=0   ctermbg=110   gui=NONE
+hi Underlined	guifg=#80b0d0	guibg=bg	gui=underline
+hi Ignore	guifg=#535353	guibg=bg	gui=NONE
+hi Error	ctermfg=255   ctermbg=88   gui=underline
+
 " Default Highlight {{{1
-hi Normal	guifg=#c0c0c0	guibg=#000000	gui=NONE
-hi Cursor	guifg=bg	guibg=#80f080	gui=NONE
-hi CursorIM	guifg=bg	guibg=#80f0f0	gui=NONE
+hi Cursor	ctermfg=249    ctermbg=0
+hi CursorIM	ctermfg=249    ctermbg=0
 "TODO: change it
 hi MatchParen	guifg=bg	guibg=#f0f080	gui=NONE
 
 " search
-hi Search	guifg=#232323	guibg=#c0c080	gui=NONE
-if version < 700
-  hi IncSearch	guifg=#232323	guibg=#80c080	gui=NONE
-else
-  hi IncSearch			gui=reverse
-endif
+hi Search	ctermfg=0   ctermbg=252
+hi IncSearch	ctermfg=0  ctermbg=252     gui=bold
 
 " visual mode
 hi Visual	guifg=bg	guibg=#a0c0e0	gui=NONE
@@ -82,11 +136,12 @@ hi VisualNOS	guifg=bg	guibg=#e0c0a0	gui=NONE
 
 
 " line numbers and folding
-hi LineNr	guifg=#808080	guibg=bg	gui=NONE
+hi LineNr	ctermfg=240   ctermbg=233
+hi CursorLineNr	ctermfg=252   ctermbg=233
 hi NonText	guifg=#808080	guibg=bg	gui=NONE
 hi Folded	guifg=fg	guibg=#003000	gui=NONE
-hi FoldColumn	guifg=fg	guibg=#006000	gui=NONE
-hi SignColumn	guifg=fg	guibg=#006000	gui=underline
+hi FoldColumn	ctermfg=252   ctermbg=233   gui=NONE
+hi SignColumn	ctermfg=252   ctermbg=233   gui=NONE
 
 " windows, statusline
 hi StatusLine	guifg=bg	guibg=#90b0c0	gui=NONE
@@ -106,43 +161,32 @@ if 0 < s:mimic_colorize_gui
   endif
 endif
 
-" MiniBufExpl Colors
-hi MBENormal               guifg=#808080 guibg=fg
-hi MBEChanged              guifg=#CD5907 guibg=fg
-hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
-hi MBEVisibleChanged       guifg=#F1266F guibg=fg
-hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
-hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
 
+set cursorline
+""set cursorcolumn
+hi CursorLine	  ctermbg=233	   cterm=NONE
+hi CursorColumn	  cterm=NONE
 
-" vim >= 7.0 only
-if version >= 700
-  set cursorline
-  ""set cursorcolumn
-  hi CursorLine		guibg=grey24	gui=NONE
-  hi CursorColumn	guibg=grey24	gui=NONE
+" tab pages
+hi TabLine	guifg=fg	guibg=#006000	gui=underline
+hi TabLineFill	guifg=fg	guibg=#006000	gui=underline
+hi TabLineSel	guifg=fg	guibg=bg	gui=NONE
 
-  " tab pages
-  hi TabLine	guifg=fg	guibg=#006000	gui=underline
-  hi TabLineFill	guifg=fg	guibg=#006000	gui=underline
-  hi TabLineSel	guifg=fg	guibg=bg	gui=NONE
+" popup completion menu
+" Normal item
+hi Pmenu	guifg=bg	guibg=fg	gui=NONE
+" Selected item
+hi PmenuSel	guifg=bg	guibg=#a0c0d0	gui=underline
+"Scrollbar
+hi PmenuSbar	guifg=#333383	guibg=#333383	gui=NONE
+"Thumb of scrollbar
+hi PmenuThumb	guifg=#a0c0d0	guibg=#a0c0d0	gui=NONE
 
-  " popup completion menu
-  " Normal item
-  hi Pmenu	guifg=bg	guibg=fg	gui=NONE
-  " Selected item
-  hi PmenuSel	guifg=bg	guibg=#a0c0d0	gui=underline
-  "Scrollbar
-  hi PmenuSbar	guifg=#333383	guibg=#333383	gui=NONE
-  "Thumb of scrollbar
-  hi PmenuThumb	guifg=#a0c0d0	guibg=#a0c0d0	gui=NONE
-
-  " spell checking
-  hi SpellBad	guisp=#ff9999		gui=undercurl
-  hi SpellCap	guisp=#9999ff		gui=undercurl
-  hi SpellLocal	guisp=#99ffff		gui=undercurl
-  hi SpellRare	guisp=#ff99ff		gui=undercurl
-endif
+" spell checking
+hi SpellBad	guisp=#ff9999		gui=undercurl
+hi SpellCap	guisp=#9999ff		gui=undercurl
+hi SpellLocal	guisp=#99ffff		gui=undercurl
+hi SpellRare	guisp=#ff99ff		gui=undercurl
 
 " other texts
 hi Question	guifg=bg	guibg=#cccc99	gui=NONE
@@ -161,51 +205,6 @@ hi DiffDelete	guifg=#6080f0	guibg=#232323	gui=NONE
 hi DiffText	guifg=bg	guibg=#c0e080	gui=NONE
 
 
-" Default Syntax Highlight {{{1
-"~~~~~~~~~~~~~~~~~~~~~~~~~~
-""hi Comment	guifg=#9590d5	guibg=bg	gui=NONE
-hi Comment	guifg=#007777	guibg=bg	gui=NONE
-hi SpecialComment	guifg=#a0c0b0	guibg=bg	gui=NONE
-
-hi Constant	guifg=#90b0d0	guibg=bg	gui=NONE
-hi String	guifg=#90b0d0	guibg=bg	gui=NONE
-hi Character	guifg=#90c0e0	guibg=bg	gui=NONE
-hi Number	guifg=#f08080	guibg=bg	gui=NONE
-hi link Boolean	Constant
-hi link Float	Number
-
-hi Identifier	guifg=#d0b0d0	guibg=bg	gui=NONE
-hi Function	guifg=#d0b0d0	guibg=bg	gui=NONE
-
-hi Statement	guifg=#a0c0d0	guibg=bg	gui=NONE
-hi link Conditional	Statement
-hi link Repeat	Statement
-hi link Label	Statement
-hi link Operator	Statement
-hi link Keyword	Statement
-hi link Exception	Statement
-
-hi Type	guifg=#a0c0d0	guibg=bg	gui=NONE
-hi link StorageClass	Type
-hi link Structure	Type
-hi link Typedef	Type
-
-hi PreProc	guifg=#80d080	guibg=bg	gui=NONE
-hi link Include	PreProc
-hi link Define	PreProc
-hi link Macro	PreProc
-hi link PreCondit	PreProc
-
-hi Special	guifg=#d0b080	guibg=bg	gui=NONE
-hi link SpecialChar	Special
-hi link Delimiter	Special
-hi Tag	guifg=#80b0d0	guibg=bg	gui=NONE
-hi Debug	guifg=#808080	guibg=bg	gui=NONE
-
-hi Underlined	guifg=#80b0d0	guibg=bg	gui=underline
-hi Ignore	guifg=#535353	guibg=bg	gui=NONE
-hi Error	guifg=fg	guibg=#803333	gui=underline
-hi Todo	guifg=#801313	guibg=#c0c080	gui=NONE
 
 " Font Style {{{1
 "~~~~~~~~~~~~

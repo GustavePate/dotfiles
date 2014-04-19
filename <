@@ -61,20 +61,26 @@ let s:mimic_colorize_gui = s:GetValue("mimic_colorize_gui")
 " cleanup
 delfunction s:GetValue
 
+
+"Define colors
+"
+let s:black = 0
+let s:col_grey = 238
+let s:col_light_grey = 252
+
+gldsjglkjdslgjl
+
+
 " Default Highlight {{{1
-hi Normal	guifg=#c0c0c0	guibg=#000000	gui=NONE
-hi Cursor	guifg=bg	guibg=#80f080	gui=NONE
-hi CursorIM	guifg=bg	guibg=#80f0f0	gui=NONE
+hi Normal	ctermfg=252   ctermbg=0
+hi Cursor	ctermfg=249    ctermbg=0
+hi CursorIM	ctermfg=249    ctermbg=0
 "TODO: change it
 hi MatchParen	guifg=bg	guibg=#f0f080	gui=NONE
 
 " search
-hi Search	guifg=#232323	guibg=#c0c080	gui=NONE
-if version < 700
-  hi IncSearch	guifg=#232323	guibg=#80c080	gui=NONE
-else
-  hi IncSearch			gui=reverse
-endif
+hi Search	ctermfg=0   ctermbg=252
+hi IncSearch	ctermfg=0  ctermbg=252     gui=bold
 
 " visual mode
 hi Visual	guifg=bg	guibg=#a0c0e0	gui=NONE
@@ -82,7 +88,8 @@ hi VisualNOS	guifg=bg	guibg=#e0c0a0	gui=NONE
 
 
 " line numbers and folding
-hi LineNr	guifg=#808080	guibg=bg	gui=NONE
+hi LineNr	ctermfg=238   ctermbg=0
+hi CursorLineNr	ctermfg=252   ctermbg=0
 hi NonText	guifg=#808080	guibg=bg	gui=NONE
 hi Folded	guifg=fg	guibg=#003000	gui=NONE
 hi FoldColumn	guifg=fg	guibg=#006000	gui=NONE
@@ -119,8 +126,8 @@ hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
 if version >= 700
   set cursorline
   ""set cursorcolumn
-  hi CursorLine		guibg=grey24	gui=NONE
-  hi CursorColumn	guibg=grey24	gui=NONE
+  hi CursorLine	  ctermbg=242	ctermfg=0   cterm=NONE
+  hi CursorColumn	  cterm=NONE
 
   " tab pages
   hi TabLine	guifg=fg	guibg=#006000	gui=underline
@@ -164,13 +171,13 @@ hi DiffText	guifg=bg	guibg=#c0e080	gui=NONE
 " Default Syntax Highlight {{{1
 "~~~~~~~~~~~~~~~~~~~~~~~~~~
 ""hi Comment	guifg=#9590d5	guibg=bg	gui=NONE
-hi Comment	guifg=#007777	guibg=bg	gui=NONE
+hi Comment	ctermfg=30   ctermbg=0
 hi SpecialComment	guifg=#a0c0b0	guibg=bg	gui=NONE
 
 hi Constant	guifg=#90b0d0	guibg=bg	gui=NONE
-hi String	guifg=#90b0d0	guibg=bg	gui=NONE
-hi Character	guifg=#90c0e0	guibg=bg	gui=NONE
-hi Number	guifg=#f08080	guibg=bg	gui=NONE
+hi link String	Constant
+hi link Character	Constant
+hi link Number	Constant
 hi link Boolean	Constant
 hi link Float	Number
 
