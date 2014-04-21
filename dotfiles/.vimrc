@@ -408,6 +408,17 @@ nnoremap <silent> <Leader>bd :Bclose<CR>
 nnoremap <silent> <Leader>bD :Bclose!<CR>
 map :bd :Bclose
 
+
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+           
+
 " hi x016_Grey0 ctermfg=16 guifg=#000000 "rgb=0,0,0
 " hi x017_NavyBlue ctermfg=17 guifg=#00005f "rgb=0,0,95
 " hi x018_DarkBlue ctermfg=18 guifg=#000087 "rgb=0,0,135

@@ -160,9 +160,9 @@ hi FoldColumn	ctermfg=252   ctermbg=233   gui=NONE
 hi SignColumn	ctermfg=252   ctermbg=233   gui=NONE
 
 " windows, statusline
-hi StatusLine	guifg=bg	guibg=#90b0c0	gui=NONE
-hi StatusLineNC	guifg=bg	guibg=fg	gui=NONE
-hi VertSplit	guifg=bg	guibg=fg	gui=NONE
+hi StatusLine	guifg=bg	ctermbg=252     cterm=NONE
+hi StatusLineNC	guifg=bg	ctermbg=252     cterm=NONE
+hi VertSplit	ctermfg=234	ctermbg=234     cterm=NONE
 hi WildMenu	guifg=fg	guibg=#232323	gui=NONE
 
 " colors for GUI
