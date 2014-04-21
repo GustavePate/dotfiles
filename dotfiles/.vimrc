@@ -174,9 +174,10 @@ noremap <leader>$ :call <SID>StripTrailingWhitespaces()<CR>
 "tab goto next buffer
 nmap <tab> :bnext <CR>
 " ff fix Flake8 rules
-map ff:PyFlakeAuto <CR>:PyFlake<CR>
+autocmd FileType python nmap ff :PyFlakeAuto <CR>:PyFlake<CR>
+":PyFlake<CR>
 " ap fix pep8 rules
-autocmd FileType python map <buffer> ap :call Autopep8()<CR>:PyFlake<CR>
+autocmd FileType python map <buffer> ap :call Autopep8()<CR>:PyFlake<CR>:redraw!<CR>
 " C-n toggle nerdtree on / off
 map <C-n> :NERDTreeToggle<CR>
 " ,td open the todo list in a new windows
