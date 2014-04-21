@@ -77,27 +77,27 @@ hi Normal	ctermfg=252   ctermbg=0
 
 " Default Syntax Highlight {{{1
 "~~~~~~~~~~~~~~~~~~~~~~~~~~
-hi Comment	ctermfg=30    ctermbg=0   gui=NONE
+hi Comment	ctermfg=24    ctermbg=0   gui=NONE
 
 hi link SpecialComment  Comment
 
-hi Constant	ctermfg=74    ctermbg=0   gui=NONE
+hi Constant	ctermfg=74   ctermbg=0   gui=NONE
 hi link String	Constant
 hi link Character	Constant
 hi Number	ctermfg=131   ctermbg=0   gui=NONE
 hi link Boolean	Constant
 hi link Float	Number
 
-hi Identifier	ctermfg=24    ctermbg=0   cterm=NONE
-hi Function           ctermfg=24    ctermbg=0   cterm=NONE
+hi Identifier	ctermfg=38    ctermbg=0   cterm=NONE
+hi Function           ctermfg=38    ctermbg=0   cterm=NONE
 
-hi Statement	ctermfg=146   ctermbg=0   gui=NONE
-hi link Conditional	Statement
-hi link Repeat	Statement
+hi Statement	ctermfg=60   ctermbg=0   gui=NONE
+hi Conditional	ctermfg=31  ctermbg=0   gui=NONE
+hi link Repeat	Conditional
 hi link Label	Statement
-hi link Operator	Statement
+hi link Operator	Conditional
 hi link Keyword	Statement
-hi link Exception	Statement
+hi link Exception	Conditional
 
 hi Type	ctermfg=252   ctermbg=0   gui=NONE
 hi link StorageClass	Type
@@ -105,12 +105,12 @@ hi link Structure	Type
 hi link Typedef	Type
 
 hi PreProc	ctermfg=146   ctermbg=0   gui=NONE
-hi link Include	PreProc
+hi Include	ctermfg=74   ctermbg=0   gui=NONE
 hi Define	ctermfg=57   ctermbg=0   gui=NONE
 hi link Macro	PreProc
 hi link PreCondit	PreProc
 
-hi Special	ctermfg=117   ctermbg=0   gui=NONE
+hi Special	ctermfg=67   ctermbg=0   gui=NONE
 hi link SpecialChar	Special
 hi Delimiter	ctermfg=31     ctermbg=0      gui=NONE
 hi link Tag	Special
@@ -131,10 +131,14 @@ hi Underlined	ctermfg=252   ctermbg=0   cterm=underline
 hi Ignore	guifg=#535353	guibg=bg	gui=NONE
 hi Error	ctermfg=255   ctermbg=88   gui=underline
 
+"Adjustements
+
 hi markdownUrl        ctermfg=33   ctermbg=0   cterm=underline
 hi markdownBold       ctermfg=252   ctermbg=0   cterm=bold
 hi markdownItalic     ctermfg=252   ctermbg=0   cterm=underline
 
+hi NerdTreeDir        ctermfg=67    ctermbg=0      gui=None
+hi NerdTreeExecFile   ctermfg=24    ctermbg=0      gui=None
 
 " Default Highlight {{{1
 hi Cursor	ctermfg=249    ctermbg=0
@@ -210,7 +214,6 @@ hi DiffAdd	guifg=#d0d0d0	guibg=#008000	gui=NONE
 hi DiffChange	guifg=#d0d0d0	guibg=#000080	gui=NONE
 hi DiffDelete	guifg=#6080f0	guibg=#232323	gui=NONE
 hi DiffText	guifg=bg	guibg=#c0e080	gui=NONE
-
 
 
 " Font Style {{{1
