@@ -1,12 +1,12 @@
 " Disable Vi compatibility
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 
-call vundle#rc()
+call vundle#begin()
 
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 "
 " My bundles here:
 "
@@ -33,7 +33,10 @@ Bundle 'tell-k/vim-autopep8'
 Bundle 'andviro/flake8-vim'
 Bundle 'guns/xterm-color-table.vim'
 Bundle 'hdima/python-syntax'
+Bundle 'mikewest/vimroom'
 
+
+call vundle#end()
 "centralize multi-session undo files
 set undodir=~/.vim/undo
 set backupdir=~/.vim/backup
@@ -210,6 +213,12 @@ endif
 "#######################################
 "############# Plugins #################
 "#######################################
+
+"############# Vimroom #################
+
+let g:vimroom_width=120
+nnoremap <silent> <Leader>mz <Plug>VimroomToggle
+
 
 "############# YouCompleteMe #################
 nmap <leader>d :YcmCompleter GoToDefinition<CR>
