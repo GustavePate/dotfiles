@@ -1,9 +1,9 @@
 " Disable Vi compatibility
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 
-call vundle#rc()
+call vundle#begin()
 
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
@@ -16,6 +16,8 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'mikewest/vimroom'
+Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'uarun/vim-protobuf'
 "Bundle 'vim-scripts/CSApprox'
 Bundle 'scrooloose/nerdtree'
@@ -33,6 +35,11 @@ Bundle 'tell-k/vim-autopep8'
 Bundle 'andviro/flake8-vim'
 Bundle 'guns/xterm-color-table.vim'
 Bundle 'hdima/python-syntax'
+
+call vundle#end()
+
+filetype indent on
+filetype plugin on
 
 "centralize multi-session undo files
 set undodir=~/.vim/undo
