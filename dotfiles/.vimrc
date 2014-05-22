@@ -183,6 +183,7 @@ autocmd FileType python nmap ff :PyFlakeAuto <CR>:PyFlake<CR>
 autocmd FileType python map <buffer> ap :call Autopep8()<CR>:PyFlake<CR>:redraw!<CR>
 " C-n toggle nerdtree on / off
 map <C-n> :NERDTreeToggle<CR>
+map <C-x> :NERDTreeToggle<CR>
 " ,td open the todo list in a new windows
 map <leader>td <Plug>TaskList
 " ,v opens .vimrc
@@ -200,6 +201,7 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+
 
 noremap <leader>n :nohl<CR>
 vnoremap <leader>n :nohl<CR>
