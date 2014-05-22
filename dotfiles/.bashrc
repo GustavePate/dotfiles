@@ -178,6 +178,12 @@ if [ -f $VENVFRONT ]; then
     alias devfront="source $VENVFRONT; cd /home/project/git/front/env/pyramidfront"
 fi
 
+#venv
+export VENVPYRAM=/home/project/venv/simple/bin/activate
+if [ -f $VENVPYRAM ]; then
+    alias devpyram="source $VENVPYRAM; cd /home/project/git/pyramidtest/"
+fi
+
 export VENVDIST=/home/project/venv/distark/bin/activate
 if [ -f $VENVDIST ]; then
     alias devback="source $VENVDIST; cd /home/project/git/distark"
