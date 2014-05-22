@@ -16,6 +16,8 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'mikewest/vimroom'
+Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'uarun/vim-protobuf'
 "Bundle 'vim-scripts/CSApprox'
 Bundle 'scrooloose/nerdtree'
@@ -35,8 +37,12 @@ Bundle 'guns/xterm-color-table.vim'
 Bundle 'hdima/python-syntax'
 Bundle 'mikewest/vimroom'
 
-
 call vundle#end()
+
+filetype indent on
+filetype plugin on
+
+
 "centralize multi-session undo files
 set undodir=~/.vim/undo
 set backupdir=~/.vim/backup
