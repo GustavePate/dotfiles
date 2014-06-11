@@ -35,7 +35,6 @@ Bundle 'tell-k/vim-autopep8'
 Bundle 'andviro/flake8-vim'
 Bundle 'guns/xterm-color-table.vim'
 Bundle 'hdima/python-syntax'
-Bundle 'mikewest/vimroom'
 
 call vundle#end()
 
