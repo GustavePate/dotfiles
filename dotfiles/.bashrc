@@ -34,6 +34,9 @@ function rh {
   history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
  }
 
+function say { mplayer "http://translate.google.com/translate_tts?tl=en&q=$*" >/dev/null 2>&1; }
+function sayde { mplayer "http://translate.google.com/translate_tts?tl=de&q=$*" >/dev/null 2>&1; }
+
 # Make new shells get the history lines from all previous
 # shells instead of the default "last window closed" history
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
