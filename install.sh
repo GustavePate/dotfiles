@@ -71,7 +71,6 @@ function install_dots {
             if [ -L $H_FILE ];then
                 rm $H_FILE
                 echo $H_FILE" rmed...........ok"
-
             #if a dir or a file => mv
             elif [ -e $H_FILE ]; then
                 echo $H_FILE" backuped...........ok"
