@@ -5,7 +5,7 @@ echo 'Dotfiles -  http://gustavepate.github.io/'
 
 
 #HOME_DIR=~  #For testing purpose
-HOME_DIR=~/testdot  #For testing purpose
+HOME_DIR=~  #For testing purpose
 SYNC_ROOT=./dotfiles
 SYNC_FILES=$SYNC_ROOT/*
 
