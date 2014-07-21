@@ -76,6 +76,9 @@ function install_dots {
             elif [ -e $H_FILE ]; then
                 echo $H_FILE" backuped...........ok"
                 mv $H_FILE $H_FILE_BACKUP
+            #fiel does not exists
+            elif [ ! -e $H_FILE ]; then
+                echo $H_FILE" does not exits yet...ok"
             # weird
             else
                 echo "WARNING: I don't know what to do with this file"
@@ -86,6 +89,11 @@ function install_dots {
         echo $H_FILE' symlinked to '$REPO_PATH'/'$f
 
     done
+
+    #update fonts
+    echo "update font cache please wait...."
+    fc-cache -f
+    echo "Done!"
 
 }
 
@@ -109,7 +117,3 @@ fi
 
 detect_change
 
-#update fonts
-echo "update font cache please wait...."
-fc-cache -f
-echo "Done!"
