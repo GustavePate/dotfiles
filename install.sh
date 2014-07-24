@@ -2,9 +2,6 @@
 
 echo 'Dotfiles -  http://gustavepate.github.io/'
 
-
-
-#HOME_DIR=~  #For testing purpose
 HOME_DIR=~  #For testing purpose
 SYNC_ROOT=./dotfiles
 SYNC_FILES=$SYNC_ROOT/*
@@ -13,6 +10,9 @@ SCRIPT_FULL_PATH=$(readlink -f $0)
 REPO_PATH=$(dirname $SCRIPT_FULL_PATH)
 
 echo $REPO_PATH
+
+can_haz_dots=0
+
 
 #detect change in the local directory and push if any
 function detect_change {
@@ -28,12 +28,12 @@ function detect_change {
         read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
         echo "";
         if [[ $REPLY =~ ^[Yy]$ ]]; then
-            install_dots;
+            can_haz_dots=1
         fi;
 
     else
         echo "no change detected"
-        install_dots;
+        can_haz_dots=1
     fi
 
 }
@@ -96,6 +96,10 @@ function install_dots {
 
 }
 
+######################
+####### MAIN #########
+######################
+
 # If Git is not installed...
 if [[ ! "$(type -P git)" ]]; then
     echo "install git"
@@ -115,4 +119,8 @@ else
 fi
 
 detect_change
+
+if [[ can_haz_dots -eq 1 ]]; then
+    install_dots
+fi
 
