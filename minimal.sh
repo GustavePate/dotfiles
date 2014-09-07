@@ -12,3 +12,18 @@ REPO_PATH=$(dirname $SCRIPT_FULL_PATH)
 echo $REPO_PATH
 
 echo "I am minimal"
+
+# define list of file to install
+file_list = ".bashrc.minimal .inputrc .vimrc"
+dir_list = ".vim"
+
+# backup
+
+# copy
+
+# remove deployement artefact
+
+# source
+
+
+# done

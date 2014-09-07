@@ -1,4 +1,6 @@
 
+PATH=$PATH:$HOME/bin 
+
 # Load local non commited .bashrc
 
 if [ -f ~/.bashrc.local ]; then
