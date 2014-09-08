@@ -179,9 +179,9 @@ if [ -f $VENVFRONT ]; then
 fi
 
 #venv
-export VENVPYRAM=/home/project/venv/simple/bin/activate
-if [ -f $VENVPYRAM ]; then
-    alias devpyram="source $VENVPYRAM; cd /home/project/git/pyramidtest/"
+export ACTIVATEPYRAM=/home/project/venv/pyram/bin/activate
+if [ -f $ACTIVATEPYRAM ]; then
+    alias devpyram="source $ACTIVATEPYRAM; cd /home/project/git/dashboard/"
 fi
 
 export VENVDIST=/home/project/venv/distark/bin/activate
