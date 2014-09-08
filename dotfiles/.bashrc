@@ -101,6 +101,7 @@ alias q='exit'
 
 #serve repository
 alias serve='python -m SimpleHTTPServer 8080'
+alias servesphinx='cd ~/doc/; python -m SimpleHTTPServer 2323'
 
 #apt-get install
 alias install='sudo apt-get install'
@@ -189,4 +190,9 @@ if [ -f $VENVDIST ]; then
     alias devback="source $VENVDIST; cd /home/project/git/distark"
     alias devcli="source $VENVDIST; cd /home/project/git/distarkcli;export PYTHONPATH=/home/project/git/distarkcli/"
 fi
+
+say(){
+    wget -q -U Mozilla -O output.mp3 "http://translate.google.com/translate_tts?ie=UTF-8&tl=de&q=$1"; mpg123 output.mp3
+}
+
 export JAVA_HOME=/usr/lib/jvm/java-6-oracle
