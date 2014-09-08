@@ -1,38 +1,26 @@
 
+PATH=$PATH:$HOME/bin
+
 # Load local non commited .bashrc
 
 if [ -f ~/.bashrc.local ]; then
     source ~/.bashrc.local
 fi
 
+if [ -f ~/.bashrc.minimal ]; then
+    source ~/.bashrc.minimal
+fi
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
 
-#swap esc and capslock key (method1)
-setxkbmap -option caps:swapescape:W
-
-#swap esc and capslock key (methode2)
-xmodmap ~/xmodmap_swap_caps_esc
-
-#Force 256 colors
-export TERM=xterm-256color
-
-#reload .inputrc
-bind -f ~/.inputrc
-
-#automatic colors with grep
-export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='1;32'
-
-export EDITOR=vim
-
 ###### HISTORY #######
 
-# append to the history file, don't overwrite it 
+# append to the history file, don't overwrite it
 shopt -s histappend
 
-# don't put duplicate lines in the history and ignore same sucessive entries. 
+# don't put duplicate lines in the history and ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
 
 # resize history size
@@ -40,35 +28,25 @@ export HISTSIZE=5000
 
 export AUTOFEATURE=true autotest
 
+#reload .inputrc
+bind -f ~/.inputrc
+
 # your top commands
 function rh {
   history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
  }
 
+function say { mplayer "http://translate.google.com/translate_tts?tl=en&q=$*" >/dev/null 2>&1; }
+function sayde { mplayer "http://translate.google.com/translate_tts?tl=de&q=$*" >/dev/null 2>&1; }
+
 # Make new shells get the history lines from all previous
 # shells instead of the default "last window closed" history
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
-
-
 
 ###### RUBY ######
 
 #source /home/guillaume/.rvm/scripts/rvm
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# .. act as cd ..
-shopt -s autocd
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
-
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -79,54 +57,27 @@ shopt -s cdspell
 #    . ~/.bash_aliases
 #fi
 
-# LS
-#h - human readble
-#S - Sort by size
-#F - add trailing / for fir * for exec ...
-#A - Almost all show dot files but not . and ..
-#C - List by columns
-#1 only one column
-alias ll='ls -lhSF --color=auto'
-alias la='ls -lAF --color=auto'
-alias ls='ls -CF --color=auto'
-alias l="ls -AF1S"
 alias ack='ack-grep'
 alias paste='xclip -o -selection clipboard'
 
-#clear screen
-alias c='clear'
-
-#exit
-alias q='exit'
 
 #serve repository
 alias serve='python -m SimpleHTTPServer 8080'
+alias servesphinx='cd ~/doc/; python -m SimpleHTTPServer 2323'
+alias autosphinx='autocompile.py ~/sync/Boulot/notes/sphinx/ .rst "make althtml"'
+
+
 
 #apt-get install
 alias install='sudo apt-get install'
 alias reboot='sudo shutdown -r now'
 alias halt='sudo shutdown  now'
 
-
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
 
 ###### GARBAGE ??? #######
-
-
-# enable color support of ls and also add handy aliases
-if [ "$TERM" != "dumb" ]; then
-    eval "`dircolors -b`"
-    alias ls='ls --color=auto'
-    #alias dir='ls --color=auto --format=vertical'
-    #alias vdir='ls --color=auto --format=long'
-fi
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
@@ -189,4 +140,9 @@ if [ -f $VENVDIST ]; then
     alias devback="source $VENVDIST; cd /home/project/git/distark"
     alias devcli="source $VENVDIST; cd /home/project/git/distarkcli;export PYTHONPATH=/home/project/git/distarkcli/"
 fi
+
+say(){
+    wget -q -U Mozilla -O output.mp3 "http://translate.google.com/translate_tts?ie=UTF-8&tl=de&q=$1"; mpg123 output.mp3
+}
+
 export JAVA_HOME=/usr/lib/jvm/java-6-oracle
