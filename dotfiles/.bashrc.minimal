@@ -1,0 +1,56 @@
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+#swap esc and capslock key (method1)
+setxkbmap -option caps:swapescape:W
+
+#swap esc and capslock key (methode2)
+xmodmap ~/xmodmap_swap_caps_esc
+
+#Force 256 colors
+export TERM=xterm-256color
+
+#reload .inputrc
+bind -f ~/.inputrc
+
+#automatic colors with grep
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='1;32'
+
+export EDITOR=vim
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# .. act as cd ..
+shopt -s autocd
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+
+# LS
+#h - human readble
+#S - Sort by size
+#F - add trailing / for fir * for exec ...
+#A - Almost all show dot files but not . and ..
+#C - List by columns
+#1 only one column
+alias ll='ls -lhSF --color=auto'
+alias la='ls -lAF --color=auto'
+alias ls='ls -CF --color=auto'
+alias l="ls -AF1S"
+
+#clear screen
+alias c='clear'
+
+#exit
+alias q='exit'
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
