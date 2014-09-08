@@ -1,5 +1,5 @@
 
-PATH=$PATH:$HOME/bin 
+PATH=$PATH:$HOME/bin
 
 # Load local non commited .bashrc
 
@@ -17,10 +17,10 @@ fi
 
 ###### HISTORY #######
 
-# append to the history file, don't overwrite it 
+# append to the history file, don't overwrite it
 shopt -s histappend
 
-# don't put duplicate lines in the history and ignore same sucessive entries. 
+# don't put duplicate lines in the history and ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
 
 # resize history size
@@ -48,12 +48,6 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 #source /home/guillaume/.rvm/scripts/rvm
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
-
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -70,15 +64,17 @@ alias paste='xclip -o -selection clipboard'
 #serve repository
 alias serve='python -m SimpleHTTPServer 8080'
 alias servesphinx='cd ~/doc/; python -m SimpleHTTPServer 2323'
+alias autosphinx=''
+
 
 #apt-get install
 alias install='sudo apt-get install'
 alias reboot='sudo shutdown -r now'
 alias halt='sudo shutdown  now'
 
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
-function say { mplayer "http://translate.google.com/translate_tts?tl=en&q=$*" >/dev/null 2>&1; }
-function sayde { mplayer "http://translate.google.com/translate_tts?tl=de&q=$*" >/dev/null 2>&1; }
 
 ###### GARBAGE ??? #######
 
