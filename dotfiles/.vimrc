@@ -12,7 +12,6 @@ Bundle 'gmarik/Vundle.vim'
 "
 " original repos on GitHub
 Bundle 'tpope/vim-fugitive'
-"Bundle 'davidhalter/jedi-vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'plasticboy/vim-markdown'
@@ -35,6 +34,10 @@ Bundle 'tell-k/vim-autopep8'
 Bundle 'andviro/flake8-vim'
 Bundle 'guns/xterm-color-table.vim'
 Bundle 'hdima/python-syntax'
+Bundle 'nixon/vim-vmath'
+Bundle 'shinokada/listtrans.vim'
+Bundle 'shinokada/dragvisuals.vim'
+Bundle 'vim-scripts/TaskList.vim'
 
 call vundle#end()
 
@@ -69,9 +72,6 @@ if has("autocmd")
     filetype plugin on
     " Languages with specific tabs/space requirements
     autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
-    " Source the vimrc file after saving it
-    " TODO; mess up the coloscheme
-    " autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
 
@@ -144,48 +144,75 @@ set formatoptions-=t " don't automatically wrap text when typing
 set wrapmargin=0
 "set formatoptions+=t " automatically wrap text when typing
 "set nowrap " don't automatically wrap on load
-set colorcolumn=110 " add a colored column on column number X"
+
+" color the whole column
+"set colorcolumn=110 " add a colored column on column number X"
+
+"color just the nth charcter
+highlight ColorColumn ctermbg=red
+call matchadd('ColorColumn', '\%111v', 100)
+
 " TODO: not working
 "set list "show non-visible characters (space,tab,eol)
 set nofoldenable "disable folding
 colorscheme dask " Set colorscheme
 
-" ############## Trailing whitespaces ###################
-
-match Todo /\s\+$/ "highlight trailingwhitespaces
-
-function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    "Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
-
-if has("autocmd")
-    " Automatically strip trailing whitespace on file save
-    autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-    autocmd BufWritePre *.css,*.html,*.js,*.json,*.md,*.php,*.py,*.rb,*.scss,*.sh,*.txt :call <SID>StripTrailingWhitespaces()
-    autocmd BufRead *.md set textwidth=150
-    autocmd BufRead *.md set colorcolumn=150
-endif
 
 " ############ keymapping  #############
 " Change mapleader
 let mapleader = ","
+
+"" ### move ###
+
+"tab goto next buffer
+nmap <C-right> :bnext <CR>
+nmap <C-left> :bprevious <CR>
+
+" Move a line of text or a bloc using control + arrows
+" Alt+j/k to move current line/selected lines up and down
+nnoremap <C-down> :m+<CR>==
+nnoremap <C-up> :m-2<CR>==
+inoremap <C-down> <Esc>:m+<CR>==gi
+inoremap <C-up> <Esc>:m-2<CR>==gi
+"vnoremap <C-down> :m'>+<CR>gv=gv
+"vnoremap <C-up> :m-2<CR>gv=gv
+
+" window movement made simple
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+"Visual block by default
+nnoremap v <C-V>
+nnoremap <C-V> v
+vnoremap v <C-V>
+vnoremap <C-V> v
+
+"" ### utilities ####
+
+" ,c close all buffers
+nmap <leader>c :bufdo bd<CR>
 " Strip trailing whitespace (,$)
 noremap <leader>$ :call <SID>StripTrailingWhitespaces()<CR>
-"tab goto next buffer
-nmap <tab> :bnext <CR>
+
+" Save and execute sh
+autocmd FileType sh map <buffer> <C-S-e> :w<CR>:!/bin/sh % <CR>
 " ff fix Flake8 rules
 autocmd FileType python nmap ff :PyFlakeAuto <CR>:PyFlake<CR>
 ":PyFlake<CR>
 " ap fix pep8 rules
 autocmd FileType python map <buffer> ap :call Autopep8()<CR>:PyFlake<CR>:redraw!<CR>
+" disable syntax higlight after search
+noremap <leader>n :nohl<CR>
+vnoremap <leader>n :nohl<CR>
+inoremap <leader>n :nohl<CR>
+
+
+
+
+"" ### system ###
+
 " C-n toggle nerdtree on / off
 map <C-n> :NERDTreeToggle<CR>
 map <C-x> :NERDTreeToggle<CR>
@@ -193,33 +220,38 @@ map <C-x> :NERDTreeToggle<CR>
 map <leader>td <Plug>TaskList
 " ,v opens .vimrc
 nmap <leader>v :e $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 " C-t open tagbar
 nmap <C-t> :TagbarToggle<CR>
-" ,c close all buffers
-nmap <leader>c :bufdo bd<CR>
 
-"TODO: Move a line of text or a bloc using control + arrows
-
-
-" window mmouvement made simple
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
-
-
-noremap <leader>n :nohl<CR>
-vnoremap <leader>n :nohl<CR>
-inoremap <leader>n :nohl<CR>
 
 " Load local machine settings if they exist
 if filereadable(glob("$HOME/.vimrc.local"))
     source $HOME/.vimrc.local
 endif
 
+" ############### File type properties ##################
+" Turn on spell checking for Git commits
+
+if has("autocmd")
+    " Automatically strip trailing whitespace on file save
+    autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+    autocmd BufWritePre *.css,*.html,*.js,*.json,*.md,*.php,*.py,*.rb,*.scss,*.sh,*.txt :call <SID>StripTrailingWhitespaces()
+    autocmd BufRead *.md set textwidth=150
+    autocmd BufRead *.md set colorcolumn=150
+    autocmd FileType gitcommit setlocal spell
+endif
+
 "#######################################
 "############# Plugins #################
 "#######################################
+
+"#############  dragvisual ################
+
+"#############  listtrans.vim ################
+" TODO does not work
+nmap  <leader>l   :call ListTrans_toggle_format()<CR>
+vmap  <leader>l   :call ListTrans_toggle_format('visual')<CR>
 
 "############# Vimroom #################
 
@@ -284,6 +316,7 @@ let python_print_as_function=1
 "Highlight shebang and coding headers as comments
 let python_highlight_file_headers_as_comments=0
 
+
 " ############# flake8-vim  ################
 "Auto-check file for errors on write:
 let g:PyFlakeOnWrite = 1
@@ -320,9 +353,31 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let NERDTreeIgnore = ['\.pyc$'] "ignore pyc files
 let NERDTreeShowHidden=1 "show dotfiles
 
-" ############# vim markdown ################
+
+"############# Markdown #################
 let g:vim_markdown_folding_disabled=1
 "TODO: line wwrap automatticaly create new bullets while in a list
+
+
+" ############# vmath.vim################
+"after ++ 
+"The sum        is in the "s buffer (e.g. "sp).
+"The average    is available in "a
+"the minimum value in "n, 
+"the maximum value in "x,
+"and the min-to-max range as a single string is available in "r
+vmap <expr> ++ VMATH_YankAndAnalyse()
+nmap ++ vip++
+
+
+" ############# dragvisual  ################
+"runtime plugin/dragvisuals.vim
+vmap <expr> <C-LEFT> DVB_Drag('left')
+vmap <expr> <C-RIGHT> DVB_Drag('right')
+vmap <expr> <C-DOWN> DVB_Drag('down')
+vmap <expr> <C-UP> DVB_Drag('up')
+" My favourite feature is the “duplicator” option:
+vmap <expr> D DVB_Duplicate()
 
 " ############# vim tcomment ################
 " Normal
@@ -338,26 +393,6 @@ let g:vim_markdown_folding_disabled=1
 "  tab scroll from top to bottom completion list
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
-""" flask8 tuning"
-"""remap
-""autocmd FileType python map <buffer> <F3> :call Flake8()<CR>
-""let g:flake8_builtins="_,apply"
-""let g:flake8_ignore="E201,E225"
-""let g:flake8_max_line_length=100
-""autocmd BufWritePost *.py call Flake8()
-""let g:flake8_max_complexity=10
-" Add the virtualenv's site-packages to vim path
-"
-" py << EOF
-" import os.path
-" import sys
-" import vim
-" if 'VIRTUAL_ENV' in os.environ:
-" 	project_base_dir =os.environ['VIRTUAL_ENV']
-" 	sys.path.insert(0, project_base_dir)
-" 	activate_this= os.path.join(project_base_dir, 'bin/activate_this.py')
-" 	execfile(activate_this, dict(__file__=activate_this))
-" EOF
 
 " ################# bd don't close the window but just the buffer  ################
 " ################# smother intergation wityh nerd tree            ################
@@ -453,12 +488,118 @@ nnoremap <silent> <Leader>bd :Bclose<CR>
 nnoremap <silent> <Leader>bD :Bclose!<CR>
 map :bd :Bclose
 
+" ############## Delete Trailing whitespaces on save ###################
+
+match Todo /\s\+$/ "highlight trailingwhitespaces
+
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    "Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+"easier to find search result
+nnoremap <silent> n n:call HLNext(0.4)<cr>
+nnoremap <silent> N N:call HLNext(0.4)<cr>
+
+"" blink line of the search result
+function! HLNext_blink (blinktime)
+    set invcursorline
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    set invcursorline
+    redraw
+endfunction
+
+"=====[ Blink a red ring around the match ]=============
+function! HLNext_red_square (blinktime)
+    highlight RedOnRed ctermfg=red ctermbg=red
+    let [bufnum, lnum, col, off] = getpos('.')
+    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    echo matchlen
+    let ring_pat = (lnum > 1 ? '\%'.(lnum-1).'l\%>'
+                \ . max([col-4,1]) .'v\%<'.(col+matchlen+3).'v.\|' : '')
+                \ . '\%'.lnum.'l\%>'.max([col-4,1]) .'v\%<'.col.'v.'
+                \ . '\|'
+                \ . '\%'.lnum.'l\%>'.max([col+matchlen-1,1])
+                \ . 'v\%<'.(col+matchlen+3).'v.'
+                \ . '\|'
+                \ . '\%'.(lnum+1).'l\%>'.max([col-4,1])
+                \ . 'v\%<'.(col+matchlen+3).'v.'
+    let ring = matchadd('RedOnRed', ring_pat, 101)
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    call matchdelete(ring)
+    redraw
+endfunction
+
+"=====[ Briefly hide everything except the match ]=============
+function! HLNext_hide (blinktime)
+    highlight BlackOnBlack ctermfg=black ctermbg=black
+    let [bufnum, lnum, col, off] = getpos('.')
+    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    let hide_pat = '\%<'.lnum.'l.'
+                \ . '\|'
+                \ . '\%'.lnum.'l\%<'.col.'v.'
+                \ . '\|'
+                \ . '\%'.lnum.'l\%>'.(col+matchlen-1).'v.'
+                \ . '\|'
+                \ . '\%>'.lnum.'l.'
+    let ring = matchadd('BlackOnBlack', hide_pat, 101)
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    call matchdelete(ring)
+    redraw
+endfunction
+
+"=====[ Highlight the match in Color ]=============
+function! HLNext (blinktime)
+    let [bufnum, lnum, col, off] = getpos('.')
+    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    let target_pat = '\c\%#'.@/
+    let ring = matchadd('MatchParen', target_pat, 101)
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    call matchdelete(ring)
+    redraw
+endfunction
+
 
 " Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
     if !exists("*synstack")
         return
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+nmap <C-S-P> :call <SID>SynStack()<CR>
+
+
+""" OLD GARBAGE
+
+""" flask8 tuning"
+"""remap
+""autocmd FileType python map <buffer> <F3> :call Flake8()<CR>
+""let g:flake8_builtins="_,apply"
+""let g:flake8_ignore="E201,E225"
+""let g:flake8_max_line_length=100
+""autocmd BufWritePost *.py call Flake8()
+""let g:flake8_max_complexity=10
+" Add the virtualenv's site-packages to vim path
+"
+" py << EOF
+" import os.path
+" import sys
+" import vim
+" if 'VIRTUAL_ENV' in os.environ:
+" 	project_base_dir =os.environ['VIRTUAL_ENV']
+" 	sys.path.insert(0, project_base_dir)
+" 	activate_this= os.path.join(project_base_dir, 'bin/activate_this.py')
+" 	execfile(activate_this, dict(__file__=activate_this))
+" EOF
