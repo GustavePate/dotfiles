@@ -11,6 +11,10 @@ if [ -f ~/.bashrc.minimal ]; then
     source ~/.bashrc.minimal
 fi
 
+if [ -f ~/bin/z.sh ]; then
+    source ~/bin/z.sh
+fi
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 

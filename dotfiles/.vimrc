@@ -38,6 +38,10 @@ Bundle 'nixon/vim-vmath'
 Bundle 'shinokada/listtrans.vim'
 Bundle 'shinokada/dragvisuals.vim'
 Bundle 'vim-scripts/TaskList.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'godlygeek/tabular'
 
 call vundle#end()
 
@@ -99,6 +103,7 @@ if has('statusline')
     "set statusline+=%w%h%m%r " Options
     "set statusline+=\ [%{getcwd()}] " Current dir
     "set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav info
+    "set statusline+=%{fugitive#statusline()c
 endif
 
 
@@ -245,6 +250,27 @@ endif
 "#######################################
 "############# Plugins #################
 "#######################################
+
+"############# tabular ###################"
+
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+nmap <Leader>a\| :Tabularize /\|<CR>
+vmap <Leader>a\| :Tabularize /\|<CR>
+
+"############# ctrlP ######################
+"Press <c-f> and <c-b> to cycle between modes.
+"Use <c-j>, <c-k> or the arrow keys to navigate the result list.
+
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(pyc|so)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+let g:ctrlp_show_hidden = 1 "show hidden files dir
 
 "#############  dragvisual ################
 
