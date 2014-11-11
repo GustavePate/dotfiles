@@ -213,7 +213,15 @@ noremap <leader>n :nohl<CR>
 vnoremap <leader>n :nohl<CR>
 inoremap <leader>n :nohl<CR>
 
+"" ### spell ###
+"z= sur un mot souligné affiche une liste de corrections possibles
+"zg rajoute un mot dans le dictionnaire
+"zug pour annuler l'ajout au dictionnaire
+"]s pour aller au prochain mot mal orthographié
+"[s pour le précédent
 
+noremap <F6> :setlocal spell! spelllang=fr<CR>
+noremap <F7> :setlocal spell! spelllang=en<CR>
 
 
 "" ### system ###
