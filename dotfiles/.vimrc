@@ -288,6 +288,16 @@ nnoremap <silent> <Leader>mz <Plug>VimroomToggle
 "############# YouCompleteMe #################
 nmap <leader>d :YcmCompleter GoToDefinition<CR>
 nmap <leader>g :YcmCompleter GoTo<CR>
+let g:ycm_auto_trigger = 3
+let g:ycm_enable_diagnostic_signs = 1
+let g:ycm_enable_diagnostic_highlighting = 1
+let g:ycm_error_symbol = '>>'
+let g:ycm_warning_symbol = '>>'
+let g:ycm_filetype_whitelist = { '*': 1 }
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar' : 1,
+      \}
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
 
 "############# UltiSnips#################
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
