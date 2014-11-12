@@ -12,7 +12,6 @@ if [ -f ~/.bashrc.minimal ]; then
 fi
 
 if [ -f ~/bin/z.sh ]; then
-    echo "zzz"
     source ~/bin/z.sh
 fi
 
