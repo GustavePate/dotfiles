@@ -42,6 +42,9 @@ Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'godlygeek/tabular'
+Plugin 'junegunn/limelight.vim'
+Plugin 'junegunn/goyo.vim'
+
 
 call vundle#end()
 
@@ -259,6 +262,28 @@ endif
 "############# Plugins #################
 "#######################################
 
+
+"############# goyo / limelight ##########"
+"
+let g:limelight_conceal_ctermfg = 240
+let g:limelight_default_coefficient = 0.4
+
+function! s:goyo_enter()
+    Limelight
+endfunction
+
+function! s:goyo_leave()
+    Limelight!
+    colorscheme dask " Set colorscheme
+endfunction
+
+autocmd! User GoyoEnter
+autocmd! User GoyoLeave
+autocmd  User GoyoEnter nested call <SID>goyo_enter()
+autocmd  User GoyoLeave nested call <SID>goyo_leave()
+nmap <C-R> :Goyo<CR>
+
+
 "############# tabular ###################"
 
 nmap <Leader>a= :Tabularize /=<CR>
@@ -267,6 +292,9 @@ nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
 nmap <Leader>a\| :Tabularize /\|<CR>
 vmap <Leader>a\| :Tabularize /\|<CR>
+
+
+
 
 "############# ctrlP ######################
 "Press <c-f> and <c-b> to cycle between modes.
