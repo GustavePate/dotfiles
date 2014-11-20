@@ -14,9 +14,9 @@ Bundle 'gmarik/Vundle.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'tomtom/tcomment_vim'
-Bundle 'plasticboy/vim-markdown'
 Bundle 'mikewest/vimroom'
 Bundle 'vim-pandoc/vim-pandoc'
+Bundle 'vim-pandoc/vim-pandoc-syntax'
 Bundle 'uarun/vim-protobuf'
 "Bundle 'vim-scripts/CSApprox'
 Bundle 'scrooloose/nerdtree'
@@ -217,6 +217,11 @@ noremap <leader>n :nohl<CR>
 vnoremap <leader>n :nohl<CR>
 inoremap <leader>n :nohl<CR>
 
+map <F2> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+            \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+            \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+
 "" ### spell ###
 "z= sur un mot souligné affiche une liste de corrections possibles
 "zg rajoute un mot dans le dictionnaire
@@ -263,6 +268,10 @@ endif
 "############# Plugins #################
 "#######################################
 
+"############## pandoc synthax ###########"
+
+let g:pandoc#syntax#conceal#use = 0
+let g:pandoc#syntax#conceal#blacklist = ["titleblock"]
 
 "############# goyo / limelight ##########"
 "
