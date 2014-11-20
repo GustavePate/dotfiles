@@ -133,6 +133,7 @@ endif
 set hidden " allow to have multiple buffer open on edited but not saved files
 "set ttyfast " Optimize for fast terminal connections
 set encoding=utf-8 " Use UTF-8
+set fileencoding=utf-8 
 set showmatch "show matching ( { [ if on a ) } ]
 set matchtime=2 " usless: quickly move to open brace when typing the closing one
 set relativenumber
