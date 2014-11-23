@@ -151,6 +151,9 @@ set nostartofline " Don’t reset cursor to start of line when moving around.
 set textwidth=110 " lines longer than X columns will be broken, type gq$ to apply
 set formatoptions-=t " don't automatically wrap text when typing
 set wrapmargin=0
+set linebreak "when wrap don't break in the middle of a word
+set shortmess+=I "no start message
+set splitright "new vertical split on the left
 "set formatoptions+=t " automatically wrap text when typing
 "set nowrap " don't automatically wrap on load
 
@@ -176,6 +179,16 @@ let mapleader = ","
 "tab goto next buffer
 nmap <C-right> :bnext <CR>
 nmap <C-left> :bprevious <CR>
+
+"J keeps cursor position
+nnoremap J mzJ`z
+" move down 1 row instead of 1 line (usefull when warpped lines)
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+nnoremap <up> gk
+nnoremap <down> gj
 
 " Move a line of text or a bloc using control + arrows
 " Alt+j/k to move current line/selected lines up and down
@@ -217,6 +230,13 @@ noremap <leader>n :nohl<CR>
 vnoremap <leader>n :nohl<CR>
 inoremap <leader>n :nohl<CR>
 
+" search result in the middle of the screen
+nnoremap n nzz
+nnoremap } }zz
+nnoremap N Nzz
+nnoremap { {zz
+
+"show higlight properties of the under cursor element
 map <F2> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
             \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
             \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
