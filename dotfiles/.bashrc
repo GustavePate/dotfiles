@@ -68,7 +68,7 @@ alias paste='xclip -o -selection clipboard'
 #serve repository
 alias serve='python -m SimpleHTTPServer 8080'
 alias servesphinx='cd ~/doc/; python -m SimpleHTTPServer 2323'
-alias autosphinx='autocompile.py ~/sync/Boulot/notes/sphinx/ .rst "make althtml"'
+alias autosphinx='autocompile.py ~/sync/Boulot/sphinx/ .rst "make althtml"'
 
 
 
