@@ -329,11 +329,11 @@ vmap <Leader>a\| :Tabularize /\|<CR>
 "############# ctrlP ######################
 "Press <c-f> and <c-b> to cycle between modes.
 "Use <c-j>, <c-k> or the arrow keys to navigate the result list.
-
+let g:ctrlp_cmd = 'CtrlP .'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(pyc|so)$',
+  \ 'file': '\v\.(pyc|so|jar)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
 let g:ctrlp_show_hidden = 1 "show hidden files dir
