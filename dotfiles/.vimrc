@@ -2,7 +2,6 @@
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
-
 call vundle#begin()
 
 " let Vundle manage Vundle
@@ -44,7 +43,6 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'godlygeek/tabular'
 Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/goyo.vim'
-
 
 call vundle#end()
 
@@ -235,6 +233,9 @@ nnoremap n nzz
 nnoremap } }zz
 nnoremap N Nzz
 nnoremap { {zz
+
+" Return cursor to previous location on load
+autocmd BufReadPost * normal `"
 
 "show higlight properties of the under cursor element
 map <F2> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
