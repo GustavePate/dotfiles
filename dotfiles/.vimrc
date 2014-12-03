@@ -27,6 +27,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-abolish'
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
+
 " Must have
 "pip install --upgrade autopep8
 Bundle 'tell-k/vim-autopep8'
@@ -155,9 +156,12 @@ set splitright "new vertical split on the left
 "set formatoptions+=t " automatically wrap text when typing
 "set nowrap " don't automatically wrap on load
 
+"Complete work with C-P C-N
+set complete+=kspell
+
+
 " color the whole column
 "set colorcolumn=110 " add a colored column on column number X"
-
 "color just the nth charcter
 highlight ColorColumn ctermbg=red
 call matchadd('ColorColumn', '\%111v', 100)
@@ -283,7 +287,14 @@ if has("autocmd")
     autocmd BufRead *.md set textwidth=150
     autocmd BufRead *.md set colorcolumn=150
     autocmd FileType gitcommit setlocal spell
+    autocmd BufRead,BufNewFile *.md setlocal spell spelllang=fr
+    autocmd BufRead,BufNewFile *.rst setlocal spell spelllang=fr
 endif
+
+augroup resCur
+    autocmd!
+    autocmd BufReadPost * call setpos(".", getpos("'\""))
+augroup END
 
 "#######################################
 "############# Plugins #################
@@ -330,11 +341,11 @@ vmap <Leader>a\| :Tabularize /\|<CR>
 "############# ctrlP ######################
 "Press <c-f> and <c-b> to cycle between modes.
 "Use <c-j>, <c-k> or the arrow keys to navigate the result list.
-
+let g:ctrlp_cmd = 'CtrlP .'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(pyc|so)$',
+  \ 'file': '\v\.(pyc|so|jar)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
 let g:ctrlp_show_hidden = 1 "show hidden files dir
@@ -456,6 +467,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let NERDTreeIgnore = ['\.pyc$'] "ignore pyc files
 let NERDTreeShowHidden=1 "show dotfiles
 
+"open nerdtree and put the cursor on the right window
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
 
 "############# Markdown #################
 let g:vim_markdown_folding_disabled=1
@@ -499,10 +513,6 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " ################# bd don't close the window but just the buffer  ################
 " ################# smother intergation wityh nerd tree            ################
-
-"open nerdtree and put the cursor on the right window
-"autocmd VimEnter * NERDTree
-"autocmd VimEnter * wincmd p
 
 function! s:DiffWithSaved()
     let filetype=&ft
