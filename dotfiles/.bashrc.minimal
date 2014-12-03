@@ -6,6 +6,7 @@
 #setxkbmap -option caps:swapescape:W
 
 #swap esc and capslock key (methode2)
+# put this in session and startup
 #xmodmap ~/.Xmodmap
 
 #Force 256 colors
