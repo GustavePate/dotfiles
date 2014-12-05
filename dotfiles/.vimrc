@@ -1,5 +1,4 @@
 " Disable Vi compatibility
-set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
@@ -9,41 +8,53 @@ Bundle 'gmarik/Vundle.vim'
 "
 " My bundles here:
 "
-" original repos on GitHub
-Bundle 'tpope/vim-fugitive'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'mikewest/vimroom'
+" Synthax
+Bundle 'scrooloose/syntastic'
 Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'vim-pandoc/vim-pandoc-syntax'
 Bundle 'uarun/vim-protobuf'
-"Bundle 'vim-scripts/CSApprox'
-Bundle 'scrooloose/nerdtree'
-Bundle 'vim-scripts/ScrollColors'
-"Bundle 'scrooloose/syntastic'
-Bundle 'bling/vim-airline'
-"Bundle 'nvie/vim-flake8'
-Bundle 'majutsushi/tagbar'
-Bundle 'tpope/vim-abolish'
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
 
-" Must have
-"pip install --upgrade autopep8
+"Python
+" Must have pip install --upgrade autopep8
 Bundle 'tell-k/vim-autopep8'
 Bundle 'andviro/flake8-vim'
-Bundle 'guns/xterm-color-table.vim'
 Bundle 'hdima/python-syntax'
-Bundle 'nixon/vim-vmath'
+
+"SCM
+Bundle 'tpope/vim-fugitive'
+
+"GUI / workflow
+Bundle 'scrooloose/nerdtree'
+Bundle 'bling/vim-airline'
+Bundle 'majutsushi/tagbar'
+Bundle 'Valloric/YouCompleteMe'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mbbill/undotree'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+"org
+Bundle 'vim-scripts/TaskList.vim'
+
+"quick editing
+Plugin 'Raimondi/delimitMate'
+Plugin 'tpope/vim-surround'
+Bundle 'tomtom/tcomment_vim'
+
+"formatting
+Plugin 'godlygeek/tabular'
 Bundle 'shinokada/listtrans.vim'
 Bundle 'shinokada/dragvisuals.vim'
-Bundle 'vim-scripts/TaskList.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'kien/ctrlp.vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'godlygeek/tabular'
+
+"goodies
 Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/goyo.vim'
+Bundle 'nixon/vim-vmath'
+Bundle 'mikewest/vimroom'
+
+"theme
+Bundle 'vim-scripts/ScrollColors'
+Bundle 'guns/xterm-color-table.vim'
 
 call vundle#end()
 
@@ -181,6 +192,7 @@ let mapleader = ","
 "tab goto next buffer
 nmap <C-right> :bnext <CR>
 nmap <C-left> :bprevious <CR>
+nnoremap <leader>b :ls<cr>:b<space>
 
 "J keeps cursor position
 nnoremap J mzJ`z
@@ -291,14 +303,23 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.rst setlocal spell spelllang=fr
 endif
 
-augroup resCur
+"Return cursor to previous location on load:
+autocmd BufReadPost * normal `"
+
+"Quick fix not in listed buffer
+augroup QFix
     autocmd!
-    autocmd BufReadPost * call setpos(".", getpos("'\""))
+    autocmd FileType qf setlocal nobuflisted
 augroup END
+
 
 "#######################################
 "############# Plugins #################
 "#######################################
+
+"############## undo tree ###########"
+nnoremap <F5> :UndotreeToggle<cr>
+
 
 "############## pandoc synthax ###########"
 
