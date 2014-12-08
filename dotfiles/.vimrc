@@ -13,6 +13,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'vim-pandoc/vim-pandoc-syntax'
 Bundle 'uarun/vim-protobuf'
+Plugin 'motus/pig.vim'
 
 "Python
 " Must have pip install --upgrade autopep8
