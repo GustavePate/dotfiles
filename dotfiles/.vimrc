@@ -229,7 +229,7 @@ vnoremap <C-V> v
 "" ### utilities ####
 
 " ,c close all buffers
-nmap <leader>c :bufdo bd<CR>
+nmap <leader>c :bufdo Bclose<CR>
 " Strip trailing whitespace (,$)
 noremap <leader>$ :call <SID>StripTrailingWhitespaces()<CR>
 
