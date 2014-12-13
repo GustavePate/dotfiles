@@ -4,12 +4,12 @@ set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
 " let Vundle manage Vundle
-Bundle 'gmarik/Vundle.vim'
+Plugin 'gmarik/Vundle.vim'
 "
 " My bundles here:
 "
 " Synthax
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'vim-pandoc/vim-pandoc-syntax'
 Bundle 'uarun/vim-protobuf'
