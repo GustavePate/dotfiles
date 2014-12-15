@@ -321,6 +321,9 @@ augroup END
 "############## undo tree ###########"
 nnoremap <F5> :UndotreeToggle<cr>
 
+"#############  syntastic  ################
+let g:syntastic_rst_checkers = ['rstcheck']
+
 
 "############## pandoc synthax ###########"
 
