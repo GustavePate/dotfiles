@@ -1,50 +1,61 @@
 " Disable Vi compatibility
-set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
-
 call vundle#begin()
 
 " let Vundle manage Vundle
-Bundle 'gmarik/Vundle.vim'
+Plugin 'gmarik/Vundle.vim'
 "
 " My bundles here:
 "
-" original repos on GitHub
-Bundle 'tpope/vim-fugitive'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'mikewest/vimroom'
+" Synthax
+Plugin 'scrooloose/syntastic'
 Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'vim-pandoc/vim-pandoc-syntax'
 Bundle 'uarun/vim-protobuf'
-"Bundle 'vim-scripts/CSApprox'
-Bundle 'scrooloose/nerdtree'
-Bundle 'vim-scripts/ScrollColors'
-"Bundle 'scrooloose/syntastic'
-Bundle 'bling/vim-airline'
-"Bundle 'nvie/vim-flake8'
-Bundle 'majutsushi/tagbar'
-Bundle 'tpope/vim-abolish'
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
-" Must have
-"pip install --upgrade autopep8
+Plugin 'motus/pig.vim'
+
+"Python
+" Must have pip install --upgrade autopep8
 Bundle 'tell-k/vim-autopep8'
 Bundle 'andviro/flake8-vim'
-Bundle 'guns/xterm-color-table.vim'
 Bundle 'hdima/python-syntax'
-Bundle 'nixon/vim-vmath'
+
+"SCM
+Bundle 'tpope/vim-fugitive'
+
+"GUI / workflow
+Bundle 'scrooloose/nerdtree'
+Bundle 'bling/vim-airline'
+Bundle 'majutsushi/tagbar'
+Bundle 'Valloric/YouCompleteMe'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mbbill/undotree'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+"org
+Bundle 'vim-scripts/TaskList.vim'
+
+"quick editing
+Plugin 'Raimondi/delimitMate'
+Plugin 'tpope/vim-surround'
+Bundle 'tomtom/tcomment_vim'
+
+"formatting
+Plugin 'godlygeek/tabular'
 Bundle 'shinokada/listtrans.vim'
 Bundle 'shinokada/dragvisuals.vim'
-Bundle 'vim-scripts/TaskList.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'kien/ctrlp.vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'godlygeek/tabular'
+
+"goodies
 Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/goyo.vim'
+Bundle 'nixon/vim-vmath'
+Bundle 'mikewest/vimroom'
 
+"theme
+Bundle 'vim-scripts/ScrollColors'
+Bundle 'guns/xterm-color-table.vim'
 
 call vundle#end()
 
@@ -157,9 +168,12 @@ set splitright "new vertical split on the left
 "set formatoptions+=t " automatically wrap text when typing
 "set nowrap " don't automatically wrap on load
 
+"Complete work with C-P C-N
+set complete+=kspell
+
+
 " color the whole column
 "set colorcolumn=110 " add a colored column on column number X"
-
 "color just the nth charcter
 highlight ColorColumn ctermbg=red
 call matchadd('ColorColumn', '\%111v', 100)
@@ -179,6 +193,7 @@ let mapleader = ","
 "tab goto next buffer
 nmap <C-right> :bnext <CR>
 nmap <C-left> :bprevious <CR>
+nnoremap <leader>b :ls<cr>:b<space>
 
 "J keeps cursor position
 nnoremap J mzJ`z
@@ -214,7 +229,7 @@ vnoremap <C-V> v
 "" ### utilities ####
 
 " ,c close all buffers
-nmap <leader>c :bufdo bd<CR>
+nmap <leader>c :bufdo Bclose<CR>
 " Strip trailing whitespace (,$)
 noremap <leader>$ :call <SID>StripTrailingWhitespaces()<CR>
 
@@ -235,6 +250,9 @@ nnoremap n nzz
 nnoremap } }zz
 nnoremap N Nzz
 nnoremap { {zz
+
+" Return cursor to previous location on load
+autocmd BufReadPost * normal `"
 
 "show higlight properties of the under cursor element
 map <F2> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -282,11 +300,30 @@ if has("autocmd")
     autocmd BufRead *.md set textwidth=150
     autocmd BufRead *.md set colorcolumn=150
     autocmd FileType gitcommit setlocal spell
+    autocmd BufRead,BufNewFile *.md setlocal spell spelllang=fr
+    autocmd BufRead,BufNewFile *.rst setlocal spell spelllang=fr
 endif
+
+"Return cursor to previous location on load:
+autocmd BufReadPost * normal `"
+
+"Quick fix not in listed buffer
+augroup QFix
+    autocmd!
+    autocmd FileType qf setlocal nobuflisted
+augroup END
+
 
 "#######################################
 "############# Plugins #################
 "#######################################
+
+"############## undo tree ###########"
+nnoremap <F5> :UndotreeToggle<cr>
+
+"#############  syntastic  ################
+let g:syntastic_rst_checkers = ['rstcheck']
+
 
 "############## pandoc synthax ###########"
 
@@ -329,11 +366,11 @@ vmap <Leader>a\| :Tabularize /\|<CR>
 "############# ctrlP ######################
 "Press <c-f> and <c-b> to cycle between modes.
 "Use <c-j>, <c-k> or the arrow keys to navigate the result list.
-
+let g:ctrlp_cmd = 'CtrlP .'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(pyc|so)$',
+  \ 'file': '\v\.(pyc|so|jar)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
 let g:ctrlp_show_hidden = 1 "show hidden files dir
@@ -455,6 +492,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let NERDTreeIgnore = ['\.pyc$'] "ignore pyc files
 let NERDTreeShowHidden=1 "show dotfiles
 
+"open nerdtree and put the cursor on the right window
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
 
 "############# Markdown #################
 let g:vim_markdown_folding_disabled=1
@@ -498,10 +538,6 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " ################# bd don't close the window but just the buffer  ################
 " ################# smother intergation wityh nerd tree            ################
-
-"open nerdtree and put the cursor on the right window
-"autocmd VimEnter * NERDTree
-"autocmd VimEnter * wincmd p
 
 function! s:DiffWithSaved()
     let filetype=&ft

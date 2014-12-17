@@ -1,8 +1,6 @@
 
 PATH=$PATH:$HOME/bin
-
 # Load local non commited .bashrc
-
 if [ -f ~/.bashrc.local ]; then
     source ~/.bashrc.local
 fi
@@ -67,8 +65,9 @@ alias paste='xclip -o -selection clipboard'
 
 #serve repository
 alias serve='python -m SimpleHTTPServer 8080'
-alias servesphinx='cd ~/doc/; python -m SimpleHTTPServer 2323'
-alias autosphinx='autocompile.py ~/sync/Boulot/sphinx/ .rst "make althtml"'
+alias sphinx_serve='cd ~/doc_html/; python -m SimpleHTTPServer 2323'
+alias sphinx_autocompile='autocompile.py ~/sync/Boulot/sphinx/ .rst "make althtml"'
+alias autosphinx='sphinx_serve & sphinx_autocompile'
 
 
 
