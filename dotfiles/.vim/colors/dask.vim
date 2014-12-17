@@ -92,6 +92,7 @@ hi Identifier	ctermfg=38    ctermbg=0   cterm=NONE
 hi Function           ctermfg=38    ctermbg=0   cterm=NONE
 
 hi Statement	ctermfg=60   ctermbg=0   gui=NONE
+" hi Conditional	ctermfg=60  ctermbg=0   gui=NONE
 hi Conditional	ctermfg=31  ctermbg=0   gui=NONE
 hi link Repeat	Conditional
 hi link Label	Statement
