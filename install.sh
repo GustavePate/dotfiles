@@ -89,6 +89,9 @@ function install_dots {
 
     done
 
+    # manual install
+    ln -s $REPO_PATH'/redshift.conf' ~/.config/redshift.conf
+
     #update fonts
     echo "update font cache please wait...."
     fc-cache -f
