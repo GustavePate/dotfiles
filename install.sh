@@ -14,6 +14,36 @@ echo $REPO_PATH
 can_haz_dots=0
 
 
+function linkit {
+    src=$1
+    dest=$2
+
+    #if a link, delete it
+    if [ -L $dest ];then
+        rm $dest
+        echo $dest " rmed...........ok"
+    #if a dir or a file => mv
+    elif [ -e $dest ]; then
+        TIMESTAMP=`date +%d%m%Y-%H%M%S`
+        BACKUP_dest='$dest.'$TIMESTAMP'.bck'
+        mv $dest $BACKUP_dest
+        echo $dest" backuped...........ok"
+    #file does not exists
+    elif [ ! -e $dest ]; then
+        echo $dest" does not exits yet...ok"
+    # weird
+    else
+        echo "WARNING: I don't know what to do with this file $dest"
+    fi
+
+    #create a new link
+    ln -s $src $dest
+    echo $dest' symlinked to '$src
+
+
+}
+
+
 #detect change in the local directory and push if any
 function detect_change {
 
@@ -59,44 +89,15 @@ function install_dots {
         #create /home equiv for repo file
         H_FILE=$HOME_DIR'/'$FILE
 
-        #create backup path
-        TIMESTAMP=`date +%d%m%Y-%H%M%S`
-        H_FILE_BACKUP=$HOME_DIR'/'$FI'.'$TIMESTAMP'.bck'
-
-        echo "Checking $H_FILE"
-
-        #check equivalent in the homedir
-
-            #if a link, delete it
-            if [ -L $H_FILE ];then
-                rm $H_FILE
-                echo $H_FILE" rmed...........ok"
-            #if a dir or a file => mv
-            elif [ -e $H_FILE ]; then
-                echo $H_FILE" backuped...........ok"
-                mv $H_FILE $H_FILE_BACKUP
-            #fiel does not exists
-            elif [ ! -e $H_FILE ]; then
-                echo $H_FILE" does not exits yet...ok"
-            # weird
-            else
-                echo "WARNING: I don't know what to do with this file"
-            fi
-
-        #create a new link
-        ln -s $REPO_PATH'/'$f $H_FILE
-        echo $H_FILE' symlinked to '$REPO_PATH'/'$f
+        linkit $REPO_PATH'/'$f $H_FILE
 
     done
 
     #TODO: replace with fucntion call
     # manual install
+    src=$REPO_PATH'/dotfiles/redshift.conf'
     target=~/.config/redshift.conf
-    if [ -L $target ];then
-        rm $target
-        echo $target" rmed...........ok"
-    fi
-    ln -s $REPO_PATH'/dotfiles/redshift.conf' $target
+    linkit $src $target
 
     #update fonts
     echo "update font cache please wait...."
