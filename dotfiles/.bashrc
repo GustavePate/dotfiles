@@ -17,6 +17,8 @@ fi
 [ -z "$PS1" ] && return
 
 
+
+
 ###### HISTORY #######
 
 # append to the history file, don't overwrite it
@@ -40,6 +42,28 @@ function rh {
 
 function say { mplayer "http://translate.google.com/translate_tts?tl=en&q=$*" >/dev/null 2>&1; }
 function sayde { mplayer "http://translate.google.com/translate_tts?tl=de&q=$*" >/dev/null 2>&1; }
+
+function publish2pdf {
+
+    if [ "$#" -eq 1 ]; then
+        echo "publish2pdf <url> <pdf>"
+        exit 1
+    fi
+
+    if hash wkhtmltopdf 2>/dev/null; then
+
+        if [ -e ~/pub/materials/header.html ];then
+
+            URL=$1
+            PDF_NAME=$2
+            wkhtmltopdf  -T 25 --header-spacing 20 --header-html ~/pub/materials/header.html $URL ~/pub/$PDF_NAME
+        else
+            echo "~/pub directory not initialized"
+        fi
+    else
+        echo "please install wkhtmltopdf"
+    fi
+}
 
 # Make new shells get the history lines from all previous
 # shells instead of the default "last window closed" history

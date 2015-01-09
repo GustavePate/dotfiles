@@ -323,6 +323,7 @@ nnoremap <F5> :UndotreeToggle<cr>
 
 "#############  syntastic  ################
 let g:syntastic_rst_checkers = ['rstcheck']
+let g:syntastic_python_checkers = []
 
 
 "############## pandoc synthax ###########"
