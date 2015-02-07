@@ -28,6 +28,9 @@ Bundle 'tell-k/vim-autopep8'
 Bundle 'andviro/flake8-vim'
 Bundle 'hdima/python-syntax'
 
+"Javascript
+Bundle 'pangloss/vim-javascript'
+Bundle 'marijnh/tern_for_vim'
 "SCM
 Bundle 'tpope/vim-fugitive'
 
@@ -746,11 +749,12 @@ endfunction
 " Show syntax highlighting groups for word under cursor
 function! <SID>SynStack()
     if !exists("*synstack")
+        echo "arg!"
         return
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-nmap <C-S-P> :call <SID>SynStack()<CR>
+nmap <C-S-G> :call <SID>SynStack()<CR>
 
 
 """ OLD GARBAGE
