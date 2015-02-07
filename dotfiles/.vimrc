@@ -15,6 +15,13 @@ Bundle 'vim-pandoc/vim-pandoc-syntax'
 Bundle 'uarun/vim-protobuf'
 Plugin 'motus/pig.vim'
 
+"HTML
+Bundle 'amirh/HTML-AutoCloseTag'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'gorodinskiy/vim-coloresque'
+Bundle 'tpope/vim-haml'
+
+
 "Python
 " Must have pip install --upgrade autopep8
 Bundle 'tell-k/vim-autopep8'
@@ -145,6 +152,7 @@ set hidden " allow to have multiple buffer open on edited but not saved files
 "set ttyfast " Optimize for fast terminal connections
 set encoding=utf-8 " Use UTF-8
 set fileencoding=utf-8 
+set fileencodings=utf-8
 set showmatch "show matching ( { [ if on a ) } ]
 set matchtime=2 " usless: quickly move to open brace when typing the closing one
 set relativenumber
@@ -165,6 +173,8 @@ set wrapmargin=0
 set linebreak "when wrap don't break in the middle of a word
 set shortmess+=I "no start message
 set splitright "new vertical split on the left
+set fileformats=unix,dos,mac
+set shell=/bin/bash
 "set formatoptions+=t " automatically wrap text when typing
 "set nowrap " don't automatically wrap on load
 
@@ -225,6 +235,10 @@ nnoremap v <C-V>
 nnoremap <C-V> v
 vnoremap v <C-V>
 vnoremap <C-V> v
+
+"" Vmap for maintain Visual Mode after shifting > and <
+vmap < <gv
+vmap > >gv
 
 "" ### utilities ####
 
@@ -324,7 +338,13 @@ nnoremap <F5> :UndotreeToggle<cr>
 "#############  syntastic  ################
 let g:syntastic_rst_checkers = ['rstcheck']
 let g:syntastic_python_checkers = []
-
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_style_warning_symbol = '⚠'
+let g:syntastic_auto_loc_list=1
+let g:syntastic_aggregate_errors = 1
 
 "############## pandoc synthax ###########"
 
@@ -486,13 +506,14 @@ let g:airline#extensions#tabline#enabled = 1
 "let g:airline_exclude_preview = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline_enable_syntastic = 1
 "############# Nerdtree #################
 "autocmd vimenter * if !argc() | NERDTree | endif
 "close vim if nerdtree is the last open buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-let NERDTreeIgnore = ['\.pyc$'] "ignore pyc files
-let NERDTreeShowHidden=1 "show dotfiles
-
+let g:NERDTreeIgnore = ['\.pyc$'] "ignore pyc files
+let g:NERDTreeShowHidden=1 "show dotfiles
+let g:NERDTreeShowBookmarks=1
 "open nerdtree and put the cursor on the right window
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
@@ -559,6 +580,18 @@ let loaded_bclose = 1
 if !exists('bclose_multiple')
     let bclose_multiple = 1
 endif
+
+
+
+
+"" Remember cursor position
+augroup vimrc-remember-cursor-position
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
+
+
 
 " Display an error message.
 function! s:Warn(msg)
