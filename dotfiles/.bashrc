@@ -89,7 +89,8 @@ alias paste='xclip -o -selection clipboard'
 
 #serve repository
 alias serve='python -m SimpleHTTPServer 8080'
-alias sphinx_serve='cd ~/doc_html/; python -m SimpleHTTPServer 2323'
+alias serve_secure="python -c 'import BaseHTTPServer as bhs, SimpleHTTPServer as shs; bhs.HTTPServer((\"127.0.0.1\", 2323), shs.SimpleHTTPRequestHandler).serve_forever()'"
+alias sphinx_serve='cd ~/doc_html/; serve_secure'
 alias sphinx_autocompile='autocompile.py ~/sync/Boulot/sphinx/ .rst "make althtml"'
 alias autosphinx='sphinx_serve & sphinx_autocompile'
 
@@ -170,6 +171,10 @@ fi
 
 say(){
     wget -q -U Mozilla -O output.mp3 "http://translate.google.com/translate_tts?ie=UTF-8&tl=de&q=$1"; mpg123 output.mp3
+}
+
+function auto_rst2slide(){
+    autocompile.py . .rst "rst2slides.sh $1 $2"
 }
 
 export JAVA_HOME=/usr/lib/jvm/java-6-oracle

@@ -14,6 +14,7 @@ Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'vim-pandoc/vim-pandoc-syntax'
 Bundle 'uarun/vim-protobuf'
 Plugin 'motus/pig.vim'
+Plugin 'mustache/vim-mustache-handlebars'
 
 "Python
 " Must have pip install --upgrade autopep8
@@ -716,13 +717,21 @@ endfunction
 " Show syntax highlighting groups for word under cursor
 function! <SID>SynStack()
     if !exists("*synstack")
-        echo "arg!"
         return
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-nmap <C-S-G> :call <SID>SynStack()<CR>
 
+function! SynStack2()
+    if !exists('*synstack')
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), "synIDattr(v:val, 'name')")
+endfunc
+
+nmap <leader>q :call SynStack2()<CR>
+" Example mapping:
+"nmap <leader>x :call SynStack()<CR>
 
 """ OLD GARBAGE
 

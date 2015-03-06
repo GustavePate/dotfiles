@@ -101,7 +101,7 @@ hi link Keyword	Statement
 hi link Exception	Conditional
 
 hi Type	ctermfg=252   ctermbg=0   gui=NONE
-hi link StorageClass	Type
+hi StorageClass	ctermfg=31    ctermbg=0   gui=NONE
 hi link Structure	Type
 hi link Typedef	Type
 
