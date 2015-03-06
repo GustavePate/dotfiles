@@ -174,7 +174,7 @@ say(){
 }
 
 function auto_rst2slide(){
-    autocompile.py . .rst "rst2slides.sh $1 $2"
+    autocompile.py . .rst "rst2slides $1 $2"
 }
 
 export JAVA_HOME=/usr/lib/jvm/java-6-oracle
