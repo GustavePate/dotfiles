@@ -91,7 +91,7 @@ alias paste='xclip -o -selection clipboard'
 alias serve='python -m SimpleHTTPServer 8080'
 alias serve_secure="python -c 'import BaseHTTPServer as bhs, SimpleHTTPServer as shs; bhs.HTTPServer((\"127.0.0.1\", 2323), shs.SimpleHTTPRequestHandler).serve_forever()'"
 alias sphinx_serve='cd ~/doc_html/; serve_secure'
-alias sphinx_autocompile='autocompile.py ~/sync/Boulot/sphinx/ .rst "make althtml"'
+alias sphinx_autocompile='autocompile.py ~/sync/Boulot/sphinx/ .rst "make althtml;reload_browser.py"'
 alias autosphinx='sphinx_serve & sphinx_autocompile'
 
 
@@ -174,7 +174,7 @@ say(){
 }
 
 function auto_rst2slide(){
-    autocompile.py . .rst "rst2slides $1 $2"
+    autocompile.py . .rst "rst2slides $1 $2;reload_browser.py"
 }
 
 export JAVA_HOME=/usr/lib/jvm/java-6-oracle

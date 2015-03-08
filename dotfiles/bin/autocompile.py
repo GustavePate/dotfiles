@@ -28,8 +28,10 @@ class OnWriteHandler(pyinotify.ProcessEvent):
     def _run_cmd(self):
         print '==> Modification detected'
         print 'call: ' + str(self.cmd.split(' ')) + " " + str(self.cwd)
-        # subprocess.call(self.cmd.split(' '), cwd=self.cwd)
-        subprocess.check_output(self.cmd.split(' '))
+        commands = self.cmd.split(';')
+        for c in commands:
+            # subprocess.call(self.cmd.split(' '), cwd=self.cwd)
+            subprocess.check_output(c.split(' '))
 
     def process_IN_MODIFY(self, event):
         if all(not event.pathname.endswith(ext) for ext in self.extensions):

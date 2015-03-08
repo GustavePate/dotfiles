@@ -518,6 +518,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let g:NERDTreeIgnore = ['\.pyc$'] "ignore pyc files
 let g:NERDTreeShowHidden=1 "show dotfiles
 let g:NERDTreeShowBookmarks=1
+let NERDTreeHijackNetrw=1
 "open nerdtree and put the cursor on the right window
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
