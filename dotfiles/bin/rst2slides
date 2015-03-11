@@ -1,9 +1,24 @@
 #!/bin/bash
 
 rst2slides(){
-    echo "param 1: doc rst"
-    echo "param 2: nom du fichier à générer dans ~/pub/\$2.html"
+
+    PUB=0
+
+    if [ $# -eq 3 ]; then
+        echo "publish"
+        if [ -d ~/webshare_me/public ];then
+            PUB=1
+        else
+            mount ~/webshare_me
+            if [ $? -neq 0]; then
+                echo "ERROR webshare non monté"
+            fi
+        fi
+    fi
+
+    echo "rst2slides doc.rst (~/pub/)name(.html) [pub]"
     CUR_PATH=`pwd`
+
 
     # cp $1 ~/pub/src
     BASE=`basename $CUR_PATH`
@@ -11,20 +26,32 @@ rst2slides(){
 
     cp -r ../$BASE ~/pub/src/
 
+    if [ $PUB -eq 1 ];then
+        cp -r ../$BASE ~/webshare_me/public/guillaume/src/$BASE
+    fi
 
     cd ~/pub
-    echo "ok"
     sed -e "s/\(\.\.\ image::\ \)ressources/\1src\/$BASE\/ressources/" ./src/$BASE/$1 > ./src/tmp.rst
 
 
-    pandoc -f rst -t dzslides ./src/tmp.rst -o ~/pub/tmp.html  --css ./dzslides/template.css  --template ./dzslides/dz_template.html --highlight-style=kate 
+    if [ $PUB -eq 0 ];then
+        echo "regular"
+        pandoc -f rst -t dzslides ./src/tmp.rst -o ~/pub/tmp.html  --css ./dzslides/template.css  --template ./dzslides/dz_template.html 
+    else
+        echo "self contained"
+        pandoc -f rst -t dzslides ./src/tmp.rst -o ~/pub/tmp.html  --css ./dzslides/template.css  --template ./dzslides/dz_template.html --self-contained
+    fi
 
     #sed 's/sourceCode\ gherkin/sourceCode\ language-gherkin/' ~/pub/tmp.html > ~/pub/$2.html
     sed -e 's/sourceCode\ \(\w\+\)/sourceCode\ language-\1/' ~/pub/tmp.html > ~/pub/$2.html
 
-    #--self-contained
+    if [ $PUB -eq 1 ];then
+        cp ~/pub/$2.html ~/webshare_me/public/guillaume/
+        cp -r ~/pub/dzslides ~/webshare_me/public/guillaume/
+    fi
+
     cd $CUR_PATH
 }
 
-rst2slides $1 $2
+rst2slides $1 $2 $3
 

@@ -16,6 +16,7 @@
 import subprocess
 import sys
 import pyinotify
+import os
 
 
 class OnWriteHandler(pyinotify.ProcessEvent):
@@ -27,11 +28,16 @@ class OnWriteHandler(pyinotify.ProcessEvent):
 
     def _run_cmd(self):
         print '==> Modification detected'
-        print 'call: ' + str(self.cmd.split(' ')) + " " + str(self.cwd)
+        print 'current dir: ' + os.getcwd()
+        print 'call: ' + str(self.cmd.split(';')) + " " + str(self.cwd)
         commands = self.cmd.split(';')
         for c in commands:
-            # subprocess.call(self.cmd.split(' '), cwd=self.cwd)
-            subprocess.check_output(c.split(' '))
+            try:
+                print "INFO execute " + c
+                subprocess.call(c.split(' '), cwd=self.cwd)
+                # subprocess.check_output(c.split(' '))
+            except Exception as e:
+                print "ERROR running " + c + "=> " + str(e)
 
     def process_IN_MODIFY(self, event):
         if all(not event.pathname.endswith(ext) for ext in self.extensions):
