@@ -45,9 +45,9 @@ function sayde { mplayer "http://translate.google.com/translate_tts?tl=de&q=$*" 
 
 function publish2pdf {
 
-    if [ "$#" -eq 1 ]; then
+    if [ $# -ne 2 ]; then
         echo "publish2pdf <url> <pdf>"
-        exit 1
+        return 1
     fi
 
     if hash wkhtmltopdf 2>/dev/null; then
@@ -92,7 +92,7 @@ alias serve='python -m SimpleHTTPServer 8080'
 alias serve_secure="python -c 'import BaseHTTPServer as bhs, SimpleHTTPServer as shs; bhs.HTTPServer((\"127.0.0.1\", 2323), shs.SimpleHTTPRequestHandler).serve_forever()'"
 alias sphinx_serve='cd ~/doc_html/; serve_secure'
 alias sphinx_autocompile='autocompile.py ~/sync/Boulot/sphinx/ .rst "make althtml;reload_browser.py"'
-alias autosphinx='sphinx_serve; sphinx_autocompile'
+alias autosphinx='sphinx_serve & sphinx_autocompile'
 
 
 
@@ -174,6 +174,12 @@ say(){
 }
 
 function auto_rst2slide(){
+
+    if [ $# -ne 2 ]; then
+        echo "rst2slides doc.rst (~/pub/)name(.html)"
+        return 1
+    fi
+
     autocompile.py . .rst "rst2slides $1 $2;reload_browser.py"
 }
 
