@@ -91,7 +91,7 @@ set backspace=indent,eol,start
 set pastetoggle=<F8>
 
 " * (midelclick) system clipboard by default
-set clipboard=unnamed
+set clipboard^=unnamed
 " + (ctrl+c) system clipboard by default
 "set clipboard=unnamedplus
 
