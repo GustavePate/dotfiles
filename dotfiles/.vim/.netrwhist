@@ -1,8 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/guillaume/git/distark/ressources/commons'
-let g:netrw_dirhist_2='/home/guillaume/git/distark/ressources/commons/conf'
-let g:netrw_dirhist_3='/home/guillaume/git/distark/src/distark'
-let g:netrw_dirhist_4='/home/guillaume'
-let g:netrw_dirhist_5='/etc/apt/sources.list.d'
-let g:netrw_dirhist_6='/home/guillaume/test'
+let g:netrw_dirhist_cnt =0

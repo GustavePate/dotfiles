@@ -10,63 +10,64 @@ Plugin 'gmarik/Vundle.vim'
 "
 " Synthax
 Plugin 'scrooloose/syntastic'
-Bundle 'vim-pandoc/vim-pandoc'
-Bundle 'vim-pandoc/vim-pandoc-syntax'
-Bundle 'uarun/vim-protobuf'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'uarun/vim-protobuf'
 Plugin 'motus/pig.vim'
 Plugin 'mustache/vim-mustache-handlebars'
 
 "HTML
-Bundle 'amirh/HTML-AutoCloseTag'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'gorodinskiy/vim-coloresque'
-Bundle 'tpope/vim-haml'
+Plugin 'amirh/HTML-AutoCloseTag'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'gorodinskiy/vim-coloresque'
+Plugin 'tpope/vim-haml'
 
 
 "Python
 " Must have pip install --upgrade autopep8
-Bundle 'tell-k/vim-autopep8'
-Bundle 'andviro/flake8-vim'
-Bundle 'hdima/python-syntax'
+Plugin 'tell-k/vim-autopep8'
+Plugin 'andviro/flake8-vim'
+Plugin 'hdima/python-syntax'
 
 "Javascript
-Bundle 'pangloss/vim-javascript'
-Bundle 'marijnh/tern_for_vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'marijnh/tern_for_vim'
 "SCM
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
 "GUI / workflow
-Bundle 'scrooloose/nerdtree'
-Bundle 'bling/vim-airline'
-Bundle 'majutsushi/tagbar'
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/nerdtree'
+Plugin 'bling/vim-airline'
+Plugin 'majutsushi/tagbar'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mbbill/undotree'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
 "org
-Bundle 'vim-scripts/TaskList.vim'
+Plugin 'vim-scripts/TaskList.vim'
 
 "quick editing
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-surround'
-Bundle 'tomtom/tcomment_vim'
+Plugin 'tomtom/tcomment_vim'
 
 "formatting
 Plugin 'godlygeek/tabular'
-Bundle 'shinokada/listtrans.vim'
-Bundle 'shinokada/dragvisuals.vim'
+Plugin 'shinokada/listtrans.vim'
+Plugin 'shinokada/dragvisuals.vim'
 
 "goodies
 Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/goyo.vim'
-Bundle 'nixon/vim-vmath'
-Bundle 'mikewest/vimroom'
+Plugin 'nixon/vim-vmath'
+Plugin 'mikewest/vimroom'
 
 "theme
-Bundle 'vim-scripts/ScrollColors'
-Bundle 'guns/xterm-color-table.vim'
+Plugin 'vim-scripts/ScrollColors'
+Plugin 'guns/xterm-color-table.vim'
 
 call vundle#end()
 
@@ -510,7 +511,7 @@ let g:airline#extensions#tabline#enabled = 1
 "let g:airline_exclude_preview = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_min_count = 2
-let g:airline_enable_syntastic = 1
+let g:airline#extensions#syntastic#enabled = 1
 "############# Nerdtree #################
 "autocmd vimenter * if !argc() | NERDTree | endif
 "close vim if nerdtree is the last open buffer
@@ -541,10 +542,10 @@ nmap ++ vip++
 
 " ############# dragvisual  ################
 "runtime plugin/dragvisuals.vim
-vmap <expr> <C-LEFT> DVB_Drag('left')
-vmap <expr> <C-RIGHT> DVB_Drag('right')
-vmap <expr> <C-DOWN> DVB_Drag('down')
-vmap <expr> <C-UP> DVB_Drag('up')
+vmap <expr> <C-Left> DVB_Drag('left')
+vmap <expr> <C-Right> DVB_Drag('right')
+vmap <expr> <C-Down> DVB_Drag('down')
+vmap <expr> <C-Up> DVB_Drag('up')
 " My favourite feature is the “duplicator” option:
 vmap <expr> D DVB_Duplicate()
 
