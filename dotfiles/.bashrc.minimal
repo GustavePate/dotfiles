@@ -10,7 +10,7 @@
 #xmodmap ~/.Xmodmap
 
 #Force 256 colors
-export TERM=screen-256color
+export TERM=xterm-256color
 
 #reload .inputrc
 bind -f ~/.inputrc
