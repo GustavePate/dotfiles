@@ -92,7 +92,7 @@ alias serve_secure="python -c 'import BaseHTTPServer as bhs, SimpleHTTPServer as
 alias sphinx_serve='cd ~/doc_html/; serve_secure'
 alias sphinx_autocompile='autocompile.py ~/sync/Boulot/sphinx/ .rst "make althtml;reload_browser.py"'
 alias autosphinx='sphinx_serve & sphinx_autocompile'
-
+alias d="cd ~/doc;vim"
 
 
 #apt-get install

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=locker
+Comment=
+Exec=gnome-screensaver-command -l
+Icon=stock_keyring
+Path=
+Terminal=false
+StartupNotify=false

@@ -36,10 +36,19 @@ rst2slides(){
 
     if [ $PUB -eq 0 ];then
         echo "regular"
-        pandoc -f rst -t dzslides ./src/tmp.rst -o ~/pub/tmp.html  --css ./dzslides/template.css  --template ./dzslides/dz_template.html 
+        pandoc -f rst -t dzslides ./src/tmp.rst -o ~/pub/tmp.html \
+            --css ./dzslides/fonts.css \
+            --css ./dzslides/prism.css \
+            --css ./dzslides/template.css \
+            --template ./dzslides/dz_template.html
     else
         echo "self contained"
-        pandoc -f rst -t dzslides ./src/tmp.rst -o ~/pub/tmp.html  --css ./dzslides/template.css  --template ./dzslides/dz_template.html --self-contained
+        pandoc -f rst -t dzslides ./src/tmp.rst -o ~/pub/tmp.html \
+            --css ./dzslides/fonts.css \
+            --css ./dzslides/prism.css \
+            --css ./dzslides/template.css \
+            --template ./dzslides/dz_template.html \
+            --self-contained
     fi
 
     #sed 's/sourceCode\ gherkin/sourceCode\ language-gherkin/' ~/pub/tmp.html > ~/pub/$2.html

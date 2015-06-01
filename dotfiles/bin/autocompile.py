@@ -34,7 +34,10 @@ class OnWriteHandler(pyinotify.ProcessEvent):
         for c in commands:
             try:
                 print "INFO execute " + c
-                subprocess.call(c.split(' '), cwd=self.cwd)
+                retval = subprocess.call(c.split(' '), cwd=self.cwd)
+                if retval != 0:
+                    print "ERROR while executing " + c + " - error code: " + str(retval)
+
                 # subprocess.check_output(c.split(' '))
             except Exception as e:
                 print "ERROR running " + c + "=> " + str(e)
