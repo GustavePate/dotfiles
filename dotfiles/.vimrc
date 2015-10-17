@@ -3,6 +3,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
+
 " let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
 "
@@ -196,8 +197,12 @@ call matchadd('ColorColumn', '\%111v', 100)
 " TODO: not working
 "set list "show non-visible characters (space,tab,eol)
 set nofoldenable "disable folding
-colorscheme dask " Set colorscheme
 
+if has("gui_running")
+    colorscheme corporation_modified 
+else
+    colorscheme dask " Set colorscheme
+endif
 
 " ############ keymapping  #############
 " Change mapleader
@@ -367,7 +372,7 @@ endfunction
 
 function! s:goyo_leave()
     Limelight!
-    colorscheme dask " Set colorscheme
+    "colorscheme dask " Set colorscheme
 endfunction
 
 autocmd! User GoyoEnter
