@@ -16,6 +16,10 @@ Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'uarun/vim-protobuf'
 Plugin 'motus/pig.vim'
 Plugin 'mustache/vim-mustache-handlebars'
+" Plugin 'docker/docker'
+Plugin 'ekalinin/Dockerfile.vim'
+
+
 
 "HTML
 Plugin 'amirh/HTML-AutoCloseTag'
