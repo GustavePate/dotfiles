@@ -6,11 +6,12 @@ rst2slides(){
 
     if [ $# -eq 3 ]; then
         echo "publish"
+        PUB=1
         if [ -d ~/webshare_me/public ];then
             PUB=1
         else
             mount ~/webshare_me
-            if [ $? -neq 0]; then
+            if [ $? -ne 0 ]; then
                 echo "ERROR webshare non monté"
             fi
         fi
@@ -31,7 +32,8 @@ rst2slides(){
     fi
 
     cd ~/pub
-    sed -e "s/\(\.\.\ image::\ \)ressources/\1src\/$BASE\/ressources/" ./src/$BASE/$1 > ./src/tmp.rst
+    sed -e "s/\(\.\.\ image::\ \)ressources/\1src\/$BASE\/ressources/" ./src/$BASE/$1 > ./src/tmp1.rst
+    sed -e "s/\(\.\.\ figure::\ \)ressources/\1src\/$BASE\/ressources/" ./src/tmp1.rst > ./src/tmp.rst
 
 
     if [ $PUB -eq 0 ];then
@@ -40,6 +42,7 @@ rst2slides(){
             --css ./dzslides/fonts.css \
             --css ./dzslides/prism.css \
             --css ./dzslides/template.css \
+            --slide-level=2 \
             --template ./dzslides/dz_template.html
     else
         echo "self contained"
@@ -51,7 +54,6 @@ rst2slides(){
             --self-contained
     fi
 
-    #sed 's/sourceCode\ gherkin/sourceCode\ language-gherkin/' ~/pub/tmp.html > ~/pub/$2.html
     sed -e 's/sourceCode\ \(\w\+\)/sourceCode\ language-\1/' ~/pub/tmp.html > ~/pub/$2.html
 
     if [ $PUB -eq 1 ];then
