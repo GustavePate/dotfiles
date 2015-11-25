@@ -39,6 +39,7 @@ rst2slides(){
     if [ $PUB -eq 0 ];then
         echo "regular"
         pandoc -f rst -t dzslides ./src/tmp.rst -o ~/pub/tmp.html \
+            --mathml \
             --css ./dzslides/fonts.css \
             --css ./dzslides/prism.css \
             --css ./dzslides/template.css \
@@ -47,10 +48,12 @@ rst2slides(){
     else
         echo "self contained"
         pandoc -f rst -t dzslides ./src/tmp.rst -o ~/pub/tmp.html \
+            --mathml \
             --css ./dzslides/fonts.css \
             --css ./dzslides/prism.css \
             --css ./dzslides/template.css \
             --template ./dzslides/dz_template.html \
+            --slide-level=2 \
             --self-contained
     fi
 
