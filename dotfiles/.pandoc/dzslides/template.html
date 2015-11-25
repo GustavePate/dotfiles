@@ -320,11 +320,6 @@
       $$.forEach($$("video"), function(v){ v.controls = true });
   }
 
-
-  Dz.onclick = function(aEvent){
-    this.forward();
-  }
-
   Dz.onkeydown = function(aEvent) {
     // Don't intercept keyboard shortcuts
     if (aEvent.altKey
@@ -333,7 +328,6 @@
       || aEvent.shiftKey) {
       return;
     }
-
     if ( aEvent.keyCode == 37 // left arrow
       || aEvent.keyCode == 38 // up arrow
       || aEvent.keyCode == 33 // page up
@@ -617,7 +611,7 @@
       requestFullscreen.apply(html);
     }
   }
-
+  
   Dz.setProgress = function(aIdx, aStep) {
     var slide = $("section:nth-of-type("+ aIdx +")");
     if (!slide)
@@ -627,19 +621,18 @@
         stepSize = slideSize / steps;
     this.progressBar.style.width = ((aIdx - 1) * slideSize + aStep * stepSize) + '%';
   }
-
+  
   Dz.postMsg = function(aWin, aMsg) { // [arg0, [arg1...]]
     aMsg = [aMsg];
     for (var i = 2; i < arguments.length; i++)
       aMsg.push(encodeURIComponent(arguments[i]));
     aWin.postMessage(aMsg.join(" "), "*");
   }
-
+  
   function init() {
     Dz.init();
     window.onkeydown = Dz.onkeydown.bind(Dz);
     window.onresize = Dz.onresize.bind(Dz);
-    window.onclick = Dz.onclick.bind(Dz);
     window.onhashchange = Dz.onhashchange.bind(Dz);
     window.onmessage = Dz.onmessage.bind(Dz);
   }
@@ -653,7 +646,7 @@
     Function.prototype.bind = function (oThis) {
 
       // closest thing possible to the ECMAScript 5 internal IsCallable
-      // function
+      // function 
       if (typeof this !== "function")
       throw new TypeError(
         "Function.prototype.bind - what is trying to be fBound is not callable"
