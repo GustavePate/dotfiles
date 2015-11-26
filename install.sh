@@ -25,7 +25,7 @@ function linkit {
     #if a dir or a file => mv
     elif [ -e $dest ]; then
         TIMESTAMP=`date +%d%m%Y-%H%M%S`
-        BACKUP_dest='$dest.'$TIMESTAMP'.bck'
+        BACKUP_dest=$dest'.'$TIMESTAMP'.bck'
         mv $dest $BACKUP_dest
         echo $dest" backuped...........ok"
     #file does not exists
