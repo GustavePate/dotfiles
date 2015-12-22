@@ -214,7 +214,7 @@ let mapleader = ","
 
 "" ### move ###
 
-"tab goto next buffer
+"Crtl arrows goto next/previous buffer
 nmap <C-right> :bnext <CR>
 nmap <C-left> :bprevious <CR>
 nnoremap <leader>b :ls<cr>:b<space>

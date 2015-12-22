@@ -1,18 +1,5 @@
 
 PATH=$PATH:$HOME/bin
-# Load local non commited .bashrc
-if [ -f ~/.bashrc.local ]; then
-    source ~/.bashrc.local
-fi
-
-if [ -f ~/.bashrc.minimal ]; then
-    source ~/.bashrc.minimal
-fi
-
-if [ -f ~/bin/z.sh ]; then
-    source ~/bin/z.sh
-fi
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -183,3 +170,19 @@ function auto_rst2slide(){
 }
 
 export JAVA_HOME=/usr/lib/jvm/java-6-oracle
+
+# Override with local conf
+
+# Load local non commited .bashrc
+if [ -f ~/.bashrc.local ]; then
+    source ~/.bashrc.local
+fi
+
+if [ -f ~/.bashrc.minimal ]; then
+    source ~/.bashrc.minimal
+fi
+
+if [ -f ~/bin/z.sh ]; then
+    source ~/bin/z.sh
+fi
+
