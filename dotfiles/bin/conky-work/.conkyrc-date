@@ -40,8 +40,8 @@ default_outline_color white
 
 alignment tl
 
-gap_x 350
-gap_y 30
+gap_x 50
+gap_y 950
 no_buffers yes
 uppercase no
 cpu_avg_samples 1

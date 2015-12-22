@@ -77,9 +77,14 @@ ${color1}${alignc}_____________----===\\ CPU //===----_____________
 ${voffset -8}
 ${color3}Frequence :${alignr}${color3}${freq_g}GHz
  ${color2}Core 0:${color3} ${cpu cpu0}%${goto 100}${color4}${cpubar cpu0 6,50}${color2}${goto 175}${exec expr `cat /sys/class/hwmon/hwmon0/temp1_input` / 1000}°C${goto 220}${color4}${execbar expr `cat /sys/class/hwmon/hwmon0/temp1_input` / 1000}${color2}
- ${color2}Core 1:${color3} ${cpu cpu1}%${goto 100}${color4}${cpubar cpu1 6,50}${color2}${goto 175}${exec expr `cat /sys/class/hwmon/hwmon0/temp2_input` / 1000}°C${goto 220}${color4}${execbar expr `cat /sys/class/hwmon/hwmon0/temp2_input` / 1000}${color2}
+ ${color2}Core 1:${color3} ${cpu cpu1}%${goto 100}${color4}${cpubar cpu1 6,50}${color2}${goto 175}${exec expr `cat /sys/class/hwmon/hwmon0/temp3_input` / 1000}°C${goto 220}${color4}${execbar expr `cat /sys/class/hwmon/hwmon0/temp3_input` / 1000}${color2}
+ ${color2}Core 2:${color3} ${cpu cpu2}%${goto 100}${color4}${cpubar cpu1 6,50}${color2}${goto 175}${exec expr `cat /sys/class/hwmon/hwmon0/temp4_input` / 1000}°C${goto 220}${color4}${execbar expr `cat /sys/class/hwmon/hwmon0/temp4_input` / 1000}${color2}
+ ${color2}Core 3:${color3} ${cpu cpu3}%${goto 100}${color4}${cpubar cpu3 6,50}${color2}${goto 175}${exec expr `cat /sys/class/hwmon/hwmon0/temp5_input` / 1000}°C${goto 220}${color4}${execbar expr `cat /sys/class/hwmon/hwmon0/temp5_input` / 1000}${color2}
 ${cpugraph cpu0 25,150 555555 aaaaaa} $alignr${cpugraph cpu1 25,150 555555 aaaaaa}
 ${color1}${voffset -30}${goto 60}Core 0${goto 210}Core 1
+${voffset 2}
+${cpugraph cpu2 25,150 555555 aaaaaa} $alignr${cpugraph cpu3 25,150 555555 aaaaaa}
+${color1}${voffset -30}${goto 60}Core 2${goto 210}Core 3
 ${voffset 1}
 #${color2}${hr}
 ${color1}${alignc}_____________---***// MEMORY \\***---_____________
@@ -90,7 +95,7 @@ ${voffset -8}
 #${color3}ESPACE DISQUE:${hr}${color2}
 ${color1}${alignc}______________ooo---// DISK \\---ooo______________
 ${voffset -8}
-${color2}${alignc}SDA: ${color3}${execi 10 hddtemp -n /dev/sda} °C
+${color2}${alignc}SDA: ${color3}?? °C
  ${color2}/ ${color3}${goto 60}${fs_used /} / ${fs_size /} ${goto 180}${fs_used_perc /}% ${goto 220}${color4}${fs_bar /}${color2}
  ${color2}/home ${color3}${goto 60}${fs_used /home} / ${fs_size /home} ${goto 180}${fs_used_perc /home}% ${goto 220}${color4}${fs_bar /home}${color2}
  ${color2}/opt ${color3}${goto 60}${fs_used /opt} / ${fs_size /opt} ${goto 180}${fs_used_perc /opt}% ${goto 220}${color4}${fs_bar /opt}${color2}
@@ -110,7 +115,7 @@ ${color3}*** MEM ************$alignr${color2}${color3}(%) PID   CPU   MEM${color
  
 ${color1}${alignc}__________----===\\ NETWORK //===----__________
 ${voffset -8}
-${color2}eth1: ${color3}${addr eth1}
+${color2}eth0: ${color3}${addr eth0}
 ${color2}Down:${color3} ${downspeedf eth0} k/s${color3} ${totaldown eth0}${goto 160}${color2}Up:${color3} ${upspeedf eth0} k/s ${totalup eth0}
 ${downspeedgraph eth0 25,150 555555 aaaaaa} ${alignr}${upspeedgraph eth0 25,150 555555 aaaaaa}
 ${color1}${voffset -30}${goto 60}DOWN${goto 220}UP${voffset 10}
