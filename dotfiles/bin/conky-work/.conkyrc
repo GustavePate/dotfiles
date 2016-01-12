@@ -47,21 +47,11 @@ uppercase no
 cpu_avg_samples 1
 override_utf8_locale yes
 #white
-color1          dddddd
-color2          bbbbbb
-color3          cccccc
-color4          aaaaaa
-#color1         	caeae5 	#white (blue tint)
-#color2         	40788c 	#key
-#color3         	68b1b8 	#value
-#color4         	68b1b8 	#bar
+color1          3d3d3d 	#white (blue tint)
+color2          4d4d4d 	#white (blue tint)
+color3         	8d8d8d 	#value
+color4         	6d6d6d 	#bar
 color5         	a80022 	#red
-color6         	496388 	#light marine blue
-color7         	5A7499 	#lighter marine blue
-color8		6d8390 	#light grey
-color9		30393f	#dark grey
-color10		30393f	#dark grey
-color11		aaaaaa	#dark grey
 
 TEXT 
 
@@ -121,41 +111,15 @@ ${downspeedgraph eth0 25,150 555555 aaaaaa} ${alignr}${upspeedgraph eth0 25,150 
 ${color1}${voffset -30}${goto 60}DOWN${goto 220}UP${voffset 10}
 ${color2}Inbound: ${color3}${tcp_portmon 1 32767 count}${color2}  Outbound: ${color3}${tcp_portmon 32768 65535 count}${alignr}${color2}ALL: ${color3}${tcp_portmon 1 65535 count}
 ${color2}Inbound Con:Port ${alignr}Outbound Con:Port
- ${color3}${tcp_portmon 1 32767 lip 0}:${tcp_portmon 1 32767 lservice 0} ${goto 170}${tcp_portmon 32768 65535 rip 0}:${tcp_portmon 32768 65535 rservice 0}
- ${color4}${tcp_portmon 1 32767 lip 1}:${tcp_portmon 1 32767 lservice 1} ${goto 170}${tcp_portmon 32768 65535 rip 1}:${tcp_portmon 32768 65535 rservice 1}
- ${color3}${tcp_portmon 1 32767 lip 2}:${tcp_portmon 1 32767 lservice 2} ${goto 170}${tcp_portmon 32768 65535 rip 2}:${tcp_portmon 32768 65535 rservice 2}
- ${color4}${tcp_portmon 1 32767 lip 3}:${tcp_portmon 1 32767 lservice 3} ${goto 170}${tcp_portmon 32768 65535 rip 3}:${tcp_portmon 32768 65535 rservice 3}
- ${color3}${tcp_portmon 1 32767 lip 4}:${tcp_portmon 1 32767 lservice 4} ${goto 170}${tcp_portmon 32768 65535 rip 4}:${tcp_portmon 32768 65535 rservice 4}
- ${color4}${tcp_portmon 1 32767 lip 5}:${tcp_portmon 1 32767 lservice 5} ${goto 170}${tcp_portmon 32768 65535 rip 5}:${tcp_portmon 32768 65535 rservice 5}
- ${color3}${tcp_portmon 1 32767 lip 6}:${tcp_portmon 1 32767 lservice 6} ${goto 170}${tcp_portmon 32768 65535 rip 6}:${tcp_portmon 32768 65535 rservice 6}
- ${color4}${tcp_portmon 1 32767 lip 7}:${tcp_portmon 1 32767 lservice 7} ${goto 170}${tcp_portmon 32768 65535 rip 7}:${tcp_portmon 32768 65535 rservice 7}
- ${color3}${tcp_portmon 1 32767 lip 8}:${tcp_portmon 1 32767 lservice 8} ${goto 170}${tcp_portmon 32768 65535 rip 8}:${tcp_portmon 32768 65535 rservice 8}
- ${color4}${tcp_portmon 1 32767 lip 9}:${tcp_portmon 1 32767 lservice 9} ${goto 170}${tcp_portmon 32768 65535 rip 9}:${tcp_portmon 32768 65535 rservice 9}
- ${color3}${tcp_portmon 1 32767 lip 10}:${tcp_portmon 1 32767 lservice 10} ${goto 170}${tcp_portmon 32768 65535 rip 10}:${tcp_portmon 32768 65535 rservice 10}
- ${color4}${tcp_portmon 1 32767 lip 11}:${tcp_portmon 1 32767 lservice 11} ${goto 170}${tcp_portmon 32768 65535 rip 11}:${tcp_portmon 32768 65535 rservice 11}
-#${tcp_portmon 1 32767 rhost 3} ${alignr} ${tcp_portmon 1 32767 lservice 3} ${alignr} 
-#${tcp_portmon 1 32767 rhost 4} ${alignr} ${tcp_portmon 1 32767 lservice 4} ${alignr} 
-
-# ${color3}
-# ${color3}${tcp_portmon 1 65535 rip 1} ${alignr} ${tcp_portmon 1 65535 rservice 1}
-# ${color3}${tcp_portmon 1 65535 rip 2} ${alignr} ${tcp_portmon 1 65535 rservice 2}
-# ${color3}${tcp_portmon 1 65535 rip 3} ${alignr} ${tcp_portmon 1 65535 rservice 3}
-# ${color3}${tcp_portmon 1 65535 rip 4} ${alignr} ${tcp_portmon 1 65535 rservice 4}
-#${tcp_portmon 32768 61000 rhost 3} ${alignr} ${tcp_portmon 1 65535 rservice 3}
-#${tcp_portmon 32768 61000 rhost 4} ${alignr} ${tcp_portmon 1 65535 rservice 4}
-
-#${color1}${tcp_portmon 1 65535 rip  0}${alignr 1}${tcp_portmon 1 65535 rport  0}
-#${color1}${tcp_portmon 1 65535 rip  1}${alignr 1}${tcp_portmon 1 65535 rport  1}
-#${color1}${tcp_portmon 1 65535 rip  2}${alignr 1}${tcp_portmon 1 65535 rport  2}
-#${color1}${tcp_portmon 1 65535 rip  3}${alignr 1}${tcp_portmon 1 65535 rport  3}
-#${color1}${tcp_portmon 1 65535 rip  4}${alignr 1}${tcp_portmon 1 65535 rport  4}
-#${color1}${tcp_portmon 1 65535 rip  5}${alignr 1}${tcp_portmon 1 65535 rport  5}
-#${color1}${tcp_portmon 1 65535 rip  6}${alignr 1}${tcp_portmon 1 65535 rport  6}
-#${color1}${tcp_portmon 1 65535 rip  7}${alignr 1}${tcp_portmon 1 65535 rport  7}
-#${color1}${tcp_portmon 1 65535 rip  8}${alignr 1}${tcp_portmon 1 65535 rport  8}
-#${color1}${tcp_portmon 1 65535 rip  9}${alignr 1}${tcp_portmon 1 65535 rport  9}
-#${color1}${tcp_portmon 1 65535 rip 10}${alignr 1}${tcp_portmon 1 65535 rport 10}
-#${color1}${tcp_portmon 1 65535 rip 11}${alignr 1}${tcp_portmon 1 65535 rport 11}
-#${color1}${tcp_portmon 1 65535 rip 12}${alignr 1}${tcp_portmon 1 65535 rport 12}
-#${color1}${tcp_portmon 1 65535 rip 13}${alignr 1}${tcp_portmon 1 65535 rport 13}
-#${color1}${tcp_portmon 1 65535 rip 14}${alignr 1}${tcp_portmon 1 65535 rport 14}
+${color3}${tcp_portmon 1 32767 lip 0}${if_match ${tcp_portmon 1 32767 count} >= 1}:${endif}${tcp_portmon 1 32767 lservice 0} ${goto 170}${tcp_portmon 32768 65535 rip 0}${if_match ${tcp_portmon 32768 65535 count} >= 1}:${endif}${tcp_portmon 32768 65535 rservice 0}
+${color4}${tcp_portmon 1 32767 lip 1}${if_match ${tcp_portmon 1 32767 count} >= 2}:${endif}${tcp_portmon 1 32767 lservice 1} ${goto 170}${tcp_portmon 32768 65535 rip 1}${if_match ${tcp_portmon 32768 65535 count} >= 2}:${endif}${tcp_portmon 32768 65535 rservice 1}
+${color3}${tcp_portmon 1 32767 lip 2}${if_match ${tcp_portmon 1 32767 count} >= 3}:${endif}${tcp_portmon 1 32767 lservice 2} ${goto 170}${tcp_portmon 32768 65535 rip 2}${if_match ${tcp_portmon 32768 65535 count} >= 3}:${endif}${tcp_portmon 32768 65535 rservice 2}
+${color4}${tcp_portmon 1 32767 lip 3}${if_match ${tcp_portmon 1 32767 count} >= 4}:${endif}${tcp_portmon 1 32767 lservice 3} ${goto 170}${tcp_portmon 32768 65535 rip 3}${if_match ${tcp_portmon 32768 65535 count} >= 4}:${endif}${tcp_portmon 32768 65535 rservice 3}
+${color3}${tcp_portmon 1 32767 lip 4}${if_match ${tcp_portmon 1 32767 count} >= 5}:${endif}${tcp_portmon 1 32767 lservice 4} ${goto 170}${tcp_portmon 32768 65535 rip 4}${if_match ${tcp_portmon 32768 65535 count} >= 5}:${endif}${tcp_portmon 32768 65535 rservice 4}
+${color4}${tcp_portmon 1 32767 lip 5}${if_match ${tcp_portmon 1 32767 count} >= 6}:${endif}${tcp_portmon 1 32767 lservice 5} ${goto 170}${tcp_portmon 32768 65535 rip 5}${if_match ${tcp_portmon 32768 65535 count} >= 6}:${endif}${tcp_portmon 32768 65535 rservice 5}
+${color3}${tcp_portmon 1 32767 lip 6}${if_match ${tcp_portmon 1 32767 count} >= 7}:${endif}${tcp_portmon 1 32767 lservice 6} ${goto 170}${tcp_portmon 32768 65535 rip 6}${if_match ${tcp_portmon 32768 65535 count} >= 7}:${endif}${tcp_portmon 32768 65535 rservice 6}
+${color4}${tcp_portmon 1 32767 lip 7}${if_match ${tcp_portmon 1 32767 count} >= 8}:${endif}${tcp_portmon 1 32767 lservice 7} ${goto 170}${tcp_portmon 32768 65535 rip 7}${if_match ${tcp_portmon 32768 65535 count} >= 8}:${endif}${tcp_portmon 32768 65535 rservice 7}
+${color3}${tcp_portmon 1 32767 lip 8}${if_match ${tcp_portmon 1 32767 count} >= 9}:${endif}${tcp_portmon 1 32767 lservice 8} ${goto 170}${tcp_portmon 32768 65535 rip 8}${if_match ${tcp_portmon 32768 65535 count} >= 9}:${endif}${tcp_portmon 32768 65535 rservice 8}
+${color4}${tcp_portmon 1 32767 lip 9}${if_match ${tcp_portmon 1 32767 count} >= 10}:${endif}${tcp_portmon 1 32767 lservice 9} ${goto 170}${tcp_portmon 32768 65535 rip 9}${if_match ${tcp_portmon 32768 65535 count} >= 10}:${endif}${tcp_portmon 32768 65535 rservice 9}
+${color3}${tcp_portmon 1 32767 lip 10}${if_match ${tcp_portmon 1 32767 count} >= 11}:${endif}${tcp_portmon 1 32767 lservice 10} ${goto 170}${tcp_portmon 32768 65535 rip 10}${if_match ${tcp_portmon 32768 65535 count} >= 11}:${endif}${tcp_portmon 32768 65535 rservice 10}
+${color4}${tcp_portmon 1 32767 lip 11}${if_match ${tcp_portmon 1 32767 count} >= 12}:${endif}${tcp_portmon 1 32767 lservice 11} ${goto 170}${tcp_portmon 32768 65535 rip 11}${if_match ${tcp_portmon 32768 65535 count} >= 12}:${endif}${tcp_portmon 32768 65535 rservice 11}
