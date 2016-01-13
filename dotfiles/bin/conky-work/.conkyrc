@@ -89,6 +89,7 @@ ${color2}${alignc}SDA: ${color3}?? °C
  ${color2}/ ${color3}${goto 60}${fs_used /} / ${fs_size /} ${goto 180}${fs_used_perc /}% ${goto 220}${color4}${fs_bar /}${color2}
  ${color2}/home ${color3}${goto 60}${fs_used /home} / ${fs_size /home} ${goto 180}${fs_used_perc /home}% ${goto 220}${color4}${fs_bar /home}${color2}
  ${color2}/opt ${color3}${goto 60}${fs_used /opt} / ${fs_size /opt} ${goto 180}${fs_used_perc /opt}% ${goto 220}${color4}${fs_bar /opt}${color2}
+${diskiograph 25,300 222222 aaaaaa}
 #${color3}CHARGE: ${hr}${color2}
 ${color1}${alignc}______________----ooo\\ LOAD //ooo----_____________
 ${voffset -8}
