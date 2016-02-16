@@ -18,6 +18,7 @@ Plugin 'motus/pig.vim'
 Plugin 'mustache/vim-mustache-handlebars'
 " Plugin 'docker/docker'
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'kchmck/vim-coffee-script'
 
 
 
