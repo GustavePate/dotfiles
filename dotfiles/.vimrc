@@ -19,6 +19,7 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'kchmck/vim-coffee-script'
 " Plugin 'docker/docker'
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'kchmck/vim-coffee-script'
 
 
 
