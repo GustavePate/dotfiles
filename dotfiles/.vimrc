@@ -16,6 +16,7 @@ Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'uarun/vim-protobuf'
 Plugin 'motus/pig.vim'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'kchmck/vim-coffee-script'
 " Plugin 'docker/docker'
 Plugin 'ekalinin/Dockerfile.vim'
 
