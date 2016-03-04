@@ -320,8 +320,16 @@
       $$.forEach($$("video"), function(v){ v.controls = true });
   }
 
-  Dz.onclick = function(){
-      this.forward();
+  Dz.onclick = function(aEvent){
+
+      if (aEvent.buttons == 1){
+          aEvent.preventDefault();
+          this.forward();
+      }else{
+          aEvent.preventDefault();
+          this.back();
+      }
+
   }
 
   Dz.onkeydown = function(aEvent) {
@@ -635,6 +643,10 @@
 
   function init() {
     Dz.init();
+    // window.addEventListener("mousedown", handleClick, false);
+    window.addEventListener("contextmenu", function(e) { e.preventDefault(); }, false);
+
+
     window.onclick = Dz.onclick.bind(Dz);
     window.onkeydown = Dz.onkeydown.bind(Dz);
     window.onresize = Dz.onresize.bind(Dz);
