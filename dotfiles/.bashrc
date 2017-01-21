@@ -71,6 +71,7 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 alias ack='ack-grep'
 alias paste='xclip -o -selection clipboard'
+alias node='nodejs'
 
 
 #serve repository
@@ -137,6 +138,10 @@ export PYTHONPATH="$PYTHONPATH:$DISTARKPATH""distark/commons/protos/"
 export PATH=$PATH:/usr/share/zookeeper/bin
 export PATH=$PATH:/home/opt/zookeeper-3.4.5/bin
 
+export WORKON_HOME=~/venv/
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source ~/.local/bin/virtualenvwrapper.sh
+
 #venv
 export VENVFRONT=/home/project/git/front/env/bin/activate
 if [ -f $VENVFRONT ]; then
@@ -166,7 +171,7 @@ function auto_rst2slide(){
         return 1
     fi
 
-    autocompile.py . .rst "rst2slides $1 $2;reload_browser.py"
+    autocompile.py . .rst "rst2slides $1 $2"
 }
 
 export JAVA_HOME=/usr/lib/jvm/java-6-oracle
