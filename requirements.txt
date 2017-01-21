@@ -1,0 +1,3 @@
+
+# for mapping mouse buttons to keyboard
+apt-get install xautomation xbindkeys
