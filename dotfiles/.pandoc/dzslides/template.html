@@ -355,12 +355,14 @@
 */
 @media screen and (min-aspect-ratio: 16/10) {
   html { font-size: 12px; }
-  body { height: 450px; }
+  body { height: 500px; }
   .view section {
-    height: 450px;
+    height: 500px;
     margin: -140px -200px;
     transform: scale(.3);
+    font-size: 12px;
   }
+
 }
 /**/
 </style>
@@ -390,7 +392,6 @@
     this.onresize();
     this.setupView();
   }
-
   Dz.setupParams = function() {
     var p = window.location.search.substr(1).split('&');
     p.forEach(function(e, i, a) {
@@ -408,10 +409,10 @@
 
       if (aEvent.buttons == 1){
           aEvent.preventDefault();
-          this.forward();
+          this.back();
       }else{
           aEvent.preventDefault();
-          this.back();
+          this.forward();
       }
 
   }
