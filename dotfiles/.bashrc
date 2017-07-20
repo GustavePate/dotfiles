@@ -104,20 +104,14 @@ case "$TERM" in
 xterm-color)
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     ;;
-*)
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+xterm-256color)
+    PS1="${debian_chroot:+($debian_chroot)}\[$(tput sgr0)\]\[\033[38;5;7m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;45m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;6m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]\\$ \[$(tput sgr0)\]"
     ;;
-esac
-
-# Comment in the above and uncomment this below for a color prompt
-#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
+rxvt*)
     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
     ;;
 *)
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
     ;;
 esac
 
@@ -129,6 +123,15 @@ esac
 #	. $VENV
 #fi
 
+# pyenv conf
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+source $PYENV_ROOT/completions/pyenv.bash
+
+
+
 export DISTARKPATH=/home/project/git/distark/src/
 
 
@@ -138,9 +141,6 @@ export PYTHONPATH="$PYTHONPATH:$DISTARKPATH""distark/commons/protos/"
 export PATH=$PATH:/usr/share/zookeeper/bin
 export PATH=$PATH:/home/opt/zookeeper-3.4.5/bin
 
-export WORKON_HOME=~/venv/
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source ~/.local/bin/virtualenvwrapper.sh
 
 #venv
 export VENVFRONT=/home/project/git/front/env/bin/activate
