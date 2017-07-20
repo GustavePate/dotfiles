@@ -19,12 +19,9 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'kchmck/vim-coffee-script'
 " Plugin 'docker/docker'
 Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'kchmck/vim-coffee-script'
-
-
 
 "HTML
-Plugin 'amirh/HTML-AutoCloseTag'
+"Plugin 'amirh/HTML-AutoCloseTag'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'gorodinskiy/vim-coloresque'
 Plugin 'tpope/vim-haml'
