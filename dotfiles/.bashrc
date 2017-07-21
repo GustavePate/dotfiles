@@ -1,3 +1,7 @@
+# sudo apt install ack-grep nodejs npm python3 python3-dev mplayer pandoc git
+# git clone https://github.com/pyenv/pyenv.git ~/.pyenv 
+# git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 
 PATH=$PATH:$HOME/bin
 # If not running interactively, don't do anything
@@ -68,6 +72,8 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 #if [ -f ~/.bash_aliases ]; then
 #    . ~/.bash_aliases
 #fi
+
+
 
 alias ack='ack-grep'
 alias paste='xclip -o -selection clipboard'
