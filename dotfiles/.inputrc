@@ -8,7 +8,7 @@ set show-all-if-ambiguous on
 
 # vim-like input
 set editing-mode vi
-set keymap vi-insert
+set keymap vi-command
 
 # # f<tab> finds `Foo` and `foo`.
 set completion-ignore-case on
