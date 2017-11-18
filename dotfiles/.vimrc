@@ -20,10 +20,8 @@ Plugin 'kchmck/vim-coffee-script'
 " Plugin 'docker/docker'
 Plugin 'ekalinin/Dockerfile.vim'
 
-
-
 "HTML
-Plugin 'amirh/HTML-AutoCloseTag'
+"Plugin 'amirh/HTML-AutoCloseTag'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'gorodinskiy/vim-coloresque'
 Plugin 'tpope/vim-haml'

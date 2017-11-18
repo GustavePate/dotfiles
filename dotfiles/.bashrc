@@ -1,3 +1,7 @@
+# sudo apt install ack-grep nodejs npm python3 python3-dev mplayer pandoc git
+# git clone https://github.com/pyenv/pyenv.git ~/.pyenv 
+# git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 
 PATH=$PATH:$HOME/bin
 # If not running interactively, don't do anything
@@ -84,6 +88,8 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 #    . ~/.bash_aliases
 #fi
 
+
+
 alias ack='ack-grep'
 alias paste='xclip -o -selection clipboard'
 alias node='nodejs'
@@ -123,20 +129,18 @@ xterm-256color)
 xterm)
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     ;;
-*)
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+xterm-256color)
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[38;5;7m\]\u\[\033[38;5;15m\]@\[\033[38;5;45m\]\h\[\033[38;5;15m\]:\[\033[38;5;6m\]\w\[\033[38;5;15m\]\$\[$(tput sgr0)\] '
     ;;
-esac
-
-# Comment in the above and uncomment this below for a color prompt
-#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
+xterm)
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[38;5;7m\]\u\[\033[38;5;15m\]@\[\033[38;5;45m\]\h\[\033[38;5;15m\]:\[\033[38;5;6m\]\w\[\033[38;5;15m\]\$\[$(tput sgr0)\] '
+    ;;
+rxvt*)
     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
     ;;
 *)
+    echo "$TERM"
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\wyop\$ '
     ;;
 esac
 
@@ -148,6 +152,15 @@ esac
 #	. $VENV
 #fi
 
+# pyenv conf
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+source $PYENV_ROOT/completions/pyenv.bash
+
+
+
 export DISTARKPATH=/home/project/git/distark/src/
 
 
@@ -157,9 +170,6 @@ export PYTHONPATH="$PYTHONPATH:$DISTARKPATH""distark/commons/protos/"
 export PATH=$PATH:/usr/share/zookeeper/bin
 export PATH=$PATH:/home/opt/zookeeper-3.4.5/bin
 
-export WORKON_HOME=~/venv/
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source ~/.local/bin/virtualenvwrapper.sh
 
 #venv
 export VENVFRONT=/home/project/git/front/env/bin/activate
