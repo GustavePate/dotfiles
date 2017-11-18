@@ -21,6 +21,21 @@ export AUTOFEATURE=true autotest
 #reload .inputrc
 bind -f ~/.inputrc
 
+# Override with local conf
+
+# Load local non commited .bashrc
+if [ -f ~/.bashrc.local ]; then
+    source ~/.bashrc.local
+fi
+
+if [ -f ~/.bashrc.minimal ]; then
+    source ~/.bashrc.minimal
+fi
+
+if [ -f ~/bin/z.sh ]; then
+    source ~/bin/z.sh
+fi
+
 # your top commands
 function rh {
   history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
@@ -100,8 +115,12 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
+
 case "$TERM" in
-xterm-color)
+xterm-256color)
+    PS1="\[\e[38;5;235m\]\t\[\e[0m\]${debian_chroot:+($debian_chroot)}\[\e[38;5;38m\]\u\[\e[0m\]\[\e[38;5;6m\]@\[\e[0m\]\[\e[38;5;24m\]\h\[\e[0m\]\[\e[38;5;14m\]:\[\e[0m\]\[\e[38;5;243m\]\w\[\e[0m\]\$\[\e[0m\] "
+    ;;
+xterm)
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     ;;
 *)
@@ -175,19 +194,4 @@ function auto_rst2slide(){
 }
 
 export JAVA_HOME=/usr/lib/jvm/java-6-oracle
-
-# Override with local conf
-
-# Load local non commited .bashrc
-if [ -f ~/.bashrc.local ]; then
-    source ~/.bashrc.local
-fi
-
-if [ -f ~/.bashrc.minimal ]; then
-    source ~/.bashrc.minimal
-fi
-
-if [ -f ~/bin/z.sh ]; then
-    source ~/bin/z.sh
-fi
 
