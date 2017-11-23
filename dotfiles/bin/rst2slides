@@ -67,5 +67,27 @@ rst2slides(){
     cd $CUR_PATH
 }
 
-rst2slides $1 $2 $3
+PUBLISH=0
+
+while getopts ":c:pi:o:" opt; do
+    case $opt in
+    p)
+        echo "publish mode" >&2
+        PUBLISH=1
+        ;;
+    i)
+        echo "input set to: "$OPTARG >&2
+        INPUT=$OPTARG
+        ;;
+    o)
+        echo "output set to: "$OPTARG >&2
+        OUTPUT=$OPTARG
+        ;;
+    c)
+        echo "css set to "$OPTARG
+        CSS=$OPTARG
+    esac
+done
+
+rst2slides $INPUT $OUTPUT $PUBLISH $CSS
 
