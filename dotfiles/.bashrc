@@ -144,8 +144,6 @@ rxvt*)
     ;;
 esac
 
-echo $PS1
-
 ###### PYTHON ######
 
 #dev env
