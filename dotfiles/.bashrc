@@ -125,6 +125,7 @@ fi
 case "$TERM" in
 xterm-256color)
     PS1="\[\e[38;5;235m\]\t\[\e[0m\]${debian_chroot:+($debian_chroot)}\[\e[38;5;38m\]\u\[\e[0m\]\[\e[38;5;6m\]@\[\e[0m\]\[\e[38;5;24m\]\h\[\e[0m\]\[\e[38;5;14m\]:\[\e[0m\]\[\e[38;5;243m\]\w\[\e[0m\]\$\[\e[0m\] "
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     ;;
 xterm)
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
@@ -133,7 +134,7 @@ xterm)
 #    PS1='${debian_chroot:+($debian_chroot)}\[\033[38;5;7m\]\u\[\033[38;5;15m\]@\[\033[38;5;45m\]\h\[\033[38;5;15m\]:\[\033[38;5;6m\]\w\[\033[38;5;15m\]\$\[$(tput sgr0)\] '
 #    ;;
 xterm)
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[38;5;7m\]\u\[\033[38;5;15m\]@\[\033[38;5;45m\]\h\[\033[38;5;15m\]:\[\033[38;5;6m\]\w\[\033[38;5;15m\]\$\[$(tput sgr0)\] '
+#    PS1='${debian_chroot:+($debian_chroot)}\[\033[38;5;7m\]\u\[\033[38;5;15m\]@\[\033[38;5;45m\]\h\[\033[38;5;15m\]:\[\033[38;5;6m\]\w\[\033[38;5;15m\]\$\[$(tput sgr0)\] '
     ;;
 rxvt*)
     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
@@ -193,15 +194,19 @@ say(){
     wget -q -U Mozilla -O output.mp3 "http://translate.google.com/translate_tts?ie=UTF-8&tl=de&q=$1"; mpg123 output.mp3
 }
 
-function auto_rst2slide(){
+function auto_rst2slides(){
 
     if [ $# -ne 2 ]; then
-        echo "rst2slides doc.rst (~/pub/)name(.html)"
+        echo "auto_rst2slides doc.rst (~/pub/)name(.html)"
         return 1
     fi
-
-    autocompile.py . .rst "rst2slides $1 $2"
+    export TOEXEC="rst2slides -i $1 -o $2"
+    echo "automcmd: $TOEXEC"
+    autocompile.py . .rst "$TOEXEC"
 }
 
-export JAVA_HOME=/usr/lib/jvm/java-6-oracle
 
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/guillaume/.sdkman"
+[[ -s "/home/guillaume/.sdkman/bin/sdkman-init.sh" ]] && source "/home/guillaume/.sdkman/bin/sdkman-init.sh"
