@@ -17,7 +17,6 @@ rst2slides(){
         fi
     fi
 
-    echo "rst2slides doc.rst (~/pub/)name(.html) [pub]"
     CUR_PATH=`pwd`
 
 
@@ -68,11 +67,11 @@ rst2slides(){
 }
 
 PUBLISH=0
-
+INPUT="yop"
 while getopts ":c:pi:o:" opt; do
     case $opt in
     p)
-        echo "publish mode" >&2
+        echo "publish mode: on" >&2
         PUBLISH=1
         ;;
     i)
@@ -88,6 +87,12 @@ while getopts ":c:pi:o:" opt; do
         CSS=$OPTARG
     esac
 done
+
+if [ "$INPUT" == "yop" ]; then
+    echo "usage: rst2slides -i input.rst -o (~/pub/)name(.html) [-p] "
+    exit 1
+fi
+
 
 rst2slides $INPUT $OUTPUT $PUBLISH $CSS
 
