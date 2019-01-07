@@ -20,7 +20,7 @@ def telnet_reload(host, port):
         tn.write("reload\n")
         res = tn.read_until('\n')
     except socket.error as e:
-        print "ERROR with_telnet "
+        print("ERROR with_telnet ")
         raise e
     finally:
         tn.close()
@@ -32,6 +32,6 @@ if __name__ == "__main__":
     try:
         telnet_reload('localhost', '32000')
     except Exception as e:
-        print "ERROR reload_browser, is Remote Control on ? " + str(e)
+        print("ERROR reload_browser, is Remote Control on ? " + str(e))
     finally:
         sys.exit(0)

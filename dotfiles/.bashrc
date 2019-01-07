@@ -8,6 +8,7 @@ PATH=$PATH:$HOME/bin
 [ -z "$PS1" ] && return
 
 alias fuck='$(thefuck $(fc -ln -1))'
+alias g='./gradlew'
 
 ###### HISTORY #######
 
@@ -96,8 +97,8 @@ alias node='nodejs'
 
 
 #serve repository
-alias serve='python -m SimpleHTTPServer 8080'
-alias serve_secure="python -c 'import BaseHTTPServer as bhs, SimpleHTTPServer as shs; bhs.HTTPServer((\"127.0.0.1\", 2323), shs.SimpleHTTPRequestHandler).serve_forever()'"
+alias serve='python -m http.server 8080'
+alias serve_secure="python -c 'import http.server as hs; hs.HTTPServer((\"127.0.0.1\", 2323), hs.SimpleHTTPRequestHandler).serve_forever()'"
 alias sphinx_serve='cd ~/doc_html/; serve_secure'
 alias sphinx_autocompile='autocompile.py $SYNC_PATH/Boulot/sphinx/ .rst "make althtml;reload_browser.py"'
 alias autosphinx='sphinx_serve & sphinx_autocompile'

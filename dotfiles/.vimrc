@@ -2,7 +2,7 @@
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
-
+set t_BE=
 
 " let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'

@@ -30,13 +30,12 @@ rst2slides(){
         cp -r ../$BASE ~/webshare_me/public/guillaume/src/$BASE
     fi
 
+    sed -e "s/\(\.\.\ image::\ \)ressources/\1src\/$BASE\/ressources/" ~/pub/src/$BASE/$1 > ~/pub/src/tmp1.rst
+    sed -e "s/\(\.\.\ figure::\ \)ressources/\1src\/$BASE\/ressources/" ~/pub/src/tmp1.rst > ~/pub/src/tmp.rst
+
     cd ~/pub
-    sed -e "s/\(\.\.\ image::\ \)ressources/\1src\/$BASE\/ressources/" ./src/$BASE/$1 > ./src/tmp1.rst
-    sed -e "s/\(\.\.\ figure::\ \)ressources/\1src\/$BASE\/ressources/" ./src/tmp1.rst > ./src/tmp.rst
-
-
     if [ $PUB -eq 0 ];then
-        echo "regular"
+        echo "pandoc: regular"
         pandoc -f rst -t dzslides ./src/tmp.rst -o ~/pub/tmp.html \
             --mathml \
             --css ./dzslides/fonts.css \
@@ -45,7 +44,7 @@ rst2slides(){
             --slide-level=2 \
             --template ./dzslides/dz_template.html
     else
-        echo "self contained"
+        echo "pandoc: self contained"
         pandoc -f rst -t dzslides ./src/tmp.rst -o ~/pub/tmp.html \
             --mathml \
             --css ./dzslides/fonts.css \
@@ -62,6 +61,8 @@ rst2slides(){
         cp ~/pub/$2.html ~/webshare_me/public/guillaume/
         cp -r ~/pub/dzslides ~/webshare_me/public/guillaume/
     fi
+
+    echo "OK !"
 
     cd $CUR_PATH
 }
