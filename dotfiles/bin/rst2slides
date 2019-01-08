@@ -2,73 +2,100 @@
 
 rst2slides(){
 
-    PUB=0
+    BUILDBASE=~/tmpdoc
 
-    if [ $# -eq 3 ]; then
-        echo "publish"
-        PUB=1
+    if [ ! -d $BUILDBASE ];then
+        echo "make temporary build directory: "$BUILDBASE
+        mkdir $BUILDBASE
+        mkdir $BUILDBASE/src
+    fi
+
+    PUB=0
+    if [ $PUBLISH -eq 1 ]; then
+        echo "publish mode: on"
+        echo "test if webshare exists..."
         if [ -d ~/webshare_me/public ];then
+            echo "webshare exists: ok"
             PUB=1
         else
+            echo "mount webshare..."
             mount ~/webshare_me
             if [ $? -ne 0 ]; then
                 echo "ERROR webshare non monté"
+                PUB=0
+            else
+                PUB=1
             fi
         fi
     fi
 
     CUR_PATH=`pwd`
 
-
+    echo "working in $CUR_PATH"
     # cp $1 ~/pub/src
     BASE=`basename $CUR_PATH`
-    echo "construction de $1 du repertoire $BASE"
+    echo "construction de $INPUT du repertoire $BASE"
 
-    cp -r ../$BASE ~/pub/src/
+    PUBLISHBASE=~/pub
+
+    echo "copie des sources: ../$BASE dans $BUILDBASE/src/"
+    cp -r ../$BASE $BUILDBASE/src/
+
 
     if [ $PUB -eq 1 ];then
+        echo "copie des sources dans webshare"
         cp -r ../$BASE ~/webshare_me/public/guillaume/src/$BASE
     fi
 
-    sed -e "s/\(\.\.\ image::\ \)ressources/\1src\/$BASE\/ressources/" ~/pub/src/$BASE/$1 > ~/pub/src/tmp1.rst
-    sed -e "s/\(\.\.\ figure::\ \)ressources/\1src\/$BASE\/ressources/" ~/pub/src/tmp1.rst > ~/pub/src/tmp.rst
+    echo "substitutions des paths d'images...."
+    sed -e "s/\(\.\.\ image::\ \)ressources/\1src\/$BASE\/ressources/" $BUILDBASE/src/$BASE/$INPUT > $BUILDBASE/src/tmp1.rst
+    sed -e "s/\(\.\.\ figure::\ \)ressources/\1src\/$BASE\/ressources/" $BUILDBASE/src/tmp1.rst > $BUILDBASE/src/tmp.rst
 
-    cd ~/pub
+
+
     if [ $PUB -eq 0 ];then
         echo "pandoc: regular"
-        pandoc -f rst -t dzslides ./src/tmp.rst -o ~/pub/tmp.html \
+        pandoc -f rst -t dzslides $BUILDBASE/src/tmp.rst -o $BUILDBASE/tmp.html \
             --mathml \
             --css ./dzslides/fonts.css \
             --css ./dzslides/prism.css \
             --css ./dzslides/template.css \
             --slide-level=2 \
-            --template ./dzslides/dz_template.html
+            --template $PUBLISHBASE/dzslides/dz_template.html
+            # les --css ça servira si pas servi par un serveur web
+            # sinon cf dz_template.html
     else
         echo "pandoc: self contained"
-        pandoc -f rst -t dzslides ./src/tmp.rst -o ~/pub/tmp.html \
+        # ici on met le vrai chemin vers les css pour qu'il puissent 
+        # etre ajouté au fichier
+        pandoc -f rst -t dzslides $BUILDBASE/src/tmp.rst -o $BUILDBASE/tmp.html \
             --mathml \
-            --css ./dzslides/fonts.css \
-            --css ./dzslides/prism.css \
-            --css ./dzslides/template.css \
-            --template ./dzslides/dz_template.html \
+            --css $PUBLISHBASE/dzslides/fonts.css \
+            --css $PUBLISHBASE/dzslides/prism.css \
+            --css $PUBLISHBASE/dzslides/template.css \
             --slide-level=2 \
+            --template $PUBLISHBASE/dzslides/dz_template.html
             --self-contained
     fi
 
-    sed -e 's/sourceCode\ \(\w\+\)/sourceCode\ language-\1/' ~/pub/tmp.html > ~/pub/$2.html
+    sed -e 's/sourceCode\ \(\w\+\)/sourceCode\ language-\1/' $BUILDBASE/tmp.html > $BUILDBASE/$OUTPUT.html
+
+    echo "copie dans $PUBLISHBASE"
+    # copie dans le repertoire de publication
+    cp  $BUILDBASE/$OUTPUT.html $PUBLISHBASE/$OUTPUT.html
+
 
     if [ $PUB -eq 1 ];then
-        cp ~/pub/$2.html ~/webshare_me/public/guillaume/
-        cp -r ~/pub/dzslides ~/webshare_me/public/guillaume/
+        cp $BUILDBASE/$OUTPUT.html ~/webshare_me/public/guillaume/
+        cp -r $BUILDBASE/dzslides ~/webshare_me/public/guillaume/
     fi
 
     echo "OK !"
 
-    cd $CUR_PATH
 }
 
 PUBLISH=0
-INPUT="yop"
+INPUT="default"
 while getopts ":c:pi:o:" opt; do
     case $opt in
     p)
@@ -90,7 +117,7 @@ while getopts ":c:pi:o:" opt; do
 done
 
 if [ "$INPUT" == "yop" ]; then
-    echo "usage: rst2slides -i input.rst -o (~/pub/)name(.html) [-p] "
+    echo "usage: rst2slides -i input.rst -o (~/pub/)name(.html) [-p] [-c] "
     exit 1
 fi
 
