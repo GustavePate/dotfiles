@@ -40,6 +40,8 @@ rst2slides(){
 
     echo "copie des sources: ../$BASE dans $BUILDBASE/src/"
     cp -r ../$BASE $BUILDBASE/src/
+    echo "copie des sources: ../$BASE dans $PUBLISHBASE/src/"
+    cp -r ../$BASE $PUBLISHBASE/src/
 
 
     if [ $PUB -eq 1 ];then
