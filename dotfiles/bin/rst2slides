@@ -10,21 +10,21 @@ rst2slides(){
         mkdir $BUILDBASE/src
     fi
 
-    PUB=0
+    WEBSHARE=0
     if [ $PUBLISH -eq 1 ]; then
         echo "publish mode: on"
         echo "test if webshare exists..."
         if [ -d ~/webshare_me/public ];then
             echo "webshare exists: ok"
-            PUB=1
+            WEBSHARE=1
         else
             echo "mount webshare..."
             mount ~/webshare_me
             if [ $? -ne 0 ]; then
                 echo "ERROR webshare non monté"
-                PUB=0
+                WEBSHARE=0
             else
-                PUB=1
+                WEBSHARE=1
             fi
         fi
     fi
@@ -44,7 +44,7 @@ rst2slides(){
     cp -r ../$BASE $PUBLISHBASE/src/
 
 
-    if [ $PUB -eq 1 ];then
+    if [ $WEBSHARE -eq 1 ];then
         echo "copie des sources dans webshare"
         cp -r ../$BASE ~/webshare_me/public/guillaume/src/$BASE
     fi
@@ -55,7 +55,7 @@ rst2slides(){
 
 
 
-    if [ $PUB -eq 0 ];then
+    if [ $PUBLISH -eq 0 ];then
         echo "pandoc: regular"
         pandoc -f rst -t dzslides $BUILDBASE/src/tmp.rst -o $BUILDBASE/tmp.html \
             --mathml \
@@ -70,14 +70,16 @@ rst2slides(){
         echo "pandoc: self contained"
         # ici on met le vrai chemin vers les css pour qu'il puissent 
         # etre ajouté au fichier
+        cd  $PUBLISHBASE
         pandoc -f rst -t dzslides $BUILDBASE/src/tmp.rst -o $BUILDBASE/tmp.html \
             --mathml \
             --css $PUBLISHBASE/dzslides/fonts.css \
             --css $PUBLISHBASE/dzslides/prism.css \
             --css $PUBLISHBASE/dzslides/template.css \
             --slide-level=2 \
-            --template $PUBLISHBASE/dzslides/dz_template.html
+            --template $PUBLISHBASE/dzslides/dz_template.html \
             --self-contained
+        cd $CUR_PATH
     fi
 
     sed -e 's/sourceCode\ \(\w\+\)/sourceCode\ language-\1/' $BUILDBASE/tmp.html > $BUILDBASE/$OUTPUT.html
@@ -87,7 +89,7 @@ rst2slides(){
     cp  $BUILDBASE/$OUTPUT.html $PUBLISHBASE/$OUTPUT.html
 
 
-    if [ $PUB -eq 1 ];then
+    if [ $WEBSHARE -eq 1 ];then
         cp $BUILDBASE/$OUTPUT.html ~/webshare_me/public/guillaume/
         cp -r $BUILDBASE/dzslides ~/webshare_me/public/guillaume/
     fi
