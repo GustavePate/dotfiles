@@ -63,7 +63,7 @@ rst2slides(){
             --css ./dzslides/prism.css \
             --css ./dzslides/template.css \
             --slide-level=2 \
-            --template $PUBLISHBASE/dzslides/dz_template.html
+            --template $PUBLISHBASE/dzslides/dz_template3.html
             # les --css ça servira si pas servi par un serveur web
             # sinon cf dz_template.html
     else
@@ -77,7 +77,7 @@ rst2slides(){
             --css $PUBLISHBASE/dzslides/prism.css \
             --css $PUBLISHBASE/dzslides/template.css \
             --slide-level=2 \
-            --template $PUBLISHBASE/dzslides/dz_template.html \
+            --template $PUBLISHBASE/dzslides/dz_template3.html \
             --self-contained
         cd $CUR_PATH
     fi
