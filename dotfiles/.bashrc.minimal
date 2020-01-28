@@ -11,7 +11,7 @@
 
 #Force 256 colors
 #export TERM=xterm-256color
-printf "\e[?2004l]"
+#printf "\e[?2004l]"
 
 #reload .inputrc
 bind -f ~/.inputrc

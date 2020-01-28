@@ -122,11 +122,10 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
-
 case "$TERM" in
 xterm-256color)
-    PS1="\[\e[38;5;235m\]\t\[\e[0m\]${debian_chroot:+($debian_chroot)}\[\e[38;5;38m\]\u\[\e[0m\]\[\e[38;5;6m\]@\[\e[0m\]\[\e[38;5;24m\]\h\[\e[0m\]\[\e[38;5;14m\]:\[\e[0m\]\[\e[38;5;243m\]\w\[\e[0m\]\$\[\e[0m\] "
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1="\[\e[38;5;31m\]\t\[\e[0m\] ${debian_chroot:+($debian_chroot)}\[\e[38;5;38m\]\u\[\e[0m\]\[\e[38;5;6m\]@\[\e[0m\]\[\e[38;5;24m\]\h\[\e[0m\]\[\e[38;5;14m\]:\[\e[0m\]\[\e[38;5;243m\]\W\[\e[0m\]\$\[\e[0m\] "
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     ;;
 xterm)
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
@@ -134,14 +133,14 @@ xterm)
 #xterm-256color)
 #    PS1='${debian_chroot:+($debian_chroot)}\[\033[38;5;7m\]\u\[\033[38;5;15m\]@\[\033[38;5;45m\]\h\[\033[38;5;15m\]:\[\033[38;5;6m\]\w\[\033[38;5;15m\]\$\[$(tput sgr0)\] '
 #    ;;
-xterm)
+#xterm)
 #    PS1='${debian_chroot:+($debian_chroot)}\[\033[38;5;7m\]\u\[\033[38;5;15m\]@\[\033[38;5;45m\]\h\[\033[38;5;15m\]:\[\033[38;5;6m\]\w\[\033[38;5;15m\]\$\[$(tput sgr0)\] '
-    ;;
+#    ;;
 rxvt*)
     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
     ;;
 *)
-    echo "$TERM"
+    #echo "$TERM"
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\wyop\$ '
     ;;
 esac
@@ -155,20 +154,20 @@ esac
 #fi
 
 # pyenv conf
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-source $PYENV_ROOT/completions/pyenv.bash
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
+#source $PYENV_ROOT/completions/pyenv.bash
 
 
 
 export DISTARKPATH=/home/project/git/distark/src/
 
 
-export PYTHONPATH=/home/project/git/distark/src/
-export PYTHONPATH=$PYTHONPATH:$DISTARKPATH
-export PYTHONPATH="$PYTHONPATH:$DISTARKPATH""distark/commons/protos/"
+#export PYTHONPATH=/home/project/git/distark/src/
+#export PYTHONPATH=$PYTHONPATH:$DISTARKPATH
+#export PYTHONPATH="$PYTHONPATH:$DISTARKPATH""distark/commons/protos/"
 export PATH=$PATH:/usr/share/zookeeper/bin
 export PATH=$PATH:/home/opt/zookeeper-3.4.5/bin
 

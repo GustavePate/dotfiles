@@ -30,8 +30,9 @@ Plugin 'tpope/vim-haml'
 "Python
 " Must have pip install --upgrade autopep8
 Plugin 'tell-k/vim-autopep8'
-Plugin 'andviro/flake8-vim'
+"Plugin 'andviro/flake8-vim'
 Plugin 'hdima/python-syntax'
+Plugin 'psf/black'
 
 "Javascript
 Plugin 'pangloss/vim-javascript'
