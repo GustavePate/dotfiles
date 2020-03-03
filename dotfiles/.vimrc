@@ -1,80 +1,110 @@
-" Disable Vi compatibility
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim/
+if &compatible
+    set nocompatible
+endif
+filetype off                  " required
+"
+" Add the dein installation directory into runtimepath
+"set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+
+
+"if dein#load_state('~/.cache/dein')
+""    call dein#begin('~/.cache/dein')
+""    call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+""    call dein#add('Shougo/deoplete.nvim')
+""    if !has('nvim')
+""        call dein#add('roxma/nvim-yarp')
+""        call dein#add('roxma/vim-hug-neovim-rpc')
+""    endif
+""    call dein#end()
+""    call dein#save_state()
+"endif
+    " Synthax
+    Plugin 'scrooloose/syntastic'
+    Plugin 'vim-pandoc/vim-pandoc'
+    Plugin 'vim-pandoc/vim-pandoc-syntax'
+    Plugin 'uarun/vim-protobuf'
+    Plugin 'motus/pig.vim'
+    Plugin 'mustache/vim-mustache-handlebars'
+    Plugin 'kchmck/vim-coffee-script'
+    " call dein#add('docker/docker')
+    Plugin 'ekalinin/Dockerfile.vim'
+
+    "HTML
+    "Plugin 'amirh/HTML-AutoCloseTag')
+    Plugin 'hail2u/vim-css3-syntax'
+    Plugin 'gorodinskiy/vim-coloresque'
+    Plugin 'tpope/vim-haml'
+
+
+    "Python
+    " Must have pip install --upgrade autopep8
+    Plugin 'tell-k/vim-autopep8'
+    "Plugin 'andviro/flake8-vim')
+    Plugin 'hdima/python-syntax'
+    Plugin 'psf/black'
+
+    "Javascript
+    Plugin 'pangloss/vim-javascript'
+    Plugin 'marijnh/tern_for_vim'
+    "SCM
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'airblade/vim-gitgutter'
+
+    "GUI / workflow
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'bling/vim-airline'
+    Plugin 'majutsushi/tagbar'
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'kien/ctrlp.vim'
+    Plugin 'mbbill/undotree'
+    Plugin 'SirVer/ultisnips'
+    Plugin 'honza/vim-snippets'
+
+    "org
+    Plugin 'vim-scripts/TaskList.vim'
+    Plugin 'jceb/vim-orgmode'
+    Plugin 'mattn/calendar-vim'
+    Plugin 'tpope/vim-speeddating'
+
+    "quick editing
+    Plugin 'Raimondi/delimitMate'
+    Plugin 'tpope/vim-surround'
+    Plugin 'tomtom/tcomment_vim'
+
+    "formatting
+    Plugin 'godlygeek/tabular'
+    Plugin 'shinokada/listtrans.vim'
+    Plugin 'shinokada/dragvisuals.vim'
+
+    "goodies
+    Plugin 'junegunn/limelight.vim'
+    "call dein#add('junegunn/goyo.vim')
+    Plugin 'nixon/vim-vmath'
+    "call dein#add('mikewest/vimroom')
+
+    "theme
+    Plugin 'vim-scripts/ScrollColors'
+    Plugin 'guns/xterm-color-table.vim'
+
+
+call vundle#end()            " required
+
+filetype plugin indent on
+syntax enable
+
+"set rtp+=~/.vim/bundle/Vundle.vim/
+"call vundle#begin()
 set t_BE=
 
 " let Vundle manage Vundle
-Plugin 'gmarik/Vundle.vim'
+"Plugin 'gmarik/Vundle.vim'
 "
 " My bundles here:
 "
-" Synthax
-Plugin 'scrooloose/syntastic'
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'uarun/vim-protobuf'
-Plugin 'motus/pig.vim'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'kchmck/vim-coffee-script'
-" Plugin 'docker/docker'
-Plugin 'ekalinin/Dockerfile.vim'
-
-"HTML
-"Plugin 'amirh/HTML-AutoCloseTag'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'gorodinskiy/vim-coloresque'
-Plugin 'tpope/vim-haml'
-
-
-"Python
-" Must have pip install --upgrade autopep8
-Plugin 'tell-k/vim-autopep8'
-"Plugin 'andviro/flake8-vim'
-Plugin 'hdima/python-syntax'
-Plugin 'psf/black'
-
-"Javascript
-Plugin 'pangloss/vim-javascript'
-Plugin 'marijnh/tern_for_vim'
-"SCM
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-
-"GUI / workflow
-Plugin 'scrooloose/nerdtree'
-Plugin 'bling/vim-airline'
-Plugin 'majutsushi/tagbar'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'kien/ctrlp.vim'
-Plugin 'mbbill/undotree'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-
-"org
-Plugin 'vim-scripts/TaskList.vim'
-
-"quick editing
-Plugin 'Raimondi/delimitMate'
-Plugin 'tpope/vim-surround'
-Plugin 'tomtom/tcomment_vim'
-
-"formatting
-Plugin 'godlygeek/tabular'
-Plugin 'shinokada/listtrans.vim'
-Plugin 'shinokada/dragvisuals.vim'
-
-"goodies
-Plugin 'junegunn/limelight.vim'
-Plugin 'junegunn/goyo.vim'
-Plugin 'nixon/vim-vmath'
-Plugin 'mikewest/vimroom'
-
-"theme
-Plugin 'vim-scripts/ScrollColors'
-Plugin 'guns/xterm-color-table.vim'
-
-call vundle#end()
 
 filetype indent on
 filetype plugin on
@@ -211,6 +241,7 @@ endif
 " ############ keymapping  #############
 " Change mapleader
 let mapleader = ","
+let maplocalleader = "!"
 
 "" ### move ###
 
@@ -303,7 +334,6 @@ noremap <F7> :setlocal spell! spelllang=en<CR>
 
 " C-n toggle nerdtree on / off
 map <C-n> :NERDTreeToggle<CR>
-map <C-x> :NERDTreeToggle<CR>
 " ,td open the todo list in a new windows
 map <leader>td <Plug>TaskList
 " ,v opens .vimrc
@@ -346,6 +376,15 @@ augroup END
 "############# Plugins #################
 "#######################################
 
+
+"############## org mode  ###########"
+let maplocalleader = '!'
+let g:org_indent=1
+let g:org_heading_shade_leading_stars=0
+let g:org_todo_keywords=['TODO', 'FEEDBACK', 'DISCUSS', 'DELEGATED', '|', 'DONE', 'TO_OTHERS']
+let g:org_agenda_files = ['~/org/test.org']
+
+
 "############## undo tree ###########"
 nnoremap <F5> :UndotreeToggle<cr>
 
@@ -383,7 +422,7 @@ autocmd! User GoyoEnter
 autocmd! User GoyoLeave
 autocmd  User GoyoEnter nested call <SID>goyo_enter()
 autocmd  User GoyoLeave nested call <SID>goyo_leave()
-nmap <C-R> :Goyo<CR>
+"nmap <C-R> :Goyo<CR>
 
 
 "############# tabular ###################"

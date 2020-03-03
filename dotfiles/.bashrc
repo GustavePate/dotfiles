@@ -3,7 +3,7 @@
 # git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 
-PATH=$PATH:$HOME/bin
+PATH=$PATH:$HOME/bin:$HOME/.local/bin
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
