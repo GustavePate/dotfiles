@@ -1,4 +1,4 @@
-# sudo apt install ack-grep nodejs npm python3 python3-dev mplayer pandoc git
+# sudo apt install ack-grep nodejs npm python3 python3-dev mplayer pandoc git cmatrix
 # git clone https://github.com/pyenv/pyenv.git ~/.pyenv 
 # git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
@@ -90,7 +90,7 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 #fi
 
 
-
+alias c='timeout 1 cmatrix -b -u 1; clear'
 alias ack='ack-grep'
 alias paste='xclip -o -selection clipboard'
 alias node='nodejs'
