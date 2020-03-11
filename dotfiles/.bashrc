@@ -103,6 +103,7 @@ alias sphinx_serve='cd ~/doc_html/; serve_secure'
 alias sphinx_autocompile='autocompile.py $SYNC_PATH/Boulot/sphinx/ .rst "make althtml;reload_browser.py"'
 alias autosphinx='sphinx_serve & sphinx_autocompile'
 alias d="cd ~/doc;vim"
+alias o="cd ~/org;vim"
 
 
 #apt-get install
