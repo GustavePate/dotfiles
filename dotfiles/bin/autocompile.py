@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 #
 # Usage:
 # ./autocompile.py path ext1,ext2,extn cmd
@@ -27,7 +27,7 @@ class OnWriteHandler(pyinotify.ProcessEvent):
         self.cmd = cmd
 
     def _run_cmd(self):
-        print('==> Modification detected')
+        print('==> Mion detected')
         print('current dir: ' + os.getcwd())
         print('call: ' + str(self.cmd.split(';')) + " " + str(self.cwd))
         commands = self.cmd.split(';')
